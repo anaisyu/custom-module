@@ -1,0 +1,9 @@
+<div class="d-block align-items-center fixed-bottom" style="z-index: 1000; background-color: white"
+     *ngIf="userService.isAdmin()">
+  <button class="btn btn-sm btn-dark" (click)="edit()">Edit mode</button>
+  <button class="btn btn-sm btn-secondary" (click)="display()">Display mode</button>
+  <button class="btn btn-sm btn-warning" (click)="cancel()">CANCEL</button>
+  <button class="btn btn-sm btn-primary" (click)="save()">SAVE</button>
+  <span *ngIf="assetService.editSubject | async">Edit mode</span>
+  <span *ngIf="!(assetService.editSubject | async)">Display mode</span>
+</div>

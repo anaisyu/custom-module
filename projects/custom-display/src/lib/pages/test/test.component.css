@@ -1,0 +1,28 @@
+@media (max-width: 768px) {
+    .custom-display-row {
+        aspect-ratio: unset !important;
+    }
+}
+
+.custom-display-row {
+    margin-bottom: 10px;
+    height: auto;
+}
+
+.custom-display-col {
+    height: 100%;
+    overflow: hidden;
+}
+
+/* additional sections */
+#home {
+    background: url(https://images.unsplash.com/photo-1441716844725-09cedc13a4e7?ixlib=rb-0.3.5&q=80&fm=jpg&w=1080&fit=max&s=740bfa7ed6ec67a723383462668c70c3) no-repeat center center fixed;
+    display: table;
+    height: 100%;
+    position: relative;
+    width: 100%;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}

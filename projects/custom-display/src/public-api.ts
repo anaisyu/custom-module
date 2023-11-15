@@ -1,0 +1,21 @@
+/*
+ * Public API Surface of custom-display
+ */
+
+export * from './lib/components/custom-display/custom-display.component';
+export * from './lib/custom-display.module';
+export * from './lib/pages/test/test.component'
+export * from './lib/pages/test/test-edit.component'
+export * from './lib/openapi/index'
+export * from './lib/directives/dy-translate.directive'
+export * from './lib/lib/custom-translation-loader'
+export * from './lib/service/translate/translation-client.service'
+export * from './lib/service/user/user.service'
+export * from './lib/service/swipe/swipe-manager.service'
+export * from './lib/service/loading/loading.service'
+export * from './lib/service/title/title.service'
+export * from './lib/service/description-meta/description-meta.service'
+export * from './lib/service/notifications/notification.service'
+export * from './lib/entities/user'
+export * from './lib/components/translate/translate-edit/translate-edit.component'
+export * from './lib/components/notification/notification.component'

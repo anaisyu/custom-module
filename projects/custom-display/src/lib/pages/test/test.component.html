@@ -1,0 +1,15 @@
+<!-- navigation panel -->
+
+<!-- first section - Home -->
+<div id="home" class="home">
+    <div class="text-vcenter">
+        <h1>Hello World</h1>
+        <h3>This is bootstrap-based layout</h3>
+        <h3>This is bootstrap-based layout</h3>
+    </div>
+</div>
+<!-- /first section -->
+
+<div *ngIf="config$ | async as config">
+    <app-custom-display [config]="config" [edit]="false"></app-custom-display>
+</div>
