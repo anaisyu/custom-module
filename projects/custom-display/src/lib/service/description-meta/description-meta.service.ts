@@ -13,6 +13,6 @@ export class DescriptionMetaService {
   }
 
   appendToBaseDescription(desc: string) {
-   // this.updateDescription($localize `Anaïs ゆ - also called AnaïsYu - is a swiss artist and painter. ` + desc);
+   // this.updateDescription($ loc alize `Anaïs ゆ - also called AnaïsYu - is a swiss artist and painter. ` + desc);
   }
 }
