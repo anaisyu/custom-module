@@ -23,17 +23,17 @@ export class TranslationClientService {
     }
   }
 
-  next(key: string, data: string){
+  next(key: string, data: string) {
     let set: any = TranslationClientService.changes;
 
     const keys: string[] = key.split('.')
     for (let i = 0; i < keys.length - 1; i++) {
-      if(!set[keys[i]]) {
+      if (!set[keys[i]]) {
         set[keys[i]] = {}
       }
       set = set[keys[i]]
     }
-    if(!set[keys[keys.length - 1]]) {
+    if (!set[keys[keys.length - 1]]) {
       set[keys[keys.length - 1]] = {}
     }
     set[keys[keys.length - 1]] = data;
@@ -41,25 +41,30 @@ export class TranslationClientService {
     this.saveCookie();
   }
 
-  save() {
-    this.service.getTranslation('fr').subscribe(original => {
-      this.http.post(this.backendUrl + '/assets/save/fr',
-        TranslationClientService.merge(original, TranslationClientService.changes)).subscribe(response => {
-        this.notificationService.newMessage('Sauvegardé. Veuillez attendre quelques minutes pour que la propagation soit complete');
-
-        this.saveCookie(5)
+  save(lang: string = 'fr') {
+    this.service.getTranslation(lang).subscribe(original => {
+      this.http.post(this.backendUrl + '/assets/save/' + lang,
+        TranslationClientService.merge(original, TranslationClientService.changes)
+      ).subscribe({
+        next: response => {
+          this.notificationService.newMessage('Sauvegardé. Veuillez attendre quelques minutes pour que la propagation soit complète.');
+          this.saveCookie(5)
+        }, error: (msg) => {
+          console.error(msg)
+          this.notificationService.newError('Echec lors de la sauvegarde. Merci de réessayer.')
+        }
       })
     })
   }
 
   public static merge(left: any, right: any) {
-    if(typeof left !== 'object'){
+    if (typeof left !== 'object') {
       return right;
     }
     let res = Object.assign({}, left);
     for (const key of Object.keys(right)) {
-      if(left[key]) {
-        res[key]  = this.merge(left[key], right[key])
+      if (left[key]) {
+        res[key] = this.merge(left[key], right[key])
       } else {
         res[key] = right[key]
       }
@@ -72,13 +77,13 @@ export class TranslationClientService {
     location.reload();
   }
 
-  saveCookie(minutesExpire: number = 60*24*7){
+  saveCookie(minutesExpire: number = 60 * 24 * 7) {
     console.log('saved')
     console.log(JSON.stringify(TranslationClientService.changes))
     const date = new Date(Date.now());
     date.setMinutes(date.getMinutes() + minutesExpire)
     this.cookieService.set(this.COOKIE_NAME,
-        JSON.stringify(TranslationClientService.changes),
-        {expires: date})
+      JSON.stringify(TranslationClientService.changes),
+      {expires: date})
   }
 }

@@ -27,7 +27,6 @@ export class NotificationService {
 
   newError(message: string): void {
     this._errorMessage.next(message);
-    this.newMessage(message) // todo
   }
 
 

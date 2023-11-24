@@ -6,26 +6,33 @@ import {NotificationService} from "../../service/notifications/notification.serv
   templateUrl: './notification.component.html',
   styleUrls: ['./notification.component.css']
 })
-export class NotificationComponent implements OnInit {
+export class NotificationComponent {
   show: boolean = false;
+  error: boolean = false;
   message: string = '';
 
   private timeout: number = -1;
   constructor(private service: NotificationService) {
     this.service.successMessage.subscribe((msg) => {
-      console.log('new notification')
       this.message = msg;
       this.show = true;
-      console.log(this.show)
-      clearTimeout(this.timeout);
-      this.timeout = setTimeout(() => {
-        console.log('end')
-        this.show = false;
-      }, 8000);
+      this.error = false;
+      this.prepareStop()
+    })
+    this.service.errorMessage.subscribe((msg) => {
+      this.message = msg;
+      this.show = true;
+      this.error = true;
+      this.prepareStop()
     })
   }
-
-  ngOnInit(): void {
+  prepareStop() {
+    console.log('prepare')
+    clearTimeout(this.timeout);
+    this.timeout = setTimeout(() => {
+      console.log('end')
+      this.show = false;
+    }, 8000);
   }
 
   stop() {
