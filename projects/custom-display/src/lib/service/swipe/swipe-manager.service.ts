@@ -1,4 +1,4 @@
-import {EventEmitter, Injectable} from '@angular/core';
+import {ElementRef, EventEmitter, Injectable, Renderer2, RendererFactory2} from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -7,13 +7,13 @@ export class SwipeManagerService {
   private xDown = null;
   private yDown: any = null;
 
-  private handleStart = (event: TouchEvent)  => {
+  handleStart = (event: TouchEvent)  => {
     this.handleTouchStart(event)
   };
-  private handleMove = (event: TouchEvent)  => {
+  handleMove = (event: TouchEvent)  => {
     this.handleTouchMove(event)
   };
-  private keyPress = (event: KeyboardEvent) => {
+  keyPress = (event: KeyboardEvent) => {
     if(event.code == 'ArrowLeft') {
       this.left();
     }
@@ -25,19 +25,7 @@ export class SwipeManagerService {
   swipeRight: EventEmitter<void> = new EventEmitter<void>();
   swipeLeft: EventEmitter<void> = new EventEmitter<void>();
 
-  constructor() { }
-
-
-  startListening(): void {
-    document.addEventListener('touchstart', this.handleStart, false);
-    document.addEventListener('touchmove', this.handleMove, false);
-    document.addEventListener('keydown', this.keyPress, false);
-
-  }
-  stopListening(): void {
-    document.removeEventListener('touchstart', this.handleStart, false);
-    document.removeEventListener('touchmove', this.handleMove, false);
-    document.removeEventListener('keydown', this.keyPress, false);
+  constructor() {
   }
 
   private getTouches(evt: any): any {

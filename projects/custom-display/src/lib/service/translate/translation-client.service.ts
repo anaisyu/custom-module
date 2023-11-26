@@ -10,7 +10,7 @@ import {NotificationService} from "../notifications/notification.service";
 })
 export class TranslationClientService {
   private readonly COOKIE_NAME = "site-text"
-  public static changes: Object;
+  public static changes: Object = {};
   public editSubject: Subject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(private service: TranslateService, private notificationService: NotificationService, private http: HttpClient, private cookieService: CookieService, @Inject('backendUrl') private backendUrl: string) {
@@ -78,6 +78,10 @@ export class TranslationClientService {
   }
 
   saveCookie(minutesExpire: number = 60 * 24 * 7) {
+    if(!TranslationClientService.changes || Object.keys(TranslationClientService.changes).length == 0){
+      console.log('empty')
+      return
+    }
     console.log('saved')
     console.log(JSON.stringify(TranslationClientService.changes))
     const date = new Date(Date.now());
