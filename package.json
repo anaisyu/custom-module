@@ -1,6 +1,6 @@
 {
   "name": "custom-display",
-  "version": "0.0.50",
+  "version": "0.0.63",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -8,7 +8,6 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
-  "private": true,
   "dependencies": {
     "@angular/animations": "^17.0.0",
     "@angular/common": "^17.0.0",
@@ -20,6 +19,9 @@
     "@angular/router": "^17.0.0",
     "@angular/material": "^17.0.0",
     "@openapitools/openapi-generator-cli": "^2.7.0",
+    "@ngx-translate/core": "^15.0.0",
+    "@ngx-translate/http-loader": "^8.0.0",
+    "ngx-cookie-service": "^17.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.2"

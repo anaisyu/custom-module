@@ -23,6 +23,6 @@ export class UserService {
   }
 
   isAdmin(): boolean {
-    return this.roles.includes('ROLE_ADMIN') || this.backendUrl.includes('localhost') || true;
+    return this.roles.includes('ROLE_ADMIN') || this.backendUrl.includes('localhost');
   }
 }

@@ -15,6 +15,7 @@ import {CommonModule} from "@angular/common";
 import {DyTranslateDirective} from "./directives/dy-translate.directive";
 import { TranslateEditComponent } from './components/translate/translate-edit/translate-edit.component';
 import {NotificationComponent} from "./components/notification/notification.component";
+import {LoadingComponent} from "./components/loading/loading.component";
 
 
 
@@ -38,13 +39,15 @@ import {NotificationComponent} from "./components/notification/notification.comp
         MatSelectModule,
         MatChipsModule,
         MatCheckboxModule,
+        LoadingComponent
     ],
   exports: [
     TestComponent,
     TestEditComponent,
     DyTranslateDirective,
     TranslateEditComponent,
-    NotificationComponent
+    NotificationComponent,
+    LoadingComponent
   ]
 })
 export class CustomDisplayModule { }
