@@ -14,7 +14,7 @@ export class UserService {
   }
 
   getUser(): Observable<User> {
-    return this.http.get<User>(this.backendUrl + '/user').pipe(map(
+    return this.http.get<User>(this.backendUrl + '/user', {transferCache: false}).pipe(map(
       x => {
         this.roles = x.roles ? x.roles : [];
         return x;

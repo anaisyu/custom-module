@@ -38,7 +38,7 @@ export class DyTranslateDirective implements AfterViewInit {
   ngAfterViewInit(): void {
     this.service.get(this.appDyTranslate).subscribe(value => {
       if(value == this.appDyTranslate && this.el.nativeElement.innerHTML){
-        this.clientService.next(this.appDyTranslate, this.el.nativeElement.innerHTML)
+       // this.clientService.next(this.appDyTranslate, this.el.nativeElement.innerHTML)
       } else {
         this.el.nativeElement.innerHTML = value;
       }
