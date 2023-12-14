@@ -5,5 +5,10 @@
   <button class="btn btn-sm btn-warning" (click)="cancel()">CANCEL</button>
   <button class="btn btn-sm btn-primary" (click)="save()">SAVE</button>
   <span *ngIf="assetService.editSubject | async">Edit mode</span>
-  <span *ngIf="!(assetService.editSubject | async)">Display mode</span>
+  <span *ngIf="!(assetService.editSubject | async)">Display modee</span>
+  <div *ngIf="assetService.editSubject | async" >
+    <div *ngIf="dyTextEditorService.displayService | async" class="dy-editor">
+      <app-dy-text-editor></app-dy-text-editor>
+    </div>
+  </div>
 </div>

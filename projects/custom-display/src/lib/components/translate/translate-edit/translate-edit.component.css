@@ -1,0 +1,11 @@
+.dy-editor {
+  z-index: 1000;
+  background-color: white;
+  position: fixed;
+  bottom: 30px;
+  left: 0;
+  width: 30vw;
+  height: 350px;
+  overflow: scroll;
+  resize: horizontal
+}

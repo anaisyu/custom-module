@@ -16,6 +16,8 @@ import {DyTranslateDirective} from "./directives/dy-translate.directive";
 import { TranslateEditComponent } from './components/translate/translate-edit/translate-edit.component';
 import {NotificationComponent} from "./components/notification/notification.component";
 import {LoadingComponent} from "./components/loading/loading.component";
+import {DyDisplayDirective} from "./directives/dy-display.directive";
+import {DyTextEditorComponent} from "./components/dy-text-editor/dy-text-editor.component";
 
 
 
@@ -27,24 +29,27 @@ import {LoadingComponent} from "./components/loading/loading.component";
     CustomTextComponent,
     CustomDisplayComponent,
     DyTranslateDirective,
+    DyDisplayDirective,
     TranslateEditComponent,
     NotificationComponent
   ],
-    imports: [
-        CommonModule,
-        DragDropModule,
-        MatButtonToggleModule,
-        MatButtonModule,
-        MatFormFieldModule,
-        MatSelectModule,
-        MatChipsModule,
-        MatCheckboxModule,
-        LoadingComponent
-    ],
+  imports: [
+    CommonModule,
+    DragDropModule,
+    MatButtonToggleModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatChipsModule,
+    MatCheckboxModule,
+    LoadingComponent,
+    DyTextEditorComponent
+  ],
   exports: [
     TestComponent,
     TestEditComponent,
     DyTranslateDirective,
+    DyDisplayDirective,
     TranslateEditComponent,
     NotificationComponent,
     LoadingComponent

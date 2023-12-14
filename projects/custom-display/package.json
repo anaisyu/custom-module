@@ -1,15 +1,16 @@
 {
   "name": "dy-custom-display",
-  "version": "0.0.67",
+  "version": "0.0.135",
   "peerDependencies": {
     "@angular/common": "^17.0.0",
     "@angular/core": "^17.0.0",
     "@angular/material": "^17.0.0",
     "@angular/router": "^17.0.0",
-    "@openapitools/openapi-generator-cli": "^2.7.0",
     "@ngx-translate/core": "^15.0.0",
     "@ngx-translate/http-loader": "^8.0.0",
-    "ngx-cookie-service": "^17.0.0"
+    "@openapitools/openapi-generator-cli": "^2.7.0",
+    "ngx-cookie-service": "^17.0.0",
+    "@ckeditor/ckeditor5-build-decoupled-document": "^40.2.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"
