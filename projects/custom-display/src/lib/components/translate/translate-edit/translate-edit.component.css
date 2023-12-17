@@ -9,3 +9,15 @@
   overflow: scroll;
   resize: horizontal
 }
+.text-edit-tools ul{
+  list-style: none;
+}
+.text-edit-tools {
+  z-index: 1000;
+  background-color: white;
+  position: fixed;
+  right: 0;
+  box-sizing: border-box;
+  top: 25vh;
+  box-shadow: -8px 0px 12px 10px rgba(138, 137, 138, 1);
+}
