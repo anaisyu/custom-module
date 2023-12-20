@@ -1,10 +1,11 @@
 import {Inject, Injectable} from "@angular/core";
 import {RouterStateSnapshot, TitleStrategy} from "@angular/router";
 import {Title} from "@angular/platform-browser";
+import {TranslateService} from "@ngx-translate/core";
 
 @Injectable()
 export class MyTitleStrategy extends TitleStrategy {
-  constructor(private readonly title: Title, @Inject('siteTitleBase') private siteTitleBase: string) {
+  constructor(private readonly title: Title, private translate: TranslateService, @Inject('siteTitleBase') private siteTitleBase: string) {
     super();
   }
 
@@ -12,7 +13,10 @@ export class MyTitleStrategy extends TitleStrategy {
     const title = this.buildTitle(routerState);
     if (title !== undefined) {
       if (title.length > 0) {
-        this.title.setTitle(`${this.siteTitleBase} | ${title}`);
+        this.translate.stream(title).subscribe(res => {
+          console.log('set title ' + res)
+          this.title.setTitle(`${this.siteTitleBase} | ${res}`);
+        })
       } else {
         this.title.setTitle(this.siteTitleBase);
       }

@@ -1,10 +1,10 @@
-<div class="text-edit-tools"
+<div class="text-edit-tools d-none d-sm-block"
      *ngIf="userService.isAdmin()">
   <ul>
-    <li><button class="btn btn-sm btn-dark" (click)="edit()">Mode édition</button></li>
-    <li><button class="btn btn-sm btn-secondary" (click)="display()">Mode affichage</button></li>
-    <li><button class="btn btn-sm btn-warning" (click)="cancel()">Annuler les modifications</button></li>
-    <li><button class="btn btn-sm btn-primary" (click)="save()">Sauvegarder</button></li>
+    <li><button class="btn btn-block btn-dark" (click)="edit()">Mode édition</button></li>
+    <li><button class="btn btn-block btn-secondary" (click)="display()">Mode affichage</button></li>
+    <li><button class="btn btn-block btn-warning" (click)="cancel()">Annuler les modifications</button></li>
+    <li><button class="btn btn-block btn-primary" (click)="save()">Sauvegarder</button></li>
     <li *ngIf="assetService.editSubject | async">Mode actuel: édition</li>
     <li *ngIf="!(assetService.editSubject | async)">Mode actuel: Affichage</li>
   </ul>

@@ -11,8 +11,11 @@
 }
 .text-edit-tools ul{
   list-style: none;
+  margin: 0;
+  padding: 0;
 }
 .text-edit-tools {
+  padding: 1em;
   z-index: 1000;
   background-color: white;
   position: fixed;
@@ -20,4 +23,8 @@
   box-sizing: border-box;
   top: 25vh;
   box-shadow: -8px 0px 12px 10px rgba(138, 137, 138, 1);
+}
+
+button {
+  width: 100%;
 }

@@ -74,12 +74,11 @@ export class TranslationClientService {
 
   cancel() {
     this.cookieService.delete(this.COOKIE_NAME)
-    location.reload();
+    window.location.href = window.location.toString()
   }
 
-  saveCookie(minutesExpire: number = 60 * 24) {
+  saveCookie(minutesExpire: number = 60 * 12) {
     if(!TranslationClientService.changes || Object.keys(TranslationClientService.changes).length == 0){
-      console.log('empty')
       return
     }
     console.log('saved')
