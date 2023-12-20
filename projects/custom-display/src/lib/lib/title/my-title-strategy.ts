@@ -14,7 +14,6 @@ export class MyTitleStrategy extends TitleStrategy {
     if (title !== undefined) {
       if (title.length > 0) {
         this.translate.stream(title).subscribe(res => {
-          console.log('set title ' + res)
           this.title.setTitle(`${this.siteTitleBase} | ${res}`);
         })
       } else {
