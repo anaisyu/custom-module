@@ -1,6 +1,6 @@
 {
   "name": "custom-display",
-  "version": "0.0.146",
+  "version": "0.0.148",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

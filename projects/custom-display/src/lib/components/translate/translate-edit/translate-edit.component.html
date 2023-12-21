@@ -10,7 +10,7 @@
   </ul>
 
   <div *ngIf="assetService.editSubject | async" >
-    <div *ngIf="dyTextEditorService.displayService | async" class="dy-editor">
+    <div *ngIf="dyTextEditorService.displayEditorSubject | async" class="dy-editor">
       <app-dy-text-editor></app-dy-text-editor>
     </div>
   </div>

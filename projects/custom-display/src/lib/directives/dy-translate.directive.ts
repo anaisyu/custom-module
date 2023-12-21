@@ -31,23 +31,29 @@ export class DyTranslateDirective implements AfterViewInit {
     })
   }
 
+  addNewEditorData(value: string){
+    if(this.appDyTranslate.includes('editor')) {
+      this.dyTextEditorService.addNewEditorData(this.appDyTranslate, value)
+    }
+  }
+
   @HostListener('keyup', ['$event']) public onKeyup(event: any): void {
     const value: string = this.el.nativeElement.innerHTML
     if(value != this.previousValue) {
       this.previousValue = value
-      this.dyTextEditorService.addNewEditorData(this.appDyTranslate, value)
+      this.addNewEditorData(value)
       this.save(value)
     }
   }
 
   @HostListener('click') onClick() {
     if(this.editMode && this.appDyTranslate.includes('editor')) {
-      this.dyTextEditorService.displayService.next(true)
+      this.dyTextEditorService.displayEditorSubject.next(true)
       setTimeout(() => {
-        this.dyTextEditorService.addNewEditorData(this.appDyTranslate, this.el.nativeElement.innerHTML)
-      }, 50)
+        this.addNewEditorData(this.el.nativeElement.innerHTML)
+      }, 50) // why this timeout?
     } else {
-      this.dyTextEditorService.displayService.next(false)
+      this.dyTextEditorService.displayEditorSubject.next(false)
     }
   }
 
@@ -67,15 +73,17 @@ export class DyTranslateDirective implements AfterViewInit {
       this.el.nativeElement.contentEditable = this.editMode;
     })
 
-    this.dyTextEditorService.editorDataChange.subscribe((newValue) => {
-      if(newValue.key == this.appDyTranslate){
-        if(newValue.value != this.previousValue) {
-          this.previousValue = newValue.value
-          this.el.nativeElement.innerHTML = newValue.value
-          this.save(newValue.value)
+    if(this.appDyTranslate.includes('editor')) {
+      this.dyTextEditorService.editorDataChange.subscribe((newValue) => {
+        if (newValue.key == this.appDyTranslate) {
+          if (newValue.value != this.previousValue) {
+            this.previousValue = newValue.value
+            this.el.nativeElement.innerHTML = newValue.value
+            this.save(newValue.value)
+          }
         }
-      }
-    })
+      })
+    }
   }
 
 }

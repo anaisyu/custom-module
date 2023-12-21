@@ -5,7 +5,7 @@ import {BehaviorSubject, Subject} from "rxjs";
   providedIn: 'root'
 })
 export class DyTextEditorService {
-  displayService = new BehaviorSubject<boolean>(false)
+  displayEditorSubject = new BehaviorSubject<boolean>(false)
   newEditorData = new Subject<{key: string, value: string}>();
   editorDataChange = new Subject<{ key: string, value: string }>();
   constructor() { }
