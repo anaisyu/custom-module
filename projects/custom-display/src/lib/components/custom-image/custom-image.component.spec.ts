@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { CustomImageComponent } from './custom-image.component';
+import {CustomImageComponent} from './custom-image.component';
 
 describe('CustomImageComponent', () => {
   let component: CustomImageComponent;
@@ -8,9 +8,9 @@ describe('CustomImageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CustomImageComponent ]
+      declarations: [CustomImageComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(CustomImageComponent);
     component = fixture.componentInstance;

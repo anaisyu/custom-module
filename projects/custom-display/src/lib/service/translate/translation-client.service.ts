@@ -1,17 +1,17 @@
-import {EventEmitter, Inject, Injectable} from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import {TranslateService} from "@ngx-translate/core";
 import {HttpClient} from "@angular/common/http";
 import {CookieService} from "ngx-cookie-service";
-import {BehaviorSubject, Subject} from "rxjs";
+import {BehaviorSubject} from "rxjs";
 import {NotificationService} from "../notifications/notification.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class TranslationClientService {
-  private readonly COOKIE_NAME = "site-text"
   public static changes: Object = {};
   public editSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private readonly COOKIE_NAME = "site-text"
 
   constructor(private service: TranslateService, private notificationService: NotificationService, private http: HttpClient, private cookieService: CookieService, @Inject('backendUrl') private backendUrl: string) {
     // Retrieve object from the cookie
@@ -21,6 +21,21 @@ export class TranslationClientService {
     } else {
       TranslationClientService.changes = {}
     }
+  }
+
+  public static merge(left: any, right: any) {
+    if (typeof left !== 'object') {
+      return right;
+    }
+    let res = Object.assign({}, left);
+    for (const key of Object.keys(right)) {
+      if (left[key]) {
+        res[key] = this.merge(left[key], right[key])
+      } else {
+        res[key] = right[key]
+      }
+    }
+    return res;
   }
 
   next(key: string, data: string) {
@@ -57,28 +72,13 @@ export class TranslationClientService {
     })
   }
 
-  public static merge(left: any, right: any) {
-    if (typeof left !== 'object') {
-      return right;
-    }
-    let res = Object.assign({}, left);
-    for (const key of Object.keys(right)) {
-      if (left[key]) {
-        res[key] = this.merge(left[key], right[key])
-      } else {
-        res[key] = right[key]
-      }
-    }
-    return res;
-  }
-
   cancel() {
     this.cookieService.delete(this.COOKIE_NAME)
     window.location.href = window.location.toString()
   }
 
   saveCookie(minutesExpire: number = 60 * 12) {
-    if(!TranslationClientService.changes || Object.keys(TranslationClientService.changes).length == 0){
+    if (!TranslationClientService.changes || Object.keys(TranslationClientService.changes).length == 0) {
       return
     }
     console.log('saved')

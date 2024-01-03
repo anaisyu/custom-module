@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { DescriptionMetaService } from './description-meta.service';
+import {DescriptionMetaService} from './description-meta.service';
 
 describe('DescriptionMetaService', () => {
   let service: DescriptionMetaService;

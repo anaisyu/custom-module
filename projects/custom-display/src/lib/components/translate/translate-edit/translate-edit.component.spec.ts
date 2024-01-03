@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { TranslateEditComponent } from './translate-edit.component';
+import {TranslateEditComponent} from './translate-edit.component';
 
 describe('TranslateEditComponent', () => {
   let component: TranslateEditComponent;

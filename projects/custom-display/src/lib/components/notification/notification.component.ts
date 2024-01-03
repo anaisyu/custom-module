@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component} from '@angular/core';
 import {NotificationService} from "../../service/notifications/notification.service";
 
 @Component({
@@ -12,6 +12,7 @@ export class NotificationComponent {
   message: string = '';
 
   private timeout: number = -1;
+
   constructor(private service: NotificationService) {
     this.service.successMessage.subscribe((msg) => {
       this.message = msg;
@@ -26,6 +27,7 @@ export class NotificationComponent {
       this.prepareStop()
     })
   }
+
   prepareStop() {
     console.log('prepare')
     clearTimeout(this.timeout);

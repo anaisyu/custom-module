@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { CustomTextComponent } from './custom-text.component';
+import {CustomTextComponent} from './custom-text.component';
 
 describe('CustomTextComponent', () => {
   let component: CustomTextComponent;
@@ -8,9 +8,9 @@ describe('CustomTextComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CustomTextComponent ]
+      declarations: [CustomTextComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(CustomTextComponent);
     component = fixture.componentInstance;

@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule} from '@angular/common';
 import {LoadingService} from "../../service/loading/loading.service";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
@@ -12,7 +12,7 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 })
 export class LoadingComponent {
   @Input() public material: boolean = false;
-  
+
   isLoading(): boolean {
     return LoadingService.isLoading();
   }

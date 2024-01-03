@@ -25,7 +25,7 @@ export class DyDisplayDirective implements AfterViewInit, OnDestroy {
       .pipe(takeUntil(this.destroy$))
       .subscribe(([translateValue, editValue]) => {
         // Do something with both values
-        if(translateValue != this.appDyDisplay || editValue){
+        if (translateValue != this.appDyDisplay || editValue) {
           this.el.nativeElement.style.display = 'block'
         } else {
           this.el.nativeElement.style.display = 'none'

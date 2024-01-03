@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {UserService} from "../../../service/user/user.service";
 import {TranslationClientService} from "../../../service/translate/translation-client.service";
 import {DyTextEditorService} from "../../../service/dy-text-editor/dy-text-editor.service";
@@ -11,12 +11,15 @@ import {DyTextEditorService} from "../../../service/dy-text-editor/dy-text-edito
 export class TranslateEditComponent {
   constructor(public userService: UserService, public assetService: TranslationClientService, public dyTextEditorService: DyTextEditorService) {
   }
+
   edit() {
     this.assetService.editSubject.next(true);
   }
+
   display() {
     this.assetService.editSubject.next(false);
   }
+
   cancel() {
     this.assetService.cancel();
   }

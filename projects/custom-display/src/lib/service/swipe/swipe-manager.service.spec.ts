@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { SwipeManagerService } from './swipe-manager.service';
+import {SwipeManagerService} from './swipe-manager.service';
 
 describe('SwipeManagerService', () => {
   let service: SwipeManagerService;

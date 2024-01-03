@@ -1,5 +1,5 @@
-import {Component, ElementRef} from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {Component} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {TranslateService} from "@ngx-translate/core";
 import {TranslationClientService} from "../../service/translate/translation-client.service";
 

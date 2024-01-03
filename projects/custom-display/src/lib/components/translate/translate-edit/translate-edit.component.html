@@ -1,15 +1,23 @@
-<div class="text-edit-tools d-none d-sm-block"
-     *ngIf="userService.isAdmin()">
+<div *ngIf="userService.isAdmin()"
+     class="text-edit-tools d-none d-sm-block">
   <ul>
-    <li><button class="btn btn-block btn-dark" (click)="edit()">Mode édition</button></li>
-    <li><button class="btn btn-block btn-secondary" (click)="display()">Mode affichage</button></li>
-    <li><button class="btn btn-block btn-warning" (click)="cancel()">Annuler les modifications</button></li>
-    <li><button class="btn btn-block btn-primary" (click)="save()">Sauvegarder</button></li>
+    <li>
+      <button (click)="edit()" class="btn btn-block btn-dark">Mode édition</button>
+    </li>
+    <li>
+      <button (click)="display()" class="btn btn-block btn-secondary">Mode affichage</button>
+    </li>
+    <li>
+      <button (click)="cancel()" class="btn btn-block btn-warning">Annuler les modifications</button>
+    </li>
+    <li>
+      <button (click)="save()" class="btn btn-block btn-primary">Sauvegarder</button>
+    </li>
     <li *ngIf="assetService.editSubject | async">Mode actuel: édition</li>
     <li *ngIf="!(assetService.editSubject | async)">Mode actuel: Affichage</li>
   </ul>
 
-  <div *ngIf="assetService.editSubject | async" >
+  <div *ngIf="assetService.editSubject | async">
     <div *ngIf="dyTextEditorService.displayEditorSubject | async" class="dy-editor">
       <app-dy-text-editor></app-dy-text-editor>
     </div>

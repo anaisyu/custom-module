@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Meta} from "@angular/platform-browser";
 
 @Injectable({
@@ -6,13 +6,14 @@ import {Meta} from "@angular/platform-browser";
 })
 export class DescriptionMetaService {
 
-  constructor(private meta: Meta) { }
+  constructor(private meta: Meta) {
+  }
 
   updateDescription(newDescription: string): void {
-    this.meta.updateTag({name:'description', content:newDescription});
+    this.meta.updateTag({name: 'description', content: newDescription});
   }
 
   appendToBaseDescription(desc: string) {
-   // this.updateDescription($ loc alize `Anaïs ゆ - also called AnaïsYu - is a swiss artist and painter. ` + desc);
+    // this.updateDescription($ loc alize `Anaïs ゆ - also called AnaïsYu - is a swiss artist and painter. ` + desc);
   }
 }

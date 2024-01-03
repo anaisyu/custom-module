@@ -1,9 +1,10 @@
-<div class="image-display" [class.home]="image.parallax" [style.background-image]="image.parallax ? 'url('+image.url+')' : 'unset'">
+<div [class.home]="image.parallax" [style.background-image]="image.parallax ? 'url('+image.url+')' : 'unset'"
+     class="image-display">
   <ng-container *ngIf="!image.parallax">
-  <img [attr.loading]="'eager'"
-       alt="{{ image.alt }}"
-       height="400"
-       src="{{ full ? image.urlHighResolution : image.url }}"
-       width="400">
+    <img [attr.loading]="'eager'"
+         alt="{{ image.alt }}"
+         height="400"
+         src="{{ full ? image.urlHighResolution : image.url }}"
+         width="400">
   </ng-container>
 </div>

@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { DyTextEditorComponent } from './dy-text-editor.component';
+import {DyTextEditorComponent} from './dy-text-editor.component';
 
 describe('DyTextEditorComponent', () => {
   let component: DyTextEditorComponent;
@@ -10,8 +10,8 @@ describe('DyTextEditorComponent', () => {
     await TestBed.configureTestingModule({
       imports: [DyTextEditorComponent]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(DyTextEditorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

@@ -1,31 +1,32 @@
-import {ElementRef, EventEmitter, Injectable, Renderer2, RendererFactory2} from '@angular/core';
+import {EventEmitter, Injectable} from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SwipeManagerService {
+  swipeRight: EventEmitter<void> = new EventEmitter<void>();
+  swipeLeft: EventEmitter<void> = new EventEmitter<void>();
   private xDown = null;
   private yDown: any = null;
 
-  handleStart = (event: TouchEvent)  => {
-    this.handleTouchStart(event)
-  };
-  handleMove = (event: TouchEvent)  => {
-    this.handleTouchMove(event)
-  };
-  keyPress = (event: KeyboardEvent) => {
-    if(event.code == 'ArrowLeft') {
-      this.left();
-    }
-    if(event.code == 'ArrowRight') {
-      this.right();
-    }
+  constructor() {
   }
 
-  swipeRight: EventEmitter<void> = new EventEmitter<void>();
-  swipeLeft: EventEmitter<void> = new EventEmitter<void>();
+  handleStart = (event: TouchEvent) => {
+    this.handleTouchStart(event)
+  };
 
-  constructor() {
+  handleMove = (event: TouchEvent) => {
+    this.handleTouchMove(event)
+  };
+
+  keyPress = (event: KeyboardEvent) => {
+    if (event.code == 'ArrowLeft') {
+      this.left();
+    }
+    if (event.code == 'ArrowRight') {
+      this.right();
+    }
   }
 
   private getTouches(evt: any): any {
@@ -51,7 +52,7 @@ export class SwipeManagerService {
   }
 
   private handleTouchMove(evt: any): any {
-    if ( ! this.xDown || ! this.yDown ) {
+    if (!this.xDown || !this.yDown) {
       return;
     }
 
@@ -61,8 +62,8 @@ export class SwipeManagerService {
     const xDiff = this.xDown - xUp;
     const yDiff = this.yDown - yUp;
 
-    if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
-      if ( xDiff > 0 ) {
+    if (Math.abs(xDiff) > Math.abs(yDiff)) {/*most significant*/
+      if (xDiff > 0) {
         /* right swipe */
         this.right();
       } else {
@@ -70,7 +71,7 @@ export class SwipeManagerService {
         this.left()
       }
     } else {
-      if ( yDiff > 0 ) {
+      if (yDiff > 0) {
         /* down swipe */
       } else {
         /* up swipe */

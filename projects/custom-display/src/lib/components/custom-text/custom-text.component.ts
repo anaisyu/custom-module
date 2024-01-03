@@ -1,5 +1,4 @@
 import {Component, Input} from '@angular/core';
-import {Image} from "../../openapi";
 
 @Component({
   selector: 'app-custom-text',

@@ -9,11 +9,13 @@
   overflow: scroll;
   resize: horizontal
 }
-.text-edit-tools ul{
+
+.text-edit-tools ul {
   list-style: none;
   margin: 0;
   padding: 0;
 }
+
 .text-edit-tools {
   padding: 1em;
   z-index: 1000;

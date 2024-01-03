@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { CustomDisplayComponent } from './custom-display.component';
+import {CustomDisplayComponent} from './custom-display.component';
 
 describe('CustomDisplayComponent', () => {
   let component: CustomDisplayComponent;
@@ -8,9 +8,9 @@ describe('CustomDisplayComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CustomDisplayComponent ]
+      declarations: [CustomDisplayComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(CustomDisplayComponent);
     component = fixture.componentInstance;

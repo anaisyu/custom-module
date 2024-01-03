@@ -7,5 +7,6 @@ export class CustomTranslationLoader extends TranslateHttpLoader {
         return super.getTranslation(lang).pipe(delay(25), map(originalTranslation => {
             return TranslationClientService.merge(originalTranslation, TranslationClientService.changes)
         }));
+        // TODO test remove delay and use directly the cookie
     }
 }

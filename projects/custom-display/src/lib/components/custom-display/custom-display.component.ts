@@ -117,7 +117,12 @@ export class CustomDisplayComponent {
 
   leafChange($event: MatCheckboxChange, col: Col) {
     if (!$event.checked) {
-      col.layout = {id: -1, rows: new Set<Row>([{id: -1, cols: new Set<Col>(), height: 12, displayOrder: 1}]), colsLength: 1, rowsLength: 1}
+      col.layout = {
+        id: -1,
+        rows: new Set<Row>([{id: -1, cols: new Set<Col>(), height: 12, displayOrder: 1}]),
+        colsLength: 1,
+        rowsLength: 1
+      }
       setTimeout(() => {
         col.leaf = false;
       })

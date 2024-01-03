@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {BehaviorSubject, Subject} from "rxjs";
 
 @Injectable({
@@ -6,13 +6,16 @@ import {BehaviorSubject, Subject} from "rxjs";
 })
 export class DyTextEditorService {
   displayEditorSubject = new BehaviorSubject<boolean>(false)
-  newEditorData = new Subject<{key: string, value: string}>();
+  newEditorData = new Subject<{ key: string, value: string }>();
   editorDataChange = new Subject<{ key: string, value: string }>();
-  constructor() { }
+
+  constructor() {
+  }
 
   newChanges(key: string, value: string) {
     this.editorDataChange.next({key: key, value: value})
   }
+
   addNewEditorData(key: string, value: string) {
     this.newEditorData.next({key: key, value: value})
   }

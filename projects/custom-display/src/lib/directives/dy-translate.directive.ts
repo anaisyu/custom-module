@@ -31,15 +31,16 @@ export class DyTranslateDirective implements AfterViewInit {
     })
   }
 
-  addNewEditorData(value: string){
-    if(this.appDyTranslate.includes('editor')) {
+  addNewEditorData(value: string) {
+    if (this.appDyTranslate.includes('editor')) {
       this.dyTextEditorService.addNewEditorData(this.appDyTranslate, value)
     }
   }
 
-  @HostListener('keyup', ['$event']) public onKeyup(event: any): void {
+  @HostListener('keyup', ['$event'])
+  public onKeyup(event: any): void {
     const value: string = this.el.nativeElement.innerHTML
-    if(value != this.previousValue) {
+    if (value != this.previousValue) {
       this.previousValue = value
       this.addNewEditorData(value)
       this.save(value)
@@ -47,7 +48,7 @@ export class DyTranslateDirective implements AfterViewInit {
   }
 
   @HostListener('click') onClick() {
-    if(this.editMode && this.appDyTranslate.includes('editor')) {
+    if (this.editMode && this.appDyTranslate.includes('editor')) {
       this.dyTextEditorService.displayEditorSubject.next(true)
       setTimeout(() => {
         this.addNewEditorData(this.el.nativeElement.innerHTML)
@@ -58,22 +59,22 @@ export class DyTranslateDirective implements AfterViewInit {
   }
 
   save(value: string) {
-    if(value) {
+    if (value) {
       this.clientService.next(this.appDyTranslate, value)
     }
   }
 
   ngAfterViewInit(): void {
     this.service.stream(this.appDyTranslate).subscribe(value => {
-      if(value == this.appDyTranslate && this.el.nativeElement.innerHTML){
-       // this.clientService.next(this.appDyTranslate, this.el.nativeElement.innerHTML)
+      if (value == this.appDyTranslate && this.el.nativeElement.innerHTML) {
+        // this.clientService.next(this.appDyTranslate, this.el.nativeElement.innerHTML)
       } else {
         this.el.nativeElement.innerHTML = value;
       }
       this.el.nativeElement.contentEditable = this.editMode;
     })
 
-    if(this.appDyTranslate.includes('editor')) {
+    if (this.appDyTranslate.includes('editor')) {
       this.dyTextEditorService.editorDataChange.subscribe((newValue) => {
         if (newValue.key == this.appDyTranslate) {
           if (newValue.value != this.previousValue) {

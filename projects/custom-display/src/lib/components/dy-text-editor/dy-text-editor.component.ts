@@ -1,4 +1,4 @@
-import {afterNextRender, Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
+import {afterNextRender, Component} from '@angular/core';
 import {DyTextEditorService} from "../../service/dy-text-editor/dy-text-editor.service";
 
 @Component({
@@ -19,15 +19,15 @@ export class DyTextEditorComponent {
   constructor(private service: DyTextEditorService) {
     afterNextRender(() => {
 
-      service.newEditorData.subscribe( (newData) => {
+      service.newEditorData.subscribe((newData) => {
         this.editorData = newData.value
         this.key = newData.key
-        if(this.internalEditor){
+        if (this.internalEditor) {
           this.internalEditor.setData(newData.value)
         }
       })
 
-      import('@ckeditor/ckeditor5-build-decoupled-document').then( (decoupledEditor) => {
+      import('@ckeditor/ckeditor5-build-decoupled-document').then((decoupledEditor) => {
         console.log('create')
         // @ts-ignore
         decoupledEditor.default.create(document.querySelector('.document-editor__editable'), {
@@ -99,10 +99,10 @@ export class DyTextEditorComponent {
             toolbarContainer.appendChild(editor.ui.view.toolbar.element);
             editor.setData(this.editorData)
 
-            editor.model.document.on( 'change:data', () => {
+            editor.model.document.on('change:data', () => {
               console.log(editor.getData())
               this.service.newChanges(this.key, editor.getData())
-            } );
+            });
 
           })
           .catch((err: any) => {

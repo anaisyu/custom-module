@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { DyTextEditorService } from './dy-text-editor.service';
+import {DyTextEditorService} from './dy-text-editor.service';
 
 describe('DyTextEditorService', () => {
   let service: DyTextEditorService;

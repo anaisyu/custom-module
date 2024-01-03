@@ -1,8 +1,8 @@
-<div class="toast" role="alert" aria-live="assertive" aria-atomic="true" [class.show]="show" *ngIf="show">
+<div *ngIf="show" [class.show]="show" aria-atomic="true" aria-live="assertive" class="toast" role="alert">
   <div class="toast-header">
-    <strong class="me-auto" [appDyTranslate]="'notification.successHeader'" *ngIf="!error">Notification</strong>
-    <strong class="me-auto" [appDyTranslate]="'notification.errorHeader'" *ngIf="error">Error</strong>
-    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close" (click)="stop()"></button>
+    <strong *ngIf="!error" [appDyTranslate]="'notification.successHeader'" class="me-auto">Notification</strong>
+    <strong *ngIf="error" [appDyTranslate]="'notification.errorHeader'" class="me-auto">Error</strong>
+    <button (click)="stop()" aria-label="Close" class="btn-close" data-bs-dismiss="toast" type="button"></button>
   </div>
   <div class="toast-body">
     {{ message }}
