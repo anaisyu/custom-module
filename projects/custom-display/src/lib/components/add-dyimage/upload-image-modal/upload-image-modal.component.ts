@@ -36,14 +36,24 @@ export class UploadImageModalComponent {
   public imgAlt: string = '';
   public file: any = undefined;
 
+  public preview: string = ''
+
   constructor(
     public dialogRef: MatDialogRef<UploadImageModalComponent>
   ) {
   }
 
   onFileChanged(event: any) {
-    console.log(event.target.files[0])
     this.file = event.target.files[0];
+    this.preview = ''
+    const reader = new FileReader();
+
+    reader.onload = (e) => {
+      console.log(e.target?.result);
+      this.preview = e.target?.result as string
+    }
+
+    reader.readAsDataURL(this.file);
   }
 
   onNoClick(): void {
