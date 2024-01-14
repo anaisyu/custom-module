@@ -4,7 +4,7 @@ import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 
 export class CustomTranslationLoader extends TranslateHttpLoader {
     override getTranslation(lang: string): Observable<Object> {
-        return super.getTranslation(lang).pipe(delay(25), map(originalTranslation => {
+        return super.getTranslation(lang).pipe(delay(1), map(originalTranslation => {
             return TranslationClientService.merge(originalTranslation, TranslationClientService.changes)
         }));
         // TODO test remove delay and use directly the cookie

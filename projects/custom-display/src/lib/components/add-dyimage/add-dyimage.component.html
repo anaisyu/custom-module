@@ -1,0 +1,9 @@
+<h4>Add new picture</h4>
+<form (ngSubmit)="onUpload()" [formGroup]="form">
+  <label for="desc">desc: </label>
+  <textarea formControlName="desc" id="desc"></textarea>
+
+  <input (change)="onFileChanged($event)" id="file" name="file" type="file"/>
+  <button [disabled]="!form.valid" type="submit" class="btn btn-primary">Ajouter l'image</button>
+</form>
+

@@ -2,8 +2,10 @@ import {Inject, Injectable} from '@angular/core';
 import {TranslateService} from "@ngx-translate/core";
 import {HttpClient} from "@angular/common/http";
 import {CookieService} from "ngx-cookie-service";
-import {BehaviorSubject} from "rxjs";
+import {BehaviorSubject, delay} from "rxjs";
 import {NotificationService} from "../notifications/notification.service";
+import {ActivatedRoute, Router} from "@angular/router";
+import {LoadingService} from "../loading/loading.service";
 
 @Injectable({
   providedIn: 'root'
@@ -11,15 +13,48 @@ import {NotificationService} from "../notifications/notification.service";
 export class TranslationClientService {
   public static changes: Object = {};
   public editSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  private readonly COOKIE_NAME = "site-text"
+  public static readonly COOKIE_NAME = "site-text"
 
-  constructor(private service: TranslateService, private notificationService: NotificationService, private http: HttpClient, private cookieService: CookieService, @Inject('backendUrl') private backendUrl: string) {
+  constructor(
+    private service: TranslateService,
+    private notificationService: NotificationService,
+    private http: HttpClient,
+    private cookieService: CookieService,
+    @Inject('backendUrl') private backendUrl: string,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+    ) {
     // Retrieve object from the cookie
-    const objFromCookie = this.cookieService.get(this.COOKIE_NAME);
+    const objFromCookie = this.cookieService.get(TranslationClientService.COOKIE_NAME);
     if (objFromCookie) {
       TranslationClientService.changes = JSON.parse(objFromCookie)
     } else {
       TranslationClientService.changes = {}
+    }
+
+    // Check if "?save" is in the URL
+    this.activatedRoute.queryParams.subscribe(params => {
+      if (params['save']) {
+        // Call the "save()" method
+        this.save();
+
+        // Remove "?save" from the URL
+        this.router.navigate([], {
+          relativeTo: this.activatedRoute,
+          queryParams: { save: null },
+          queryParamsHandling: 'merge',
+        });
+      }
+    });
+  }
+
+
+  // Method to refresh page and redirect by adding "?save" to the URL
+  public refreshPageWithSave(): void {
+    // Check if "?save" is not already in the URL
+    if (!this.activatedRoute.snapshot.queryParams['save']) {
+      LoadingService.startLoading()
+      window.location.href = window.location.toString() + '?save=' + Math.random()
     }
   }
 
@@ -64,6 +99,9 @@ export class TranslationClientService {
         next: response => {
           this.notificationService.newMessage('Sauvegardé. Veuillez attendre quelques minutes pour que la propagation soit complète.');
           this.saveCookie(5)
+          setTimeout(() => {
+            this.refresh();
+          }, 1000*60*5)
         }, error: (msg) => {
           console.error(msg)
           this.notificationService.newError('Echec lors de la sauvegarde. Merci de réessayer.')
@@ -73,7 +111,11 @@ export class TranslationClientService {
   }
 
   cancel() {
-    this.cookieService.delete(this.COOKIE_NAME)
+    this.cookieService.delete(TranslationClientService.COOKIE_NAME)
+    this.refresh();
+  }
+
+  private refresh() {
     window.location.href = window.location.toString()
   }
 
@@ -85,7 +127,7 @@ export class TranslationClientService {
     console.log(JSON.stringify(TranslationClientService.changes))
     const date = new Date(Date.now());
     date.setMinutes(date.getMinutes() + minutesExpire)
-    this.cookieService.set(this.COOKIE_NAME,
+    this.cookieService.set(TranslationClientService.COOKIE_NAME,
       JSON.stringify(TranslationClientService.changes),
       {expires: date})
   }

@@ -18,6 +18,7 @@ export class TranslateEditComponent {
 
   display() {
     this.assetService.editSubject.next(false);
+    this.dyTextEditorService.displayEditorSubject.next(false);
   }
 
   cancel() {
@@ -25,6 +26,6 @@ export class TranslateEditComponent {
   }
 
   save() {
-    this.assetService.save();
+    this.assetService.refreshPageWithSave();
   }
 }
