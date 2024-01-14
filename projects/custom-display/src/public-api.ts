@@ -24,3 +24,6 @@ export * from './lib/components/translate/translate-edit/translate-edit.componen
 export * from './lib/components/notification/notification.component'
 export * from './lib/components/loading/loading.component'
 export * from './lib/components/dy-text-editor/dy-text-editor.component'
+export * from './lib/components/add-dyimage/add-dyimage.component'
+export * from './lib/components/image-edit/image-edit.component'
+export * from './lib/model/upload-image-response'

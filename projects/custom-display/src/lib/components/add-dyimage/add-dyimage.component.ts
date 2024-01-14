@@ -1,31 +1,49 @@
-import { Component } from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
+import {
+  MatDialog,
+  MatDialogActions,
+  MatDialogClose,
+  MatDialogContent,
+  MatDialogModule,
+  MatDialogTitle
+} from "@angular/material/dialog";
+import {MatButtonModule} from "@angular/material/button";
+import {UploadImageModalComponent} from "./upload-image-modal/upload-image-modal.component";
+import {MatIconModule} from "@angular/material/icon";
+import {ImageUploadService} from "../../service/image-upload/image-upload.service";
+import {UploadImageResponse} from "../../model/upload-image-response";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'lib-add-dyimage',
   standalone: true,
   imports: [
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatButtonModule, MatDialogModule, MatIconModule,
   ],
   templateUrl: './add-dyimage.component.html',
-  styleUrl: './add-dyimage.component.css'
+  styleUrls: ['./add-dyimage.component.css']
 })
 export class AddDyimageComponent {
-  public files: any[];
+  @Output() image: EventEmitter<{ alt: string, urls: UploadImageResponse }> = new EventEmitter<{
+    alt: string,
+    urls: UploadImageResponse
+  }>();
 
-  form = new FormGroup({
-    desc: new FormControl(''),
-  });
-
-  constructor() {
-    this.files = [];
+  constructor(private service: ImageUploadService) {
   }
 
-  onFileChanged(event: any) {
-    this.files = event.target.files;
-  }
-
-  onUpload() {
-
+  openDialog() {
+    this.service.openDialog().subscribe(
+      {
+        next: output => {
+          this.image.emit({alt: output.alt, urls: output.urls})
+        },
+        error: (err) => {
+          console.log('error with uploading image')
+          console.log(err)
+        }
+      })
   }
 }
