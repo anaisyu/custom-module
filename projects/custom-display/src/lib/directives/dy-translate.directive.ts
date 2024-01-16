@@ -1,5 +1,4 @@
-import {AfterViewInit, Directive, ElementRef, HostListener, Input} from '@angular/core';
-import {TranslateService} from "@ngx-translate/core";
+import {AfterViewInit, Directive, ElementRef, HostListener, Input, OnInit} from '@angular/core';
 import {TranslationClientService} from "../service/translate/translation-client.service";
 import {DyTextEditorService} from "../service/dy-text-editor/dy-text-editor.service";
 
@@ -7,14 +6,17 @@ import {DyTextEditorService} from "../service/dy-text-editor/dy-text-editor.serv
   standalone: false,
   selector: '[appDyTranslate]'
 })
-export class DyTranslateDirective implements AfterViewInit {
+export class DyTranslateDirective implements OnInit, AfterViewInit {
   @Input({required: true}) appDyTranslate!: string;
   private editMode: boolean = false;
   private previousValue: string = '';
 
 
-  constructor(private el: ElementRef, private service: TranslateService, private clientService: TranslationClientService, private dyTextEditorService: DyTextEditorService) {
-    const originalBorder = el.nativeElement.style.outline;
+  constructor(private el: ElementRef, private clientService: TranslationClientService, private dyTextEditorService: DyTextEditorService) {
+  }
+
+  ngOnInit(): void {
+    const originalBorder = this.el.nativeElement.style.outline;
     this.clientService.editSubject.subscribe(editMode => {
       this.editMode = editMode;
       this.el.nativeElement.contentEditable = this.editMode;
@@ -65,9 +67,9 @@ export class DyTranslateDirective implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.service.stream(this.appDyTranslate).subscribe(value => {
+    this.clientService.streamTranslation(this.appDyTranslate).subscribe(value => {
       if (value == this.appDyTranslate && this.el.nativeElement.innerHTML) {
-        // this.clientService.next(this.appDyTranslate, this.el.nativeElement.innerHTML)
+        this.clientService.next(this.appDyTranslate, this.el.nativeElement.innerHTML)
       } else {
         this.el.nativeElement.innerHTML = value;
       }

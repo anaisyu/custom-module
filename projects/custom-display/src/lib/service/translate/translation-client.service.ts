@@ -2,7 +2,7 @@ import {Inject, Injectable} from '@angular/core';
 import {TranslateService} from "@ngx-translate/core";
 import {HttpClient} from "@angular/common/http";
 import {CookieService} from "ngx-cookie-service";
-import {BehaviorSubject, delay} from "rxjs";
+import {BehaviorSubject, delay, Observable, of} from "rxjs";
 import {NotificationService} from "../notifications/notification.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {LoadingService} from "../loading/loading.service";
@@ -11,7 +11,7 @@ import {LoadingService} from "../loading/loading.service";
   providedIn: 'root'
 })
 export class TranslationClientService {
-  public static changes: Object = {};
+  public changes: Object = {};
   public editSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   public static readonly COOKIE_NAME = "site-text"
 
@@ -27,9 +27,9 @@ export class TranslationClientService {
     // Retrieve object from the cookie
     const objFromCookie = this.cookieService.get(TranslationClientService.COOKIE_NAME);
     if (objFromCookie) {
-      TranslationClientService.changes = JSON.parse(objFromCookie)
+      this.changes = JSON.parse(objFromCookie)
     } else {
-      TranslationClientService.changes = {}
+      this.changes = {}
     }
 
     // Check if "?save" is in the URL
@@ -74,7 +74,7 @@ export class TranslationClientService {
   }
 
   next(key: string, data: string) {
-    let set: any = TranslationClientService.changes;
+    let set: any = this.changes;
 
     const keys: string[] = key.split('.')
     for (let i = 0; i < keys.length - 1; i++) {
@@ -94,7 +94,7 @@ export class TranslationClientService {
   save(lang: string = 'fr') {
     this.service.getTranslation(lang).subscribe(original => {
       this.http.post(this.backendUrl + '/assets/save/' + lang,
-        TranslationClientService.merge(original, TranslationClientService.changes)
+        TranslationClientService.merge(original, this.changes)
       ).subscribe({
         next: response => {
           this.notificationService.newMessage('Sauvegardé. Veuillez attendre quelques minutes pour que la propagation soit complète.');
@@ -120,15 +120,32 @@ export class TranslationClientService {
   }
 
   saveCookie(minutesExpire: number = 60 * 12) {
-    if (!TranslationClientService.changes || Object.keys(TranslationClientService.changes).length == 0) {
+    if (!this.changes || Object.keys(this.changes).length == 0) {
       return
     }
     console.log('saved')
-    console.log(JSON.stringify(TranslationClientService.changes))
+    console.log(JSON.stringify(this.changes))
     const date = new Date(Date.now());
     date.setMinutes(date.getMinutes() + minutesExpire)
     this.cookieService.set(TranslationClientService.COOKIE_NAME,
-      JSON.stringify(TranslationClientService.changes),
+      JSON.stringify(this.changes),
       {expires: date})
+  }
+
+  streamTranslation(key: string): Observable<string> {
+    let set: any = this.changes;
+
+    const keys: string[] = key.split('.')
+    for (let i = 0; i < keys.length - 1; i++) {
+      if (!set[keys[i]]) {
+        return this.service.stream(key)
+      }
+      set = set[keys[i]]
+    }
+    if (set[keys[keys.length - 1]]) {
+      return of(set[keys[keys.length - 1]])
+    }
+
+    return this.service.stream(key);
   }
 }
