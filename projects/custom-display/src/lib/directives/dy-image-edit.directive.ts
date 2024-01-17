@@ -34,7 +34,7 @@ export class DyImageEditDirective implements OnInit {
   }
 
   ngOnInit(): void {
-    const originalBorder = this.el.nativeElement.style.outline;
+    const originalBorder = this.el.nativeElement.style.border;
     this.clientService.editSubject.subscribe(editMode => {
       this.editMode = editMode;
 
@@ -42,9 +42,9 @@ export class DyImageEditDirective implements OnInit {
       const element = this.el.nativeElement;
       // Check the condition and apply the dashed border if needed
       if (this.editMode) {
-        element.style.outline = '2px dashed #a9a9a9';
+        element.style.border = '2px dashed #a9a9a9';
       } else {
-        element.style.outline = originalBorder;
+        element.style.border = originalBorder;
       }
     })
 

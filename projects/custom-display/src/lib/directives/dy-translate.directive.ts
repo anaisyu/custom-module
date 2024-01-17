@@ -3,7 +3,7 @@ import {TranslationClientService} from "../service/translate/translation-client.
 import {DyTextEditorService} from "../service/dy-text-editor/dy-text-editor.service";
 
 @Directive({
-  standalone: false,
+  standalone: true,
   selector: '[appDyTranslate]'
 })
 export class DyTranslateDirective implements OnInit, AfterViewInit {

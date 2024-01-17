@@ -12,12 +12,12 @@ import { CustomDisplayComponent } from './components/custom-display/custom-displ
 import {MatChipsModule} from "@angular/material/chips";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {CommonModule} from "@angular/common";
-import {DyTranslateDirective} from "./directives/dy-translate.directive";
 import { TranslateEditComponent } from './components/translate/translate-edit/translate-edit.component';
 import {NotificationComponent} from "./components/notification/notification.component";
 import {LoadingComponent} from "./components/loading/loading.component";
 import {DyDisplayDirective} from "./directives/dy-display.directive";
 import {DyTextEditorComponent} from "./components/dy-text-editor/dy-text-editor.component";
+import {DyTranslateDirective} from "./directives/dy-translate.directive";
 
 
 
@@ -28,7 +28,6 @@ import {DyTextEditorComponent} from "./components/dy-text-editor/dy-text-editor.
     CustomImageComponent,
     CustomTextComponent,
     CustomDisplayComponent,
-    DyTranslateDirective,
     DyDisplayDirective,
     TranslateEditComponent,
     NotificationComponent
@@ -43,12 +42,12 @@ import {DyTextEditorComponent} from "./components/dy-text-editor/dy-text-editor.
     MatChipsModule,
     MatCheckboxModule,
     LoadingComponent,
-    DyTextEditorComponent
+    DyTextEditorComponent,
+    DyTranslateDirective
   ],
   exports: [
     TestComponent,
     TestEditComponent,
-    DyTranslateDirective,
     DyDisplayDirective,
     TranslateEditComponent,
     NotificationComponent,
