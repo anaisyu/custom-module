@@ -28,8 +28,8 @@ export class DyImageEditDirective implements OnInit {
 
   save(url: string, alt: string) {
     if (url && alt) {
-      this.clientService.next(this.libDyImageEdit + '.image.url', url)
-      this.clientService.next(this.libDyImageEdit + '.image.alt', alt)
+      this.clientService.next('images.' + this.libDyImageEdit + '.url', url)
+      this.clientService.next('images.' + this.libDyImageEdit + '.alt', alt)
     }
   }
 
@@ -48,8 +48,8 @@ export class DyImageEditDirective implements OnInit {
       }
     })
 
-    const urlKey = this.libDyImageEdit + '.image.url'
-    const altKey = this.libDyImageEdit + '.image.alt'
+    const urlKey = 'images.' + this.libDyImageEdit + '.url'
+    const altKey = 'images.' + this.libDyImageEdit + '.alt'
 
     const key1$ = this.clientService.streamTranslation(urlKey);
     const key2$ = this.clientService.streamTranslation(altKey);
