@@ -1,7 +1,8 @@
-import {Component} from '@angular/core';
+import {Component, signal} from '@angular/core';
 import {UserService} from "../../../service/user/user.service";
 import {TranslationClientService} from "../../../service/translate/translation-client.service";
 import {DyTextEditorService} from "../../../service/dy-text-editor/dy-text-editor.service";
+import {ChangeColorsService} from "../../../service/change-colors-service/change-colors.service";
 
 @Component({
   selector: 'lib-translate-edit',
@@ -9,8 +10,7 @@ import {DyTextEditorService} from "../../../service/dy-text-editor/dy-text-edito
   styleUrls: ['./translate-edit.component.css']
 })
 export class TranslateEditComponent {
-  changeColors: boolean = false;
-  constructor(public userService: UserService, public assetService: TranslationClientService, public dyTextEditorService: DyTextEditorService) {
+  constructor(public userService: UserService, public assetService: TranslationClientService, public dyTextEditorService: DyTextEditorService, private colorService: ChangeColorsService) {
   }
 
   edit() {
@@ -23,7 +23,7 @@ export class TranslateEditComponent {
   }
 
   cancel() {
-    this.changeColors = false;
+    this.colorService.displaySubject.next(false)
     this.assetService.cancel();
   }
 
@@ -32,10 +32,6 @@ export class TranslateEditComponent {
   }
 
   color() {
-    this.changeColors = true
-  }
-
-  closeColors() {
-    this.changeColors = false;
+    this.colorService.displaySubject.next(true)
   }
 }

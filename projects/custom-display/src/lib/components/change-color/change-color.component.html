@@ -1,10 +1,10 @@
 <div class="color-editor" >
-<app-my-card [withExitButton]="true" (exitEmitter)="exit()" [title]="'Change site colors'" *ngIf="cssVariablesSubject | async as cssVariables">
+<app-my-card [withExitButton]="true" (exitEmitter)="exit()" [title]="'Change site colors'" *ngIf="service.cssVariablesSubject | async as cssVariables">
   <ul class="p-0" >
-    <li class="d-flex justify-content-between" *ngFor="let variable of cssVariableNames">
-      <div class="text-lg font-weight-light"><label>{{ variable }}</label></div>
+    <li class="d-flex justify-content-between" *ngFor="let item of cssVariables | keyvalue">
+      <div class="text-lg font-weight-light"><label>{{ item.key }}</label></div>
       <div class="text-xl">
-        <input [(colorPicker)]="cssVariables[variable]" [style.background]="cssVariables[variable]" (colorPickerChange)="changeCssVariable(variable, cssVariables[variable])"/>
+        <input [(colorPicker)]="item.value" [style.background]="item.value" (colorPickerChange)="changeCssVariable(item.key, item.value)"/>
       </div>
     </li>
   </ul>
