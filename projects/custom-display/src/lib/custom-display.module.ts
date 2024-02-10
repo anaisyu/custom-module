@@ -18,6 +18,7 @@ import {LoadingComponent} from "./components/loading/loading.component";
 import {DyDisplayDirective} from "./directives/dy-display.directive";
 import {DyTextEditorComponent} from "./components/dy-text-editor/dy-text-editor.component";
 import {DyTranslateDirective} from "./directives/dy-translate.directive";
+import {ChangeColorComponent} from "./components/change-color/change-color.component";
 
 
 
@@ -43,7 +44,8 @@ import {DyTranslateDirective} from "./directives/dy-translate.directive";
     MatCheckboxModule,
     LoadingComponent,
     DyTextEditorComponent,
-    DyTranslateDirective
+    DyTranslateDirective,
+    ChangeColorComponent,
   ],
   exports: [
     TestComponent,
@@ -51,7 +53,7 @@ import {DyTranslateDirective} from "./directives/dy-translate.directive";
     DyDisplayDirective,
     TranslateEditComponent,
     NotificationComponent,
-    LoadingComponent
+    LoadingComponent,
   ]
 })
 export class CustomDisplayModule { }

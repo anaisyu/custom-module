@@ -2,6 +2,9 @@
      class="text-edit-tools d-none d-sm-block">
   <ul>
     <li>
+      <button (click)="color()" mat-stroked-button color="primary">Changer les couleurs</button>
+    </li>
+    <li>
       <button (click)="edit()" class="btn btn-block btn-dark">Mode édition</button>
     </li>
     <li>
@@ -22,4 +25,9 @@
       <app-dy-text-editor></app-dy-text-editor>
     </div>
   </div>
+
+  <div *ngIf="changeColors">
+    <app-change-color (exitEmitter)="closeColors()"></app-change-color>
+  </div>
+
 </div>

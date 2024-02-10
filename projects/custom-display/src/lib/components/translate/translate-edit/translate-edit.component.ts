@@ -9,6 +9,7 @@ import {DyTextEditorService} from "../../../service/dy-text-editor/dy-text-edito
   styleUrls: ['./translate-edit.component.css']
 })
 export class TranslateEditComponent {
+  changeColors: boolean = false;
   constructor(public userService: UserService, public assetService: TranslationClientService, public dyTextEditorService: DyTextEditorService) {
   }
 
@@ -22,10 +23,19 @@ export class TranslateEditComponent {
   }
 
   cancel() {
+    this.changeColors = false;
     this.assetService.cancel();
   }
 
   save() {
     this.assetService.refreshPageWithSave();
+  }
+
+  color() {
+    this.changeColors = true
+  }
+
+  closeColors() {
+    this.changeColors = false;
   }
 }
