@@ -1,6 +1,6 @@
-<div class="color-editor" >
+<div class="color-editor" [hidden]="!(service.displaySubject | async)" >
 <app-my-card [withExitButton]="true" (exitEmitter)="exit()" [title]="'Change site colors'" *ngIf="service.cssVariablesSubject | async as cssVariables">
-  <ul class="p-0" >
+  <ul class="p-0" *ngIf="cssVariables">
     <li class="d-flex justify-content-between" *ngFor="let item of cssVariables | keyvalue">
       <div class="text-lg font-weight-light"><label>{{ item.key }}</label></div>
       <div class="text-xl">
