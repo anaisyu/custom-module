@@ -22,13 +22,13 @@
   resize: unset;
 }
 
-.button-wrapper-full {
+.button-wrapper {
   position: fixed;
   left: 30vw;
   bottom: 380px;
 }
 
-.button-wrapper {
+.button-wrapper-full {
   position: fixed;
   left: 95vw;
   bottom: 95vh;
