@@ -24,8 +24,8 @@
       <div [class.button-wrapper]="!full" [class.button-wrapper-full]="full">
         <button mat-raised-button (click)="fullScreen()">
           <mat-icon fontIcon="open_in_full"></mat-icon>
-          <span appDyTranslate="global.full-width" *ngIf="!full">Agrandir</span>
-          <span appDyTranslate="global.no-full-width" *ngIf="full">Réduire</span>
+          <span *ngIf="!full">Agrandir</span>
+          <span *ngIf="full">Réduire</span>
         </button>
       </div>
       <div [class.dy-editor]="!full" [class.dy-editor-full-size]="full">
