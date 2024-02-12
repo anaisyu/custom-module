@@ -1,4 +1,4 @@
-<div class="color-editor" [hidden]="!(service.displaySubject | async)" >
+<div class="color-editor" [hidden]="!(service.displaySubject | async)" *ngIf="service.ready | async">
 <app-my-card [withExitButton]="true" (exitEmitter)="exit()" [title]="'Change site colors'" *ngIf="service.cssVariablesSubject | async as cssVariables">
   <ul class="p-0" *ngIf="cssVariables">
     <li class="d-flex justify-content-between" *ngFor="let item of cssVariables | keyvalue">
@@ -6,9 +6,9 @@
       <div class="text-xl">
         <ngx-colors
           ngx-colors-trigger
-          [palette]="['#FFFFFF', '#F4ff00']"
+          [palette]="((service.paletteSubject | async) || [])"
           [(ngModel)]="item.value"
-          (change)="save(item.key, $event)"
+          (ngModelChange)="save(item.key, $event)"
           (slider)="changeCssVariable(item.key, $event)"
         ></ngx-colors>
       </div>

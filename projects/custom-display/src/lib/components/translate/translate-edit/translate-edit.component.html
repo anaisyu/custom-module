@@ -2,7 +2,7 @@
      class="text-edit-tools d-none d-sm-block">
   <ul>
     <li>
-      <button (click)="color()" mat-stroked-button color="primary">Changer les couleurs</button>
+      <button (click)="color()" mat-raised-button color="primary">Changer les couleurs</button>
     </li>
     <li>
       <button (click)="edit()" class="btn btn-block btn-dark">Mode édition</button>
@@ -19,10 +19,18 @@
     <li *ngIf="assetService.editSubject | async">Mode actuel: édition</li>
     <li *ngIf="!(assetService.editSubject | async)">Mode actuel: Affichage</li>
   </ul>
-
   <div *ngIf="assetService.editSubject | async">
-    <div *ngIf="dyTextEditorService.displayEditorSubject | async" class="dy-editor">
+    <div *ngIf="dyTextEditorService.displayEditorSubject | async" [class.dy-editor-wrapper]="full">
+      <div [class.button-wrapper]="!full" [class.button-wrapper-full]="full">
+        <button mat-raised-button (click)="fullScreen()">
+          <mat-icon fontIcon="open_in_full"></mat-icon>
+          <span appDyTranslate="global.full-width" *ngIf="!full">Agrandir</span>
+          <span appDyTranslate="global.no-full-width" *ngIf="full">Réduire</span>
+        </button>
+      </div>
+      <div [class.dy-editor]="!full" [class.dy-editor-full-size]="full">
       <app-dy-text-editor></app-dy-text-editor>
+      </div>
     </div>
   </div>
 </div>

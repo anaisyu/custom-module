@@ -24,12 +24,14 @@ import {FormsModule} from "@angular/forms";
   templateUrl: './change-color.component.html',
   styleUrl: './change-color.component.scss'
 })
-export class ChangeColorComponent implements OnInit{
+export class ChangeColorComponent {
 
   constructor(public service: ChangeColorsService, private renderer: Renderer2) {
     afterNextRender(() => {
       service.getStylesFromCssFile()
     })
+
+    this.service.getStylesFromConfigFile(this.renderer)
   }
 
   save(key: string, value: string) {
@@ -37,9 +39,6 @@ export class ChangeColorComponent implements OnInit{
     this.service.save()
   }
 
-  ngOnInit(): void {
-    this.service.getStylesFromConfigFile(this.renderer)
-  }
 
   exit() {
     this.service.displaySubject.next(false)

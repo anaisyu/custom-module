@@ -19,6 +19,7 @@ import {DyDisplayDirective} from "./directives/dy-display.directive";
 import {DyTextEditorComponent} from "./components/dy-text-editor/dy-text-editor.component";
 import {DyTranslateDirective} from "./directives/dy-translate.directive";
 import {ChangeColorComponent} from "./components/change-color/change-color.component";
+import {MatIcon} from "@angular/material/icon";
 
 
 
@@ -33,20 +34,21 @@ import {ChangeColorComponent} from "./components/change-color/change-color.compo
     TranslateEditComponent,
     NotificationComponent
   ],
-  imports: [
-    CommonModule,
-    DragDropModule,
-    MatButtonToggleModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    MatChipsModule,
-    MatCheckboxModule,
-    LoadingComponent,
-    DyTextEditorComponent,
-    DyTranslateDirective,
-    ChangeColorComponent,
-  ],
+    imports: [
+        CommonModule,
+        DragDropModule,
+        MatButtonToggleModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        MatChipsModule,
+        MatCheckboxModule,
+        LoadingComponent,
+        DyTextEditorComponent,
+        DyTranslateDirective,
+        ChangeColorComponent,
+        MatIcon,
+    ],
   exports: [
     TestComponent,
     TestEditComponent,

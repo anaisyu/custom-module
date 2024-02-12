@@ -10,6 +10,7 @@ import {ChangeColorsService} from "../../../service/change-colors-service/change
   styleUrls: ['./translate-edit.component.css']
 })
 export class TranslateEditComponent {
+  protected full: boolean = false;
   constructor(public userService: UserService, public assetService: TranslationClientService, public dyTextEditorService: DyTextEditorService, private colorService: ChangeColorsService) {
   }
 
@@ -33,5 +34,9 @@ export class TranslateEditComponent {
 
   color() {
     this.colorService.displaySubject.next(true)
+  }
+
+  fullScreen() {
+    this.full = !this.full;
   }
 }
