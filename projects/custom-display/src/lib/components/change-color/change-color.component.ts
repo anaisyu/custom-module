@@ -1,23 +1,25 @@
 import {afterNextRender, AfterViewInit, ApplicationRef, Component, OnInit, Renderer2} from '@angular/core';
 import {AsyncPipe, JsonPipe, KeyValuePipe, NgForOf, NgIf} from "@angular/common";
-import {ColorPickerModule} from "ngx-color-picker";
 import {MatButtonModule} from "@angular/material/button";
 import {Subject} from "rxjs";
 import {MyCardComponent} from "../my-card/my-card.component";
 import {ChangeColorsService} from "../../service/change-colors-service/change-colors.service";
+import {NgxColorsModule} from "ngx-colors";
+import {FormsModule} from "@angular/forms";
 
 @Component({
   selector: 'app-change-color',
   standalone: true,
   imports: [
     NgForOf,
-    ColorPickerModule,
     MyCardComponent,
     NgIf,
     AsyncPipe,
     MatButtonModule,
     JsonPipe,
-    KeyValuePipe
+    KeyValuePipe,
+    NgxColorsModule,
+    FormsModule
   ],
   templateUrl: './change-color.component.html',
   styleUrl: './change-color.component.scss'
@@ -30,7 +32,8 @@ export class ChangeColorComponent implements OnInit{
     })
   }
 
-  save() {
+  save(key: string, value: string) {
+    this.changeCssVariable(key, value)
     this.service.save()
   }
 

@@ -4,10 +4,15 @@
     <li class="d-flex justify-content-between" *ngFor="let item of cssVariables | keyvalue">
       <div class="text-lg font-weight-light"><label>{{ item.key }}</label></div>
       <div class="text-xl">
-        <input [(colorPicker)]="item.value" [style.background]="item.value" (colorPickerChange)="changeCssVariable(item.key, item.value)"/>
+        <ngx-colors
+          ngx-colors-trigger
+          [palette]="['#FFFFFF', '#F4ff00']"
+          [(ngModel)]="item.value"
+          (change)="save(item.key, $event)"
+          (slider)="changeCssVariable(item.key, $event)"
+        ></ngx-colors>
       </div>
     </li>
   </ul>
-  <button mat-raised-button color="primary" (click)="save()">Save</button>
 </app-my-card>
 </div>

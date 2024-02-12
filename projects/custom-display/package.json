@@ -1,6 +1,6 @@
 {
   "name": "dy-custom-display",
-  "version": "0.0.237",
+  "version": "0.0.238",
   "peerDependencies": {
     "@angular/common": "^17.0.0",
     "@angular/core": "^17.0.0",
@@ -10,7 +10,7 @@
     "@ngx-translate/http-loader": "^8.0.0",
     "@openapitools/openapi-generator-cli": "^2.7.0",
     "ngx-cookie-service": "^17.0.0",
-    "ngx-color-picker": "^16.0.0",
+    "ngx-colors": "^3.5.3",
     "@ckeditor/ckeditor5-build-decoupled-document": "^40.2.0"
   },
   "dependencies": {
