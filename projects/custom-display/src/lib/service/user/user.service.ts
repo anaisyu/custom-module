@@ -1,7 +1,8 @@
-import {Inject, Injectable} from '@angular/core';
+import {Inject, Injectable, PLATFORM_ID} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {map, Observable} from "rxjs";
 import {User} from "../../entities/user";
+import {isPlatformBrowser} from "@angular/common";
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ import {User} from "../../entities/user";
 export class UserService {
   private roles: string[] = [];
 
-  constructor(private http: HttpClient, @Inject('backendUrl') private backendUrl: string) {
+  constructor(private http: HttpClient, @Inject('backendUrl') private backendUrl: string, @Inject(PLATFORM_ID) private _platformId: Object) {
 
   }
 
@@ -23,6 +24,26 @@ export class UserService {
   }
 
   isAdmin(): boolean {
-    return this.roles.includes('ROLE_ADMIN') || this.backendUrl.includes('localhost');
+    return this.hasAdminRole(this.roles);
+  }
+
+  private hasAdminRole(roles: string[]): boolean {
+    return roles.includes('ROLE_ADMIN') || this.backendUrl.includes('localhost');
+  }
+
+  isAdminOrRedirect(): void {
+    if (isPlatformBrowser(this._platformId)) {
+      this.getUser().subscribe({
+        next: user => {
+          if (!this.hasAdminRole(user.roles)) {
+            window.location.href = this.backendUrl + "/login"
+          }
+        },
+        error: err => {
+          console.log(err)
+          window.location.href = this.backendUrl + "/login"
+        }
+      })
+    }
   }
 }

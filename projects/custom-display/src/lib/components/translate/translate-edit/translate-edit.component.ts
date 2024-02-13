@@ -15,6 +15,7 @@ export class TranslateEditComponent {
   }
 
   edit() {
+    this.userService.isAdminOrRedirect();
     this.assetService.editSubject.next(true);
   }
 
@@ -29,6 +30,7 @@ export class TranslateEditComponent {
   }
 
   save() {
+    this.userService.isAdminOrRedirect();
     this.assetService.refreshPageWithSave();
   }
 
