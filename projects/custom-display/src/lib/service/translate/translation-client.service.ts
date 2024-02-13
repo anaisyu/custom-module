@@ -6,6 +6,7 @@ import {BehaviorSubject, delay, Observable, of} from "rxjs";
 import {NotificationService} from "../notifications/notification.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {LoadingService} from "../loading/loading.service";
+import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 
 @Injectable({
   providedIn: 'root'
@@ -92,16 +93,14 @@ export class TranslationClientService {
   }
 
   save(lang: string = 'fr') {
-    this.service.getTranslation(lang).subscribe(original => {
+    const loader = new TranslateHttpLoader(this.http)
+    loader.getTranslation(lang).subscribe(original => {
       this.http.post(this.backendUrl + '/assets/save/' + lang,
         TranslationClientService.merge(original, this.changes)
       ).subscribe({
         next: response => {
           this.notificationService.newMessage('Sauvegardé. Veuillez attendre quelques minutes pour que la propagation soit complète.');
           this.saveCookie(5)
-          setTimeout(() => {
-            this.refresh();
-          }, 1000*60*5)
         }, error: (msg) => {
           console.error(msg)
           this.notificationService.newError('Echec lors de la sauvegarde. Merci de réessayer.')
