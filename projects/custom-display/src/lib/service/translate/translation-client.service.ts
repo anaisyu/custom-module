@@ -53,10 +53,11 @@ export class TranslationClientService {
   // Method to refresh page and redirect by adding "?save" to the URL
   public refreshPageWithSave(): void {
     // Check if "?save" is not already in the URL
-    if (!this.activatedRoute.snapshot.queryParams['save']) {
-      LoadingService.startLoading()
-      window.location.href = window.location.toString() + '?save=' + Math.random()
-    }
+    // if (!this.activatedRoute.snapshot.queryParams['save']) {
+     // LoadingService.startLoading()
+     // window.location.href = window.location.toString() + '?save=' + Math.random()
+    // }
+    this.save()
   }
 
   public static merge(left: any, right: any) {
