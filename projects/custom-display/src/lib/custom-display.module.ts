@@ -31,8 +31,6 @@ import {MatIcon} from "@angular/material/icon";
     CustomTextComponent,
     CustomDisplayComponent,
     DyDisplayDirective,
-    TranslateEditComponent,
-    NotificationComponent
   ],
     imports: [
         CommonModule,
@@ -43,8 +41,6 @@ import {MatIcon} from "@angular/material/icon";
         MatSelectModule,
         MatChipsModule,
         MatCheckboxModule,
-        LoadingComponent,
-        DyTextEditorComponent,
         DyTranslateDirective,
         ChangeColorComponent,
         MatIcon,
@@ -53,9 +49,6 @@ import {MatIcon} from "@angular/material/icon";
     TestComponent,
     TestEditComponent,
     DyDisplayDirective,
-    TranslateEditComponent,
-    NotificationComponent,
-    LoadingComponent,
   ]
 })
 export class CustomDisplayModule { }

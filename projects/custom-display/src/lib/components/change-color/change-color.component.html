@@ -7,7 +7,7 @@
         <ngx-colors
           ngx-colors-trigger
           [palette]="((service.paletteSubject | async) || [])"
-          [(ngModel)]="item.value"
+          [ngModel]="item.value"
           (ngModelChange)="save(item.key, $event)"
           (slider)="changeCssVariable(item.key, $event)"
         ></ngx-colors>

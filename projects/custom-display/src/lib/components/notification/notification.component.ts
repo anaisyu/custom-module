@@ -1,9 +1,16 @@
 import {Component} from '@angular/core';
 import {NotificationService} from "../../service/notifications/notification.service";
+import {NgIf} from "@angular/common";
+import {DyTranslateDirective} from "../../directives/dy-translate.directive";
 
 @Component({
   selector: 'app-notification',
+  standalone: true,
   templateUrl: './notification.component.html',
+  imports: [
+    NgIf,
+    DyTranslateDirective
+  ],
   styleUrls: ['./notification.component.css']
 })
 export class NotificationComponent {

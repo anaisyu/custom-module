@@ -11,7 +11,6 @@ export class UserService {
   private roles: string[] = [];
 
   constructor(private http: HttpClient, @Inject('backendUrl') private backendUrl: string, @Inject(PLATFORM_ID) private _platformId: Object) {
-
   }
 
   getUser(): Observable<User> {
@@ -41,7 +40,9 @@ export class UserService {
         },
         error: err => {
           console.log(err)
-          window.location.href = this.backendUrl + "/login"
+          if (!this.backendUrl.includes('localhost')) {
+            window.location.href = this.backendUrl + "/login"
+          }
         }
       })
     }
