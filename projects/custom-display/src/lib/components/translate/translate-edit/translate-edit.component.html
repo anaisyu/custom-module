@@ -2,22 +2,20 @@
      class="text-edit-tools d-none d-sm-block">
   <ul>
     <li>
-      <button (click)="color()" mat-raised-button color="primary">Changer les couleurs</button>
+      <button (click)="color()" mat-raised-button color="accent"><mat-icon fontIcon="palette"></mat-icon>Changer les couleurs</button>
     </li>
     <li>
-      <button (click)="edit()" class="btn btn-block btn-dark">Mode édition</button>
+      <button (click)="edit()" mat-raised-button [class.mat-primary]="assetService.editSubject | async"><mat-icon fontIcon="edit"></mat-icon>Mode édition</button>
     </li>
     <li>
-      <button (click)="display()" class="btn btn-block btn-secondary">Mode affichage</button>
+      <button (click)="display()" mat-raised-button [class.mat-primary]="!(assetService.editSubject | async)"><mat-icon fontIcon="monitor"></mat-icon>Mode affichage</button>
     </li>
     <li>
-      <button (click)="cancel()" class="btn btn-block btn-warning">Annuler les modifications</button>
+      <button (click)="cancel()" mat-raised-button color="warn"><mat-icon fontIcon="cancel"></mat-icon>Annuler les modifications</button>
     </li>
     <li>
-      <button (click)="save()" class="btn btn-block btn-primary">Sauvegarder</button>
+      <button (click)="save()"  mat-stroked-button color="primary"><mat-icon fontIcon="save"></mat-icon>Sauvegarder</button>
     </li>
-    <li *ngIf="assetService.editSubject | async">Mode actuel: édition</li>
-    <li *ngIf="!(assetService.editSubject | async)">Mode actuel: Affichage</li>
   </ul>
   <div *ngIf="assetService.editSubject | async">
     <div *ngIf="dyTextEditorService.displayEditorSubject | async" [class.dy-editor-wrapper]="full">

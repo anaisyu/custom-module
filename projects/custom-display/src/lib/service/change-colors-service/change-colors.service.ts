@@ -47,9 +47,7 @@ export class ChangeColorsService {
     const rootStyles = getComputedStyle(document.documentElement);
     this.cssVariableNames.forEach(variable => {
       if(rootStyles.getPropertyValue(variable).trim()) {
-        console.log(variable + ' -> ' + rootStyles.getPropertyValue(variable).trim())
         if (variable.includes('original')) {
-          console.log('in')
           this.paletteCssVariables[variable] = rootStyles.getPropertyValue(variable).trim();
         } else if (!this.cssVariables[variable]) {
           this.cssVariables[variable] = rootStyles.getPropertyValue(variable).trim();

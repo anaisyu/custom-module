@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, Signal} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {LoadingService} from "../../service/loading/loading.service";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
@@ -11,9 +11,11 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
   styleUrl: './loading.component.css'
 })
 export class LoadingComponent {
-  @Input() public material: boolean = false;
+  @Input() public material: boolean = true;
+  protected isLoading: Signal<boolean>;
 
-  isLoading(): boolean {
-    return LoadingService.isLoading();
+
+  constructor() {
+    this.isLoading = LoadingService.isLoading()
   }
 }
