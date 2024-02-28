@@ -119,7 +119,7 @@ export class TranslationClientService {
     window.location.href = window.location.toString()
   }
 
-  saveCookie(minutesExpire: number = 60 * 12) {
+  saveCookie(minutesExpire: number = 60 * 6) {
     if (!this.changes || Object.keys(this.changes).length == 0) {
       return
     }

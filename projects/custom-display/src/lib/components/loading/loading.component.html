@@ -1,8 +1,10 @@
-@if (material) {
-  <mat-spinner class="loading-spinner" *ngIf="isLoading()"></mat-spinner>
-} @else {
-  <div *ngIf="isLoading()" class="loading-spinner spinner-border" style="width: 5rem; height: 5rem; font-size: 2em;"
-       role="status">
-    <span class="visually-hidden">Loading...</span>
-  </div>
+@if (isLoading()) {
+  @if (material) {
+    <mat-spinner class="loading-spinner"></mat-spinner>
+  } @else {
+    <div class="loading-spinner spinner-border" style="width: 5rem; height: 5rem; font-size: 2em;"
+         role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  }
 }
