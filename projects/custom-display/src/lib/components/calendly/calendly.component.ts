@@ -22,7 +22,7 @@ export class CalendlyComponent implements OnInit {
     show(): void {
         // @ts-ignore
         Calendly.initPopupWidget({
-            url: this.url,
+            url: this.url
         })
         /*
         Calendly.initInlineWidget({
