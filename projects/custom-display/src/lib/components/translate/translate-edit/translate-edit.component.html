@@ -10,7 +10,7 @@
     <li>
       <button (click)="display()" mat-raised-button [class.mat-primary]="!(assetService.editSubject | async)"><mat-icon fontIcon="monitor"></mat-icon>Mode affichage</button>
     </li>
-    <li>
+    <li class="my-2">
       <button (click)="cancel()" mat-raised-button color="warn"><mat-icon fontIcon="cancel"></mat-icon>Annuler les modifications</button>
     </li>
     <li>

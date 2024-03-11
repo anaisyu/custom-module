@@ -50,6 +50,10 @@
   padding: 0;
 }
 
+ul li {
+  margin-top: 5px;
+}
+
 .text-edit-tools {
   padding: 1em;
   z-index: 1000;
