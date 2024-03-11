@@ -1,6 +1,6 @@
 {
   "name": "dy-custom-display",
-  "version": "0.0.289",
+  "version": "0.0.290",
   "peerDependencies": {
     "@angular/common": "^17.0.0",
     "@angular/core": "^17.0.0",
