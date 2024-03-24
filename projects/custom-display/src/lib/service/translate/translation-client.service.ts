@@ -96,7 +96,7 @@ export class TranslationClientService {
   save(lang: string = 'fr') {
     const loader = new TranslateHttpLoader(this.http)
     loader.getTranslation(lang).subscribe(original => {
-      this.http.post(this.backendUrl + '/assets/save/' + lang,
+      this.http.post(this.backendUrl + '/assets/save-new/' + lang,
         TranslationClientService.merge(original, this.changes)
       ).subscribe({
         next: response => {
