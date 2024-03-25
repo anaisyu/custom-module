@@ -8,7 +8,7 @@ import {isPlatformBrowser} from "@angular/common";
   providedIn: 'root'
 })
 export class UserService {
-  private roles: string[] = [];
+  private user?: User;
 
   constructor(private http: HttpClient, @Inject('backendUrl') private backendUrl: string, @Inject(PLATFORM_ID) private _platformId: Object) {
   }
@@ -16,14 +16,18 @@ export class UserService {
   getUser(): Observable<User> {
     return this.http.get<User>(this.backendUrl + '/user', {transferCache: false}).pipe(map(
       x => {
-        this.roles = x.roles ? x.roles : [];
+        this.user = x
         return x;
       }
     ));
   }
 
   isAdmin(): boolean {
-    return this.hasAdminRole(this.roles);
+    return this.user ?  this.hasAdminRole(this.user.roles) : false;
+  }
+
+  isSuperAdmin(): boolean {
+    return this.user ? (this.hasAdminRole(this.user.roles) && this.user.email.includes('dahn')) : false;
   }
 
   private hasAdminRole(roles: string[]): boolean {

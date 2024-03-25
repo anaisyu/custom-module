@@ -16,6 +16,9 @@
     <li>
       <button (click)="save()"  mat-stroked-button color="primary"><mat-icon fontIcon="save"></mat-icon>Sauvegarder</button>
     </li>
+    <li *ngIf="userService.isSuperAdmin()">
+      <button (click)="sync()"  mat-raised-button color="primary"><mat-icon fontIcon="save"></mat-icon>Sync</button>
+    </li>
   </ul>
   <div *ngIf="assetService.editSubject | async">
     <div *ngIf="dyTextEditorService.displayEditorSubject | async" [class.dy-editor-wrapper]="full">

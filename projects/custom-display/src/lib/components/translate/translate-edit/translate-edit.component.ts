@@ -53,4 +53,8 @@ export class TranslateEditComponent {
   fullScreen() {
     this.full = !this.full;
   }
+
+  sync() {
+    this.assetService.sync();
+  }
 }

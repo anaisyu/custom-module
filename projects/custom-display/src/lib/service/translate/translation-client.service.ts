@@ -101,7 +101,7 @@ export class TranslationClientService {
       ).subscribe({
         next: response => {
           this.notificationService.newMessage('Sauvegardé. Veuillez attendre quelques minutes pour que la propagation soit complète.');
-          this.saveCookie(5)
+          this.saveCookie(1)
         }, error: (msg) => {
           console.error(msg)
           this.notificationService.newError('Echec lors de la sauvegarde. Merci de réessayer.')
@@ -119,7 +119,7 @@ export class TranslationClientService {
     window.location.href = window.location.toString()
   }
 
-  saveCookie(minutesExpire: number = 60 * 6) {
+  saveCookie(minutesExpire: number = 60) {
     if (!this.changes || Object.keys(this.changes).length == 0) {
       return
     }
@@ -147,5 +147,16 @@ export class TranslationClientService {
     }
 
     return this.service.stream(key);
+  }
+
+  sync(lang: string = 'fr') {
+      this.http.post(this.backendUrl + '/assets/sync/' + lang, {}).subscribe({
+      next: response => {
+        this.notificationService.newMessage('Synced');
+      }, error: (msg) => {
+        console.error(msg)
+        this.notificationService.newError('Sync failed')
+      }
+    })
   }
 }
