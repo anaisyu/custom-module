@@ -27,7 +27,7 @@ export class UserService {
   }
 
   isSuperAdmin(): boolean {
-    return this.user ? (this.hasAdminRole(this.user.roles) && this.user.email.includes('dahn')) : false;
+    return (this.user && this.user.email) ? (this.hasAdminRole(this.user.roles) && this.user.email.includes('dahn')) : false;
   }
 
   private hasAdminRole(roles: string[]): boolean {
