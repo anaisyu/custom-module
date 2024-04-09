@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { ChangeColorsService } from './change-colors.service';
+import {ChangeColorsService} from './change-colors.service';
 
 describe('ChangeColorsServiceService', () => {
   let service: ChangeColorsService;

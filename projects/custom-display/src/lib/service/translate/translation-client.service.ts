@@ -2,10 +2,9 @@ import {Inject, Injectable} from '@angular/core';
 import {TranslateService} from "@ngx-translate/core";
 import {HttpClient} from "@angular/common/http";
 import {CookieService} from "ngx-cookie-service";
-import {BehaviorSubject, delay, Observable, of} from "rxjs";
+import {BehaviorSubject, Observable, of} from "rxjs";
 import {NotificationService} from "../notifications/notification.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {LoadingService} from "../loading/loading.service";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 
 @Injectable({

@@ -1,7 +1,7 @@
-import {ApplicationRef, computed, ElementRef, Injectable, Renderer2, signal} from '@angular/core';
+import {ElementRef, Injectable, Renderer2} from '@angular/core';
 import {BehaviorSubject, combineLatest, map, Subject} from "rxjs";
 import {TranslationClientService} from "../translate/translation-client.service";
-import { Observable } from 'rxjs/internal/Observable';
+import {Observable} from 'rxjs/internal/Observable';
 
 @Injectable({
   providedIn: 'root'
