@@ -63,7 +63,7 @@ export class DyImageEditDirective implements OnInit {
   }
 
   changeImage(url: string, alt: string) {
-    this.el.nativeElement.src = this.backendUrl.replace('/api/art-backend', '') + url
+    this.el.nativeElement.src = url
     this.el.nativeElement.alt = alt
 
   }
