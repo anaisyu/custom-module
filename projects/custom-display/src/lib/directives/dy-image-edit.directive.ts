@@ -1,4 +1,4 @@
-import { Directive, ElementRef, HostListener, Input, OnInit} from '@angular/core';
+import {Directive, ElementRef, HostListener, Inject, Input, OnInit} from '@angular/core';
 import {zip} from "rxjs";
 import {TranslationClientService} from "../service/translate/translation-client.service";
 import {ImageUploadService} from "../service/image-upload/image-upload.service";
@@ -13,7 +13,7 @@ export class DyImageEditDirective implements OnInit {
 
   private editMode: boolean = false;
 
-  constructor(private el: ElementRef, private clientService: TranslationClientService, private imageUploadService: ImageUploadService) {
+  constructor(private el: ElementRef, private clientService: TranslationClientService, private imageUploadService: ImageUploadService, @Inject('backendUrl') private backendUrl: string) {
   }
 
   @HostListener('click')
@@ -63,7 +63,7 @@ export class DyImageEditDirective implements OnInit {
   }
 
   changeImage(url: string, alt: string) {
-    this.el.nativeElement.src = url
+    this.el.nativeElement.src = this.backendUrl.replace('/api/art-backend', '') + url
     this.el.nativeElement.alt = alt
 
   }
