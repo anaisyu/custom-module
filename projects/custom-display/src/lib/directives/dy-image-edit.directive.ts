@@ -21,14 +21,15 @@ export class DyImageEditDirective implements OnInit {
     if (this.editMode) {
       this.imageUploadService.openDialog().subscribe(res => {
         this.changeImage(res.urls.compressedUrl, res.alt)
-        this.save(res.urls.compressedUrl, res.alt)
+        this.save(res.urls.fullSizeUrl, res.urls.compressedUrl, res.alt)
       })
     }
   }
 
-  save(url: string, alt: string) {
-    if (url && alt) {
+  save(fullSizeUrl: string, url: string, alt: string) {
+    if (fullSizeUrl && url && alt) {
       this.clientService.next('images.' + this.libDyImageEdit + '.url', url)
+      this.clientService.next('images.' + this.libDyImageEdit + '.url-full-size', fullSizeUrl)
       this.clientService.next('images.' + this.libDyImageEdit + '.alt', alt)
     }
   }
