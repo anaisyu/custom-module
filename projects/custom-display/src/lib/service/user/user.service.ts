@@ -23,7 +23,7 @@ export class UserService {
   }
 
   isAdmin(): boolean {
-    return this.user ?  this.hasAdminRole(this.user.roles) : false;
+    return this.user ? this.hasAdminRole(this.user.roles) : false;
   }
 
   isSuperAdmin(): boolean {
