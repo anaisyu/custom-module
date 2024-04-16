@@ -11,8 +11,9 @@ import {TranslationClientService} from "../../service/translate/translation-clie
   styleUrl: './image-edit.component.css'
 })
 export class ImageEditComponent {
-  @Input({required: true}) private name!: string;
   @Input() defaultUrl: string = '';
+  @Input({required: true}) private name!: string;
+
   constructor(private service: TranslateService, private clientService: TranslationClientService) {
 
   }

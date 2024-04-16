@@ -1,7 +1,6 @@
-import {afterNextRender, AfterViewInit, ApplicationRef, Component, OnInit, Renderer2} from '@angular/core';
+import {afterNextRender, Component, Renderer2} from '@angular/core';
 import {AsyncPipe, JsonPipe, KeyValuePipe, NgForOf, NgIf} from "@angular/common";
 import {MatButtonModule} from "@angular/material/button";
-import {Subject} from "rxjs";
 import {MyCardComponent} from "../my-card/my-card.component";
 import {ChangeColorsService} from "../../service/change-colors-service/change-colors.service";
 import {NgxColorsModule} from "ngx-colors";

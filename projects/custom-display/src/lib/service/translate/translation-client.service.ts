@@ -21,8 +21,6 @@ export class TranslationClientService {
     private http: HttpClient,
     private cookieService: CookieService,
     @Inject('backendUrl') private backendUrl: string,
-    private router: Router,
-    private activatedRoute: ActivatedRoute
     ) {
     // Retrieve object from the cookie
     const objFromCookie = this.cookieService.get(TranslationClientService.COOKIE_NAME);
@@ -32,31 +30,6 @@ export class TranslationClientService {
       this.changes = {}
     }
 
-    // Check if "?save" is in the URL
-    this.activatedRoute.queryParams.subscribe(params => {
-      if (params['save']) {
-        // Call the "save()" method
-        this.save();
-
-        // Remove "?save" from the URL
-        this.router.navigate([], {
-          relativeTo: this.activatedRoute,
-          queryParams: { save: null },
-          queryParamsHandling: 'merge',
-        });
-      }
-    });
-  }
-
-
-  // Method to refresh page and redirect by adding "?save" to the URL
-  public refreshPageWithSave(): void {
-    // Check if "?save" is not already in the URL
-    // if (!this.activatedRoute.snapshot.queryParams['save']) {
-     // LoadingService.startLoading()
-     // window.location.href = window.location.toString() + '?save=' + Math.random()
-    // }
-    this.save()
   }
 
   public static merge(left: any, right: any) {
@@ -93,14 +66,14 @@ export class TranslationClientService {
   }
 
   save(lang: string = 'fr') {
-    const loader = new TranslateHttpLoader(this.http)
+    const loader = new TranslateHttpLoader(this.http, this.backendUrl + '/assets/get/')
     loader.getTranslation(lang).subscribe(original => {
       this.http.post(this.backendUrl + '/assets/save-new/' + lang,
         TranslationClientService.merge(original, this.changes)
       ).subscribe({
         next: response => {
-          this.notificationService.newMessage('Sauvegardé. Veuillez attendre quelques minutes pour que la propagation soit complète.');
-          this.saveCookie(1)
+          this.notificationService.newMessage('Vos modifications ont bien été sauvegardées.');
+          this.cookieService.delete(TranslationClientService.COOKIE_NAME)
         }, error: (msg) => {
           console.error(msg)
           this.notificationService.newError('Echec lors de la sauvegarde. Merci de réessayer.')
@@ -122,8 +95,6 @@ export class TranslationClientService {
     if (!this.changes || Object.keys(this.changes).length == 0) {
       return
     }
-    console.log('saved')
-    console.log(JSON.stringify(this.changes))
     const date = new Date(Date.now());
     date.setMinutes(date.getMinutes() + minutesExpire)
     this.cookieService.set(TranslationClientService.COOKIE_NAME,

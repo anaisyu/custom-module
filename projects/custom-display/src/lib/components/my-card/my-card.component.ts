@@ -17,6 +17,7 @@ export class MyCardComponent {
   @Input({required: true}) title!: string;
   @Input() withExitButton: boolean = false;
   @Output() exitEmitter = new EventEmitter<boolean>;
+
   exit() {
     this.exitEmitter.next(true);
   }

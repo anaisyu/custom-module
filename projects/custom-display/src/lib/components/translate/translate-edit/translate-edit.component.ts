@@ -1,4 +1,4 @@
-import {Component, signal} from '@angular/core';
+import {Component} from '@angular/core';
 import {UserService} from "../../../service/user/user.service";
 import {TranslationClientService} from "../../../service/translate/translation-client.service";
 import {DyTextEditorService} from "../../../service/dy-text-editor/dy-text-editor.service";
@@ -23,6 +23,7 @@ import {DyTextEditorComponent} from "../../dy-text-editor/dy-text-editor.compone
 })
 export class TranslateEditComponent {
   protected full: boolean = false;
+
   constructor(public userService: UserService, public assetService: TranslationClientService, public dyTextEditorService: DyTextEditorService, private colorService: ChangeColorsService) {
   }
 
@@ -43,7 +44,7 @@ export class TranslateEditComponent {
 
   save() {
     this.userService.isAdminOrRedirect();
-    this.assetService.refreshPageWithSave();
+    this.assetService.save();
   }
 
   color() {

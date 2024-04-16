@@ -2,35 +2,53 @@
      class="text-edit-tools d-none d-sm-block">
   <ul>
     <li>
-      <button (click)="color()" mat-raised-button color="accent"><mat-icon fontIcon="palette"></mat-icon>Changer les couleurs</button>
+      <button (click)="color()" color="accent" mat-raised-button>
+        <mat-icon fontIcon="palette"></mat-icon>
+        Changer les couleurs
+      </button>
     </li>
     <li>
-      <button (click)="edit()" mat-raised-button [class.mat-primary]="assetService.editSubject | async"><mat-icon fontIcon="edit"></mat-icon>Mode édition</button>
+      <button (click)="edit()" [class.mat-primary]="assetService.editSubject | async" mat-raised-button>
+        <mat-icon fontIcon="edit"></mat-icon>
+        Mode édition
+      </button>
     </li>
     <li>
-      <button (click)="display()" mat-raised-button [class.mat-primary]="!(assetService.editSubject | async)"><mat-icon fontIcon="monitor"></mat-icon>Mode affichage</button>
+      <button (click)="display()" [class.mat-primary]="!(assetService.editSubject | async)" mat-raised-button>
+        <mat-icon fontIcon="monitor"></mat-icon>
+        Mode affichage
+      </button>
     </li>
     <li class="my-2">
-      <button (click)="cancel()" mat-raised-button color="warn"><mat-icon fontIcon="cancel"></mat-icon>Annuler les modifications</button>
+      <button (click)="cancel()" color="warn" mat-raised-button>
+        <mat-icon fontIcon="cancel"></mat-icon>
+        Annuler les modifications
+      </button>
     </li>
     <li>
-      <button (click)="save()"  mat-stroked-button color="primary"><mat-icon fontIcon="save"></mat-icon>Sauvegarder</button>
+      <button (click)="save()" color="primary" mat-stroked-button>
+        <mat-icon fontIcon="save"></mat-icon>
+        Sauvegarder
+      </button>
     </li>
     <li *ngIf="userService.isSuperAdmin()">
-      <button (click)="sync()"  mat-raised-button color="primary"><mat-icon fontIcon="save"></mat-icon>Sync</button>
+      <button (click)="sync()" color="primary" mat-raised-button>
+        <mat-icon fontIcon="save"></mat-icon>
+        Sync
+      </button>
     </li>
   </ul>
   <div *ngIf="assetService.editSubject | async">
     <div *ngIf="dyTextEditorService.displayEditorSubject | async" [class.dy-editor-wrapper]="full">
-      <div [class.button-wrapper]="!full" [class.button-wrapper-full]="full">
-        <button mat-raised-button (click)="fullScreen()">
+      <div [class.button-wrapper-full]="full" [class.button-wrapper]="!full">
+        <button (click)="fullScreen()" mat-raised-button>
           <mat-icon fontIcon="open_in_full"></mat-icon>
           <span *ngIf="!full">Agrandir</span>
           <span *ngIf="full">Réduire</span>
         </button>
       </div>
-      <div [class.dy-editor]="!full" [class.dy-editor-full-size]="full">
-      <app-dy-text-editor></app-dy-text-editor>
+      <div [class.dy-editor-full-size]="full" [class.dy-editor]="!full">
+        <app-dy-text-editor></app-dy-text-editor>
       </div>
     </div>
   </div>

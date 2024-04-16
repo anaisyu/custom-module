@@ -10,15 +10,19 @@ import {LoadingService} from '../loading/loading.service';
 export class DyContactService {
   formData: FormGroup = new FormGroup({
     name: new FormControl('', Validators.required),
+    lastName: new FormControl(''),
     email: new FormControl('', [Validators.required, Validators.email]),
     message: new FormControl('', Validators.required)
   });
+  private readonly formLoadedTimestamp: number;
 
 
-  constructor(private http: HttpClient, @Inject('backendUrl') private backendUrl: string) {}
+  constructor(private http: HttpClient, @Inject('backendUrl') private backendUrl: string) {
+    this.formLoadedTimestamp = Date.now();
+  }
 
   sendContactForm(): Observable<any> {
-    if (this.formData.invalid) {
+    if (this.formData.invalid || (Date.now() - this.formLoadedTimestamp) < 5000 || this.formData.getRawValue().lastName) {
       return throwError(() => 'form Invalid');
     }
     LoadingService.startLoading()

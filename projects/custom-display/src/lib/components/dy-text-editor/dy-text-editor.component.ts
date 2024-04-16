@@ -33,7 +33,7 @@ export class DyTextEditorComponent {
         colorsService.cssVariablesSubject.subscribe((colors) => {
           const editorColors: { color: string, label: string }[] = []
           for (const key of Object.keys(colors)) {
-            if(!key.includes('original')) {
+            if (!key.includes('original')) {
               editorColors.push({color: colors[key], label: key})
             }
           }

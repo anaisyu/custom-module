@@ -36,7 +36,6 @@ export class NotificationComponent {
   }
 
   prepareStop() {
-    console.log('prepare')
     clearTimeout(this.timeout);
     this.timeout = setTimeout(() => {
       console.log('end')

@@ -4,16 +4,16 @@
     <div class="s300">
       <div class="row">
         <div class="col-12" style="margin-bottom: 1rem">
-          <button mat-raised-button class="mat-primary" (click)="fileInput.click()">
+          <button (click)="fileInput.click()" class="mat-primary" mat-raised-button>
             <mat-icon aria-hidden="false" aria-label="upload" fontIcon="upload"></mat-icon>
             <span>Sélectionner une image</span>
-            <input #fileInput type="file" required (change)="onFileChanged($event)" style="display:none;"/>
+            <input #fileInput (change)="onFileChanged($event)" required style="display:none;" type="file"/>
           </button>
         </div>
         <div class="col-12">
           <mat-form-field>
             <mat-label>Description de l'image</mat-label>
-            <input required matInput [(ngModel)]="imgAlt">
+            <input [(ngModel)]="imgAlt" matInput required>
           </mat-form-field>
         </div>
       </div>
@@ -26,8 +26,8 @@
   </div>
 </div>
 <div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">Annuler</button>
-  <button [disabled]="!imgAlt || !file" mat-raised-button class="mat-accent"
-          [mat-dialog-close]="{alt: imgAlt, file: file}">Ajouter
+  <button (click)="onNoClick()" mat-button>Annuler</button>
+  <button [disabled]="!imgAlt || !file" [mat-dialog-close]="{alt: imgAlt, file: file}" class="mat-accent"
+          mat-raised-button>Ajouter
   </button>
 </div>

@@ -1,18 +1,19 @@
-<div class="color-editor" [hidden]="!(service.displaySubject | async)" *ngIf="service.ready | async">
-<app-my-card [withExitButton]="true" (exitEmitter)="exit()" [title]="'Change site colors'" *ngIf="service.cssVariablesSubject | async as cssVariables">
-  <ul class="p-0" *ngIf="cssVariables">
-    <li class="d-flex justify-content-between" *ngFor="let item of cssVariables | keyvalue">
-      <div class="text-lg font-weight-light"><label>{{ item.key }}</label></div>
-      <div class="text-xl">
-        <ngx-colors
-          ngx-colors-trigger
-          [palette]="((service.paletteSubject | async) || [])"
-          [ngModel]="item.value"
-          (ngModelChange)="save(item.key, $event)"
-          (slider)="changeCssVariable(item.key, $event)"
-        ></ngx-colors>
-      </div>
-    </li>
-  </ul>
-</app-my-card>
+<div *ngIf="service.ready | async" [hidden]="!(service.displaySubject | async)" class="color-editor">
+  <app-my-card (exitEmitter)="exit()" *ngIf="service.cssVariablesSubject | async as cssVariables" [title]="'Change site colors'"
+               [withExitButton]="true">
+    <ul *ngIf="cssVariables" class="p-0">
+      <li *ngFor="let item of cssVariables | keyvalue" class="d-flex justify-content-between">
+        <div class="text-lg font-weight-light"><label>{{ item.key }}</label></div>
+        <div class="text-xl">
+          <ngx-colors
+            (ngModelChange)="save(item.key, $event)"
+            (slider)="changeCssVariable(item.key, $event)"
+            [ngModel]="item.value"
+            [palette]="((service.paletteSubject | async) || [])"
+            ngx-colors-trigger
+          ></ngx-colors>
+        </div>
+      </li>
+    </ul>
+  </app-my-card>
 </div>
