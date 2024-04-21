@@ -1,0 +1,67 @@
+.swiper {
+  width: 90%;
+  height: auto;
+  max-height: 65vh;
+  --swiper-theme-color: #646464 !important;
+}
+
+
+img {
+  display: block;
+  margin: auto;
+  max-height: 65vh !important;
+  max-width: 100% !important;
+}
+
+#image-list-detail {
+  //height: 65vh !important;
+  height: 100%;
+  position: absolute;
+  text-align: left;
+  margin-left: 0;
+  margin-right: auto;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.ab {
+  display: inline-block; /* So text-align affects it */
+  height: 100%;
+  margin-left: auto !important;
+  margin-right: 0 !important;
+}
+
+.cd {
+  display: block; /* So takes full width */
+  padding: 3px;
+  margin-left: 0;
+  margin-right: auto;
+  object-fit: cover;
+  aspect-ratio: 297 / 210;
+}
+
+
+@media (min-width: 450px) {
+  .cd {
+    width: auto !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .swiper {
+    width: 100% !important;
+  }
+  .cd {
+    display: inline;
+    height: auto !important;
+  }
+
+  #image-list-detail {
+    height: fit-content !important;
+  }
+}
+
+.ab_active {
+  padding: 2px;
+  border: rgb(215, 224, 243) solid 2px;
+}

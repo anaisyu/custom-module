@@ -1,0 +1,40 @@
+<!-- Slider main container -->
+<div class="row">
+  <div class="col-12" [class.col-md-10]="withGallery" [class.col-md-12]="!withGallery">
+    <div [id]="id" class="swiper">
+      <!-- Additional required wrapper -->
+      <div class="swiper-wrapper">
+        <!-- Slides -->
+        <ng-container *ngFor="let picture of pictures">
+          <div class="swiper-slide" id="{{ picture.id }}">
+            <div class="picsum-img-wrapper">
+              <a [href]="picture.fullSizeUrl" class="d-block m-auto" style="width: fit-content" target="_blank">
+                <img #image [src]="picture.url" alt="{{ picture.description }}">
+              </a>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+      <div class="swiper-pagination"></div>
+
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+    </div>
+  </div>
+  <div *ngIf="withGallery" class="d-none d-md-block col-md-2 position-relative">
+    <div id="image-list-detail">
+      <div class="ab">
+        <ng-container *ngFor="let picture of pictures; let i = index">
+          <img (click)="goto(i)"
+               [class.ab_active]="i == active_id"
+               [src]="picture.url"
+               [style.height]="getThumbnailHeight(pictures) + '%'"
+               [style.width]="getThumbnailHeight(pictures) + '%'"
+               alt="{{ picture.description }} thumbnail"
+               class="cd"
+          />
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>
