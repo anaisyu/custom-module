@@ -37,7 +37,7 @@ export class DySwiperComponent implements OnInit, OnDestroy, AfterViewInit {
   active_id: number = -1;
   @Input({required: true}) pictures!: Array<DyImage>;
   @Input() id: string = 'swiper';
-  @Input() private noGallery: boolean = false;
+  @Input() noGallery: boolean = false;
   private swiper?: Swiper;
   private subscriptions: Subscription = new Subscription();
 
