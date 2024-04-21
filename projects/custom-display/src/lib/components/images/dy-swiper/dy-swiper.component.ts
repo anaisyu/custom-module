@@ -125,7 +125,7 @@ export class DySwiperComponent implements OnInit, OnDestroy, AfterViewInit {
       });
 
       setTimeout(() => {
-        this.ngZone.runOutsideAngular(() => {
+      //  this.ngZone.runOutsideAngular(() => {
 
           this.updateParentAttributes();
 
@@ -136,7 +136,7 @@ export class DySwiperComponent implements OnInit, OnDestroy, AfterViewInit {
             zoom: true
           })
           lightbox.init()
-        })
+       // })
       }, 100);
     }
   }
