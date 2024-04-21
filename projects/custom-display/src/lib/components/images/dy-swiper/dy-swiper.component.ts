@@ -39,7 +39,6 @@ export class DySwiperComponent implements OnInit, OnDestroy, AfterViewInit {
   @Input() id: string = 'swiper';
   @Input() noGallery: boolean = false;
   private swiper?: Swiper;
-  private subscriptions: Subscription = new Subscription();
 
   constructor(
     private ngZone: NgZone, @Inject(PLATFORM_ID) private _platformId: Object
@@ -61,7 +60,7 @@ export class DySwiperComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnDestroy(): void {
-    this.subscriptions.unsubscribe();
+    this.swiper?.destroy()
   }
 
 
