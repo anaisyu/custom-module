@@ -134,11 +134,12 @@ export class DySwiperComponent implements OnInit, OnDestroy, AfterViewInit {
           const lightbox = new PhotoSwipeLightbox({
             gallery: `#${this.id}`,
             children: 'a',
-            pswpModule: PhotoSwipe
+            pswpModule: PhotoSwipe,
+            zoom: true
           })
           lightbox.init()
         })
-      }, 200);
+      }, 100);
     }
   }
 
