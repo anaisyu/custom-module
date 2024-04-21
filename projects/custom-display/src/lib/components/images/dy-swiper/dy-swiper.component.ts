@@ -12,13 +12,11 @@ import {
   ViewChildren
 } from '@angular/core';
 import {isPlatformBrowser, NgForOf, NgIf} from "@angular/common";
-import {Subscription} from "rxjs";
 import PhotoSwipeLightbox from "photoswipe/lightbox";
 import PhotoSwipe from "photoswipe";
 // import Swiper bundle with all modules installed
 // @ts-ignore
 import Swiper from 'swiper/bundle';
-import 'swiper/css/bundle';
 import {DyImage} from "../../../model/dy-image";
 
 @Component({
@@ -39,6 +37,7 @@ export class DySwiperComponent implements OnInit, OnDestroy, AfterViewInit {
   @Input() id: string = 'swiper';
   @Input() noGallery: boolean = false;
   private swiper?: Swiper;
+  @Input() themeColor: string = '#646464';
 
   constructor(
     private ngZone: NgZone, @Inject(PLATFORM_ID) private _platformId: Object

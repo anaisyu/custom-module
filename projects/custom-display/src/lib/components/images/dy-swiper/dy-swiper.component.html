@@ -1,7 +1,7 @@
 <!-- Slider main container -->
 <div class="row">
   <div class="col-12" [class.col-md-10]="withGallery" [class.col-md-12]="!withGallery">
-    <div [id]="id" class="swiper">
+    <div [id]="id" class="swiper" [style.--swiper-theme-color]="themeColor">
       <!-- Additional required wrapper -->
       <div class="swiper-wrapper">
         <!-- Slides -->
