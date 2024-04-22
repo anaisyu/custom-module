@@ -4,11 +4,11 @@ import {
   ElementRef,
   Inject,
   Input,
-  NgZone,
+  NgZone, OnChanges,
   OnDestroy,
   OnInit,
   PLATFORM_ID,
-  QueryList,
+  QueryList, SimpleChanges,
   ViewChildren
 } from '@angular/core';
 import {isPlatformBrowser, NgForOf, NgIf} from "@angular/common";
@@ -29,15 +29,16 @@ import {DyImage} from "../../../model/dy-image";
   templateUrl: './dy-swiper.component.html',
   styleUrl: './dy-swiper.component.scss'
 })
-export class DySwiperComponent implements OnInit, OnDestroy, AfterViewInit {
+export class DySwiperComponent implements OnInit, OnDestroy, AfterViewInit, OnChanges {
   @ViewChildren('image') imageElements!: QueryList<ElementRef<HTMLImageElement>>;
   withGallery: boolean = false;
   active_id: number = -1;
   @Input({required: true}) pictures!: Array<DyImage>;
   @Input() id: string = 'swiper';
   @Input() noGallery: boolean = false;
-  private swiper?: Swiper;
   @Input() themeColor: string = '#646464';
+  private swiper?: Swiper;
+  private lightbox?: PhotoSwipeLightbox;
 
   constructor(
     private ngZone: NgZone, @Inject(PLATFORM_ID) private _platformId: Object
@@ -45,6 +46,7 @@ export class DySwiperComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnInit(): void {
+    console.log('called - inInit')
     this.withGallery = this.noGallery ? false : this.pictures.length > 1;
   }
 
@@ -59,9 +61,19 @@ export class DySwiperComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnDestroy(): void {
+    this.lightbox?.destroy()
     this.swiper?.destroy()
   }
 
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if ('inputChangeTrigger' in changes) {
+      // Check if inputChangeTrigger has changed
+      // You can add more conditions based on your requirements
+      this.ngOnDestroy()
+      this.ngAfterViewInit()
+    }
+  }
 
   updateParentAttributes(): void {
     this.imageElements.forEach(imageElement => {
@@ -92,6 +104,7 @@ export class DySwiperComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
+    console.log('call - ngAfterViewInit')
     if (isPlatformBrowser(this._platformId)) {
       this.swiper = new Swiper(`#${this.id}`, {
         // Optional parameters
@@ -125,18 +138,16 @@ export class DySwiperComponent implements OnInit, OnDestroy, AfterViewInit {
       });
 
       setTimeout(() => {
-      //  this.ngZone.runOutsideAngular(() => {
 
           this.updateParentAttributes();
 
-          const lightbox = new PhotoSwipeLightbox({
+          this.lightbox = new PhotoSwipeLightbox({
             gallery: `#${this.id}`,
             children: 'a',
             pswpModule: PhotoSwipe,
             zoom: true
           })
-          lightbox.init()
-       // })
+          this.lightbox.init()
       }, 100);
     }
   }
