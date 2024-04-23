@@ -67,14 +67,11 @@ export class DySwiperComponent implements OnInit, OnDestroy, AfterViewInit, OnCh
 
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(this.themeColor)
     if (changes['pictures'] && changes['pictures'].previousValue) {
       // Check if inputChangeTrigger has changed
       // You can add more conditions based on your requirements
       this.ngOnDestroy()
-      setTimeout(() => {
-        this.ngAfterViewInit()
-      }, 1) // the time to recieve other inputs
+      this.ngAfterViewInit()
     }
   }
 
@@ -107,7 +104,6 @@ export class DySwiperComponent implements OnInit, OnDestroy, AfterViewInit, OnCh
   }
 
   ngAfterViewInit(): void {
-    console.log('call - ngAfterViewInit')
     if (isPlatformBrowser(this._platformId)) {
       this.swiper = new Swiper(`#${this.id}`, {
         // Optional parameters
@@ -141,7 +137,6 @@ export class DySwiperComponent implements OnInit, OnDestroy, AfterViewInit, OnCh
       });
 
       setTimeout(() => {
-
           this.updateParentAttributes();
 
           this.lightbox = new PhotoSwipeLightbox({
