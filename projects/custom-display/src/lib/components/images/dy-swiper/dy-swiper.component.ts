@@ -71,7 +71,9 @@ export class DySwiperComponent implements OnInit, OnDestroy, AfterViewInit, OnCh
       // Check if inputChangeTrigger has changed
       // You can add more conditions based on your requirements
       this.ngOnDestroy()
-      this.ngAfterViewInit()
+      setTimeout(() => {
+        this.ngAfterViewInit()
+      }, 1) // the time to recieve other inputs
     }
   }
 
