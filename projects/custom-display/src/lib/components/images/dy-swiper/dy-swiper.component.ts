@@ -67,6 +67,7 @@ export class DySwiperComponent implements OnInit, OnDestroy, AfterViewInit, OnCh
 
 
   ngOnChanges(changes: SimpleChanges): void {
+    console.log(this.themeColor)
     if (changes['pictures'] && changes['pictures'].previousValue) {
       // Check if inputChangeTrigger has changed
       // You can add more conditions based on your requirements
