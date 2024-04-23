@@ -64,3 +64,13 @@ img {
   padding: 2px;
   border: rgb(215, 224, 243) solid 2px;
 }
+
+::ng-deep .pswp__button {
+  width: 5rem !important;
+  height: 5.5rem !important;
+}
+
+::ng-deep .pswp__icn {
+  width: 4rem !important;
+  height: 4rem !important;
+}
