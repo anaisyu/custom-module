@@ -17,7 +17,9 @@ export class DyTransitionDirective implements AfterViewInit, OnInit, OnDestroy {
     }
 
   ngOnInit(): void {
+    setTimeout(() => {
     this.elementRef.nativeElement.style['view-transition-name'] = this.dyTransition();
+    })
 
     // Listen to router events
     this.subscription.add(
