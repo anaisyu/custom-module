@@ -4,7 +4,7 @@
     <div [id]="id" class="swiper">
       <!-- Additional required wrapper -->
       <div class="swiper-wrapper">
-        @for (picture of pictures; track picture.id) {
+        @for (picture of pictures(); track picture.id) {
           <div class="swiper-slide" id="{{ picture.id }}">
             <div class="picsum-img-wrapper">
               <a [href]="picture.fullSizeUrl" class="d-block w-100 m-auto" style="width: fit-content" target="_blank">
@@ -28,12 +28,12 @@
   <div *ngIf="withGallery" class="d-none d-md-block col-md-2 position-relative">
     <div id="image-list-detail">
       <div class="ab">
-        <ng-container *ngFor="let picture of pictures; let i = index">
+        <ng-container *ngFor="let picture of pictures(); let i = index">
           <img (click)="goto(i)"
                [class.ab_active]="i == active_id"
                [src]="picture.url"
-               [style.height]="getThumbnailHeight(pictures) + '%'"
-               [style.width]="getThumbnailHeight(pictures) + '%'"
+               [style.height]="getThumbnailHeight(pictures()) + '%'"
+               [style.width]="getThumbnailHeight(pictures()) + '%'"
                alt="{{ picture.description }} thumbnail"
                class="cd"
           />

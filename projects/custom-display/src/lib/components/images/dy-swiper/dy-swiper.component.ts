@@ -35,7 +35,7 @@ export class DySwiperComponent implements OnInit, OnDestroy, AfterViewInit, OnCh
   @ViewChildren('image') imageElements!: QueryList<ElementRef<HTMLImageElement>>;
   withGallery: boolean = false;
   active_id: number = -1;
-  @Input({required: true}) pictures!: Array<DyImage>;
+  pictures: InputSignal<Array<DyImage>> = input.required();
   @Input() id: string = 'swiper';
   @Input() noGallery: boolean = false;
   @Input() themeColor: string = '#646464';
@@ -48,7 +48,7 @@ export class DySwiperComponent implements OnInit, OnDestroy, AfterViewInit, OnCh
   }
 
   ngOnInit(): void {
-    this.withGallery = this.noGallery ? false : this.pictures.length > 1;
+    this.withGallery = this.noGallery ? false : this.pictures().length > 1;
   }
 
 
