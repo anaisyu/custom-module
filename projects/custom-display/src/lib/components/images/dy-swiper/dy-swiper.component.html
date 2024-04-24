@@ -8,7 +8,7 @@
         <ng-container *ngFor="let picture of pictures">
           <div class="swiper-slide" id="{{ picture.id }}">
             <div class="picsum-img-wrapper">
-              <a [href]="picture.fullSizeUrl" class="d-block m-auto" style="width: fit-content" target="_blank">
+              <a [href]="picture.fullSizeUrl" class="d-block w-100 m-auto" style="width: fit-content" target="_blank">
                 <img #image [src]="picture.url" alt="{{ picture.description }}">
               </a>
             </div>
