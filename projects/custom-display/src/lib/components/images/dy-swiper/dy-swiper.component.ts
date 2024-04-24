@@ -2,8 +2,8 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
-  Inject,
-  Input,
+  Inject, input,
+  Input, InputSignal,
   NgZone, OnChanges,
   OnDestroy,
   OnInit,
@@ -39,6 +39,7 @@ export class DySwiperComponent implements OnInit, OnDestroy, AfterViewInit, OnCh
   @Input() themeColor: string = '#646464';
   private swiper?: Swiper;
   private lightbox?: PhotoSwipeLightbox;
+  margin_x: InputSignal<number> = input(5);
 
   constructor(
     private ngZone: NgZone, @Inject(PLATFORM_ID) private _platformId: Object

@@ -9,7 +9,11 @@
           <div class="swiper-slide" id="{{ picture.id }}">
             <div class="picsum-img-wrapper">
               <a [href]="picture.fullSizeUrl" class="d-block w-100 m-auto" style="width: fit-content" target="_blank">
-                <img #image [src]="picture.url" alt="{{ picture.description }}">
+                <img
+                  [style.margin-left]="margin_x()"
+                  [style.margin-right]="margin_x()"
+                  [style.width]="100 - margin_x() * 2 + '%'"
+                  #image [src]="picture.url" alt="{{ picture.description }}">
               </a>
             </div>
           </div>
