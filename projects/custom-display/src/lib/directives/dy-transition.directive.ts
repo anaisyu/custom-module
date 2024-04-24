@@ -30,11 +30,19 @@ export class DyTransitionDirective implements AfterViewInit, OnInit, OnDestroy {
 
   private isElementInViewport(el: HTMLElement): boolean {
     const rect = el.getBoundingClientRect();
+    const tolerance = 0.1; // 10% tolerance
+
+    const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+    const windowWidth = window.innerWidth || document.documentElement.clientWidth;
+
+    const topTolerance = tolerance * windowHeight;
+    const leftTolerance = tolerance * windowWidth;
+
     return (
-      rect.top >= 0 &&
-      rect.left >= 0 &&
-      rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-      rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+      rect.top >= -topTolerance &&
+      rect.left >= -leftTolerance &&
+      rect.bottom <= (1 + tolerance) * windowHeight &&
+      rect.right <= (1 + tolerance) * windowWidth
     );
   }
 
