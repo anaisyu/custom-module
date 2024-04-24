@@ -4,12 +4,12 @@
     <div [id]="id" class="swiper">
       <!-- Additional required wrapper -->
       <div class="swiper-wrapper">
-        <!-- Slides -->
-        <ng-container *ngFor="let picture of pictures">
+        @for (picture of pictures; track picture.id) {
           <div class="swiper-slide" id="{{ picture.id }}">
             <div class="picsum-img-wrapper">
               <a [href]="picture.fullSizeUrl" class="d-block w-100 m-auto" style="width: fit-content" target="_blank">
                 <img
+                  [dyTransition]="$first ? transition() : 'none'"
                   [style.margin-left]="margin_x()"
                   [style.margin-right]="margin_x()"
                   [style.width]="100 - margin_x() * 2 + '%'"
@@ -17,7 +17,7 @@
               </a>
             </div>
           </div>
-        </ng-container>
+        }
       </div>
       <div class="swiper-pagination"></div>
 

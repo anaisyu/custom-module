@@ -18,13 +18,15 @@ import PhotoSwipe from "photoswipe";
 // @ts-ignore
 import Swiper from 'swiper/bundle';
 import {DyImage} from "../../../model/dy-image";
+import {DyTransitionDirective} from "../../../directives/dy-transition.directive";
 
 @Component({
   selector: 'app-dy-swiper',
   standalone: true,
   imports: [
     NgForOf,
-    NgIf
+    NgIf,
+    DyTransitionDirective
   ],
   templateUrl: './dy-swiper.component.html',
   styleUrl: './dy-swiper.component.scss'
@@ -40,14 +42,12 @@ export class DySwiperComponent implements OnInit, OnDestroy, AfterViewInit, OnCh
   private swiper?: Swiper;
   private lightbox?: PhotoSwipeLightbox;
   margin_x: InputSignal<number> = input(5);
+  transition: InputSignal<string> = input('none');
 
-  constructor(
-    private ngZone: NgZone, @Inject(PLATFORM_ID) private _platformId: Object
-  ) {
+  constructor(@Inject(PLATFORM_ID) private _platformId: Object) {
   }
 
   ngOnInit(): void {
-    console.log('called - inInit')
     this.withGallery = this.noGallery ? false : this.pictures.length > 1;
   }
 
