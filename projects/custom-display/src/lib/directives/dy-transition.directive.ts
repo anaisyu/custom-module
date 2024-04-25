@@ -21,7 +21,7 @@ export class DyTransitionDirective implements AfterViewInit, OnInit, OnDestroy {
   private intervalId: any;
 
   dyTransition = input.required()
-  constructor(private elementRef: ElementRef, private router: Router, @Inject(PLATFORM_ID) _platformId: Object) {
+  constructor(private elementRef: ElementRef, private router: Router, @Inject(PLATFORM_ID) private _platformId: Object) {
     if(isPlatformBrowser(_platformId)) {
       this.intervalId = setInterval(() => {
         this.checkVisibility();
@@ -66,13 +66,19 @@ export class DyTransitionDirective implements AfterViewInit, OnInit, OnDestroy {
   }
 
   private checkVisibility(): void {
-    if(this.dyTransition() != 'none') {
-      if (this.isElementInViewport(this.elementRef.nativeElement)) {
+    if(isPlatformBrowser(this._platformId)) {
+      if (this.dyTransition() != 'none') {
+        if (this.isElementInViewport(this.elementRef.nativeElement)) {
+          this.elementRef.nativeElement.style['view-transition-name'] = this.dyTransition();
+        } else {
+          setTimeout(() => {
+            this.elementRef.nativeElement.style['view-transition-name'] = 'none';
+          }, 1)
+        }
+      }
+    } else {
+      if(this.dyTransition() != 'none') {
         this.elementRef.nativeElement.style['view-transition-name'] = this.dyTransition();
-      } else {
-        setTimeout(() => {
-          this.elementRef.nativeElement.style['view-transition-name'] = 'none';
-        }, 1)
       }
     }
   }
