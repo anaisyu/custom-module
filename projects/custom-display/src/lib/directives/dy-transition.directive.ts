@@ -1,7 +1,7 @@
 import {
   AfterViewInit,
   Directive,
-  ElementRef,
+  ElementRef, HostListener,
   Inject,
   input,
   OnDestroy,
@@ -78,12 +78,18 @@ export class DyTransitionDirective implements AfterViewInit, OnInit, OnDestroy {
     }
   }
 
+  @HostListener('window:scroll', ['$event'])
+  @HostListener('window:click', ['$event'])
+  onScroll(): void {
+    this.checkVisibility();
+  }
+
   ngAfterViewInit(): void {
     this.checkVisibility(); // Initial check
     if(isPlatformBrowser(this._platformId)) {
       this.intervalId = setInterval(() => {
         this.checkVisibility();
-      }, 10); // 10 milliseconds interval
+      }, 500); // 500 milliseconds interval
     }
   }
 }
