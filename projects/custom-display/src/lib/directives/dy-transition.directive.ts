@@ -1,6 +1,16 @@
-import {AfterViewInit, Directive, ElementRef, HostListener, input, OnDestroy, OnInit} from '@angular/core';
+import {
+  AfterViewInit,
+  Directive,
+  ElementRef,
+  Inject,
+  input,
+  OnDestroy,
+  OnInit,
+  PLATFORM_ID
+} from '@angular/core';
 import {Router} from "@angular/router";
 import {Subscription} from "rxjs";
+import {isPlatformBrowser} from "@angular/common";
 
 @Directive({
   selector: '[dyTransition]',
@@ -8,19 +18,26 @@ import {Subscription} from "rxjs";
 })
 export class DyTransitionDirective implements AfterViewInit, OnInit, OnDestroy {
   private subscription: Subscription = new Subscription()
+  private intervalId: any;
+
   dyTransition = input.required()
-  constructor(private elementRef: ElementRef, private router: Router) {
+  constructor(private elementRef: ElementRef, private router: Router, @Inject(PLATFORM_ID) _platformId: Object) {
+    if(isPlatformBrowser(_platformId)) {
+      this.intervalId = setInterval(() => {
+        this.checkVisibility();
+      }, 10); // 10 milliseconds interval
+    }
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe()
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
     }
+    this.subscription.unsubscribe()
+  }
 
   ngOnInit(): void {
-    setTimeout(() => {
-    this.elementRef.nativeElement.style['view-transition-name'] = this.dyTransition();
-    })
-
+    this.checkVisibility();
     // Listen to router events
     this.subscription.add(
       this.router.events.subscribe(event => {
@@ -58,12 +75,6 @@ export class DyTransitionDirective implements AfterViewInit, OnInit, OnDestroy {
         }, 1)
       }
     }
-  }
-
-  @HostListener('window:scroll', ['$event'])
-  @HostListener('window:click', ['$event'])
-  onScroll(): void {
-    this.checkVisibility();
   }
 
   ngAfterViewInit(): void {
