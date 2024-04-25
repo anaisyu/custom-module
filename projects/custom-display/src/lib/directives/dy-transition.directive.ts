@@ -22,11 +22,6 @@ export class DyTransitionDirective implements AfterViewInit, OnInit, OnDestroy {
 
   dyTransition = input.required()
   constructor(private elementRef: ElementRef, private router: Router, @Inject(PLATFORM_ID) private _platformId: Object) {
-    if(isPlatformBrowser(_platformId)) {
-      this.intervalId = setInterval(() => {
-        this.checkVisibility();
-      }, 10); // 10 milliseconds interval
-    }
   }
 
   ngOnDestroy(): void {
@@ -37,7 +32,9 @@ export class DyTransitionDirective implements AfterViewInit, OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.checkVisibility();
+    if(this.dyTransition() != 'none') {
+      this.elementRef.nativeElement.style['view-transition-name'] = this.dyTransition();
+    }
     // Listen to router events
     this.subscription.add(
       this.router.events.subscribe(event => {
@@ -83,5 +80,10 @@ export class DyTransitionDirective implements AfterViewInit, OnInit, OnDestroy {
 
   ngAfterViewInit(): void {
     this.checkVisibility(); // Initial check
+    if(isPlatformBrowser(this._platformId)) {
+      this.intervalId = setInterval(() => {
+        this.checkVisibility();
+      }, 10); // 10 milliseconds interval
+    }
   }
 }
