@@ -71,9 +71,7 @@ export class DyTransitionDirective implements AfterViewInit, OnInit, OnDestroy {
         if (this.isElementInViewport(this.elementRef.nativeElement)) {
           this.elementRef.nativeElement.style['view-transition-name'] = this.dyTransition();
         } else {
-          setTimeout(() => {
-            this.elementRef.nativeElement.style['view-transition-name'] = 'none';
-          }, 1)
+          this.elementRef.nativeElement.style['view-transition-name'] = 'none';
         }
       }
     } else {
