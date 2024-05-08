@@ -48,6 +48,7 @@ export class TranslationClientService {
   }
 
   next(key: string, data: string) {
+    console.log('save key ' + key + ' with data ' + data)
     let set: any = this.changes;
 
     const keys: string[] = key.split('.')
