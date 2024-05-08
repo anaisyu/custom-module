@@ -7,6 +7,6 @@
 
   <!-- Original Image -->
   <!-- Fallback if no matches -->
-  <img #theImg [alt]="altToDisplay()" [class]="imgClass()" [height]="thumbnailWidth ?? 'unset'"
-       [src]="imageToDisplay().thumbnailUrl" [width]="thumbnailWidth == 'unset'">
+  <img #theImg [alt]="altToDisplay()" [class]="imgClass()" [height]="thumbnailWidth"
+       [src]="imageToDisplay().thumbnailUrl" [width]="thumbnailWidth">
 </picture>
