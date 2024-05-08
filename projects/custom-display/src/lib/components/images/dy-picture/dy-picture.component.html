@@ -1,7 +1,7 @@
 <picture>
   <!-- Compressed Images -->
   @for (compressedUrl of imageToDisplay().compressedUrls; track compressedUrl.url) {
-    <source [srcset]="compressedUrl.url" [media]="('(max-width: ' + (Number(compressedUrl.width+100)*100/proportion()) + 'px)')"> <!-- and (max-width: ' + (Number(compressedUrl.width)+100) + 'px)')"> -->
+    <source [srcset]="compressedUrl.url" [media]="('(max-width: ' + ((Number(compressedUrl.width)+100)*100/proportion()) + 'px)')"> <!-- and (max-width: ' + (Number(compressedUrl.width)+100) + 'px)')"> -->
   }
   <source [srcset]="imageToDisplay().originalUrl" [media]="('(min-width: ' + (1300*100/proportion()) + 'px)')">
 
