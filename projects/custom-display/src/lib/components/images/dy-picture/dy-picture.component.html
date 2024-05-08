@@ -7,8 +7,8 @@
 
   <!-- Original Image -->
   <!-- Fallback if no matches -->
-  <img #theImg [alt]="altToDisplay()" [class]="imgClass()" [height]="thumbnailHeight"
-       [src]="imageToDisplay().thumbnailUrl" [width]="thumbnailWidth">
+  <img #theImg [alt]="altToDisplay()" [class]="imgClass()" [attr.height]="thumbnailHeight ?? null"
+       [src]="imageToDisplay().thumbnailUrl" [attr.width]="thumbnailWidth ?? null">
 </picture>
 {{thumbnailHeight}}+
 {{thumbnailWidth}}-

@@ -32,8 +32,8 @@ export class DyPictureComponent implements OnInit, AfterViewInit {
   readonly proportion: InputSignal<number> = input<number>(100);
 
 
-  thumbnailHeight: string = 'unset';
-  thumbnailWidth: string = 'unset';
+  thumbnailHeight: string | undefined;
+  thumbnailWidth: string | undefined;
   @ViewChild('theImg') imageElements!: ElementRef<HTMLImageElement>;
   private readonly storedImage: WritableSignal<UploadImageResponse | undefined> = signal(undefined)
   readonly imageToDisplay: Signal<UploadImageResponse> = computed(() => {
@@ -152,8 +152,8 @@ export class DyPictureComponent implements OnInit, AfterViewInit {
       return elem.height == '400' || elem.width == '400'
     })
     image.thumbnailUrl = smallerImage?.url ?? image.thumbnailUrl
-    this.thumbnailHeight = smallerImage?.height ?? 'unset'
-    this.thumbnailWidth = smallerImage?.width ?? 'unset'
+    this.thumbnailHeight = smallerImage?.height
+    this.thumbnailWidth = smallerImage?.width
 
     this.storedImage.set(image)
     this.storedAlt.set(alt)
