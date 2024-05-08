@@ -98,6 +98,8 @@ export class TranslationClientService {
     }
     const date = new Date(Date.now());
     date.setMinutes(date.getMinutes() + minutesExpire)
+    console.log('save')
+    console.log(JSON.stringify(this.changes))
     this.cookieService.set(TranslationClientService.COOKIE_NAME,
       JSON.stringify(this.changes),
       {expires: date})
