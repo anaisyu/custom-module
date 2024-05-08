@@ -1,31 +1,34 @@
-<!-- Slider main container -->
-<div class="row" style="padding: 0 !important;">
-  <div class="col-12" [class.col-md-10]="withGallery" [class.col-md-12]="!withGallery" [style.--swiper-theme-color]="themeColor">
-    <div [id]="id" class="swiper">
-      <!-- Additional required wrapper -->
-      <div class="swiper-wrapper">
-        @for (picture of pictures(); track picture.id) {
-          <div class="swiper-slide" id="{{ picture.id }}">
-            <div class="picsum-img-wrapper">
+<div [class.col-md-10]="withGallery" [class.col-md-12]="!withGallery" [style.--swiper-theme-color]="themeColor">
+  <div [id]="id" class="swiper">
+    <!-- Additional required wrapper -->
+    <div class="swiper-wrapper">
+      @for (picture of pictures(); track picture.id) {
+        <div class="swiper-slide" id="{{ picture.id }}">
+          <div class="picsum-img-wrapper"
+          >
+            <div
+              [style.padding-left]="margin_x() + '%'"
+              [style.padding-right]="margin_x() + '%'"
+            >
               <a [href]="picture.fullSizeUrl" class="d-block w-100 m-auto" style="width: fit-content" target="_blank">
                 <img
                   [dyTransition]="$first ? transition() : 'none'"
-                  [style.margin-left]="margin_x()"
-                  [style.margin-right]="margin_x()"
-                  [style.width]="100 - margin_x() * 2 + '%'"
                   #image [src]="picture.url" alt="{{ picture.description }}">
+                <!-- [style.width]="100 - margin_x() * 2 + '%'" -->
               </a>
             </div>
           </div>
-        }
-      </div>
-      <div class="swiper-pagination"></div>
-
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-button-next"></div>
+        </div>
+      }
     </div>
+    <div class="swiper-pagination"></div>
+
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
   </div>
-  <div *ngIf="withGallery" class="d-none d-md-block col-md-2 position-relative">
+</div>
+<div *ngIf="withGallery" class="row">
+  <div class="d-none d-md-block col-md-2 position-relative">
     <div id="image-list-detail">
       <div class="ab">
         <ng-container *ngFor="let picture of pictures(); let i = index">

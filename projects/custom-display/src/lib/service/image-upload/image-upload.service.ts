@@ -15,7 +15,7 @@ export class ImageUploadService {
   uploadImage(file: any): Observable<UploadImageResponse> {
     const formData = new FormData()
     formData.append('file', file, file.name);
-    return this.http.post<UploadImageResponse>(this.imageUploadUrl + '/uploads/', formData);
+    return this.http.post<UploadImageResponse>(this.imageUploadUrl + '/uploads-v2/', formData);
   }
 
   openDialog(): Observable<{ urls: UploadImageResponse; alt: string }> {

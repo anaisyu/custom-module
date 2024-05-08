@@ -2,13 +2,16 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
-  Inject, input,
-  Input, InputSignal,
-  NgZone, OnChanges,
+  Inject,
+  input,
+  Input,
+  InputSignal,
+  OnChanges,
   OnDestroy,
   OnInit,
   PLATFORM_ID,
-  QueryList, SimpleChanges,
+  QueryList,
+  SimpleChanges,
   ViewChildren
 } from '@angular/core';
 import {isPlatformBrowser, NgForOf, NgIf} from "@angular/common";
@@ -39,10 +42,10 @@ export class DySwiperComponent implements OnInit, OnDestroy, AfterViewInit, OnCh
   @Input() id: string = 'swiper';
   @Input() noGallery: boolean = false;
   @Input() themeColor: string = '#646464';
-  private swiper?: Swiper;
-  private lightbox?: PhotoSwipeLightbox;
   margin_x: InputSignal<number> = input(5);
   transition: InputSignal<string> = input('none');
+  private swiper?: Swiper;
+  private lightbox?: PhotoSwipeLightbox;
 
   constructor(@Inject(PLATFORM_ID) private _platformId: Object) {
   }
@@ -138,15 +141,15 @@ export class DySwiperComponent implements OnInit, OnDestroy, AfterViewInit, OnCh
       });
 
       setTimeout(() => {
-          this.updateParentAttributes();
+        this.updateParentAttributes();
 
-          this.lightbox = new PhotoSwipeLightbox({
-            gallery: `#${this.id}`,
-            children: 'a',
-            pswpModule: PhotoSwipe,
-            zoom: true
-          })
-          this.lightbox.init()
+        this.lightbox = new PhotoSwipeLightbox({
+          gallery: `#${this.id}`,
+          children: 'a',
+          pswpModule: PhotoSwipe,
+          zoom: true
+        })
+        this.lightbox.init()
       }, 100);
     }
   }

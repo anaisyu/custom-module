@@ -2,6 +2,7 @@ import {Directive, ElementRef, HostListener, Inject, Input, OnInit} from '@angul
 import {zip} from "rxjs";
 import {TranslationClientService} from "../service/translate/translation-client.service";
 import {ImageUploadService} from "../service/image-upload/image-upload.service";
+import {UploadImageResponse} from "../model/upload-image-response";
 
 @Directive({
   selector: '[libDyImageEdit]',
@@ -20,16 +21,21 @@ export class DyImageEditDirective implements OnInit {
   public onKeyup(): void {
     if (this.editMode) {
       this.imageUploadService.openDialog().subscribe(res => {
-        this.changeImage(res.urls.compressedUrl, res.alt)
-        this.save(res.urls.fullSizeUrl, res.urls.compressedUrl, res.alt)
+        this.changeImage(res.urls.originalUrl, res.alt)
+        this.save(res.urls, res.alt)
       })
     }
   }
 
-  save(fullSizeUrl: string, url: string, alt: string) {
-    if (fullSizeUrl && url && alt) {
-      this.clientService.next('images.' + this.libDyImageEdit + '.url', url)
-      this.clientService.next('images.' + this.libDyImageEdit + '.url-full-size', fullSizeUrl)
+  save(response: UploadImageResponse, alt: string) {
+    if (response && alt) {
+      this.clientService.next('images.' + this.libDyImageEdit + '.originalUrl', response.originalUrl)
+      this.clientService.next('images.' + this.libDyImageEdit + '.thumbnailUrl', response.thumbnailUrl)
+      response.compressedUrls.forEach((compressedUrl, index) => {
+        this.clientService.next('images.' + this.libDyImageEdit + '.compressed.' + index + '.url', compressedUrl.url)
+        this.clientService.next('images.' + this.libDyImageEdit + '.compressed.' + index + '.height', compressedUrl.height)
+        this.clientService.next('images.' + this.libDyImageEdit + '.compressed.' + index + '.width', compressedUrl.width)
+      })
       this.clientService.next('images.' + this.libDyImageEdit + '.alt', alt)
     }
   }
@@ -49,7 +55,7 @@ export class DyImageEditDirective implements OnInit {
       }
     })
 
-    const urlKey = 'images.' + this.libDyImageEdit + '.url'
+    const urlKey = 'images.' + this.libDyImageEdit + '.originalUrl'
     const altKey = 'images.' + this.libDyImageEdit + '.alt'
 
     const key1$ = this.clientService.streamTranslation(urlKey);

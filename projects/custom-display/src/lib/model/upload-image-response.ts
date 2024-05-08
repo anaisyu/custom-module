@@ -1,5 +1,7 @@
+import {CompressedUrl} from "./compressed-url";
+
 export interface UploadImageResponse {
-  fullSizeUrl: string;
-  compressedUrl: string;
-  smallCompressedUrl: string;
+  compressedUrls: CompressedUrl[];
+  thumbnailUrl: string;
+  originalUrl: string;
 }

@@ -1,0 +1,12 @@
+<picture>
+  <!-- Compressed Images -->
+  @for (compressedUrl of imageToDisplay().compressedUrls; track compressedUrl.url) {
+    <source [srcset]="compressedUrl.url" [media]="('(max-width: ' + (Number(compressedUrl.width)*100/proportion()) + 'px)')"> <!-- and (max-width: ' + (Number(compressedUrl.width)+100) + 'px)')"> -->
+  }
+  <source [srcset]="imageToDisplay().originalUrl" [media]="('(min-width: ' + (1200*100/proportion()) + 'px)')">
+
+  <!-- Original Image -->
+  <!-- Fallback if no matches -->
+  <img #theImg [alt]="altToDisplay()" [class]="imgClass()" [height]="thumbnailWidth ?? 'unset'"
+       [src]="imageToDisplay().thumbnailUrl" [width]="thumbnailWidth == 'unset'">
+</picture>

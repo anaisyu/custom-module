@@ -29,7 +29,7 @@ export class AddDyimageComponent {
     this.service.openDialog().subscribe(
       {
         next: output => {
-          this.image.emit({alt: output.alt, urls: output.urls})
+          this.image.emit(output)
         },
         error: (err) => {
           console.log('error with uploading image')
