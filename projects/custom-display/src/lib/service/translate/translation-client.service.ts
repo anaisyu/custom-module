@@ -133,3 +133,5 @@ export class TranslationClientService {
     })
   }
 }
+
+// local storage https://stackoverflow.com/questions/70624671/reset-localstorage-variable-at-specific-time
