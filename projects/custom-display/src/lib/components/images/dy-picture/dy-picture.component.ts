@@ -79,9 +79,9 @@ export class DyPictureComponent implements OnInit, AfterViewInit {
       this.clientService.next('images.' + this.key() + '.originalUrl', response.originalUrl)
       this.clientService.next('images.' + this.key() + '.thumbnailUrl', response.thumbnailUrl)
       response.compressedUrls.forEach((compressedUrl, index) => {
-        this.clientService.next('images.' + this.key() + '.compressed.' + index + '.url', compressedUrl.url)
-        this.clientService.next('images.' + this.key() + '.compressed.' + index + '.height', compressedUrl.height)
-        this.clientService.next('images.' + this.key() + '.compressed.' + index + '.width', compressedUrl.width)
+        this.clientService.next('images.' + this.key() + '.compressed-' + index + '.url', compressedUrl.url)
+        this.clientService.next('images.' + this.key() + '.compressed-' + index + '.height', compressedUrl.height)
+        this.clientService.next('images.' + this.key() + '.compressed-' + index + '.width', compressedUrl.width)
       })
       this.clientService.next('images.' + this.key() + '.alt', alt)
     }
@@ -95,21 +95,21 @@ export class DyPictureComponent implements OnInit, AfterViewInit {
     const key1$ = this.clientService.streamTranslation(urlKey);
     const key2$ = this.clientService.streamTranslation(altKey);
     /* *** IMPORTANT here is the number of different image compress size returned by backend (5): "400", "600", "800", "1000", "1200" *** */
-    const keyUrl0$ = this.clientService.streamTranslation('images.' + this.key() + '.compressed.0.url');
-    const keyHeight0$ = this.clientService.streamTranslation('images.' + this.key() + '.compressed.0.height');
-    const keyWidth0$ = this.clientService.streamTranslation('images.' + this.key() + '.compressed.0.width');
-    const keyUrl1$ = this.clientService.streamTranslation('images.' + this.key() + '.compressed.1.url');
-    const keyHeight1$ = this.clientService.streamTranslation('images.' + this.key() + '.compressed.1.height');
-    const keyWidth1$ = this.clientService.streamTranslation('images.' + this.key() + '.compressed.1.width');
-    const keyUrl2$ = this.clientService.streamTranslation('images.' + this.key() + '.compressed.2.url');
-    const keyHeight2$ = this.clientService.streamTranslation('images.' + this.key() + '.compressed.2.height');
-    const keyWidth2$ = this.clientService.streamTranslation('images.' + this.key() + '.compressed.2.width');
-    const keyUrl3$ = this.clientService.streamTranslation('images.' + this.key() + '.compressed.3.url');
-    const keyHeight3$ = this.clientService.streamTranslation('images.' + this.key() + '.compressed.3.height');
-    const keyWidth3$ = this.clientService.streamTranslation('images.' + this.key() + '.compressed.3.width');
-    const keyUrl4$ = this.clientService.streamTranslation('images.' + this.key() + '.compressed.4.url');
-    const keyHeight4$ = this.clientService.streamTranslation('images.' + this.key() + '.compressed.4.height');
-    const keyWidth4$ = this.clientService.streamTranslation('images.' + this.key() + '.compressed.4.width');
+    const keyUrl0$ = this.clientService.streamTranslation('images.' + this.key() + '.compressed-0.url');
+    const keyHeight0$ = this.clientService.streamTranslation('images.' + this.key() + '.compressed-0.height');
+    const keyWidth0$ = this.clientService.streamTranslation('images.' + this.key() + '.compressed-0.width');
+    const keyUrl1$ = this.clientService.streamTranslation('images.' + this.key() + '.compressed-1.url');
+    const keyHeight1$ = this.clientService.streamTranslation('images.' + this.key() + '.compressed-1.height');
+    const keyWidth1$ = this.clientService.streamTranslation('images.' + this.key() + '.compressed-1.width');
+    const keyUrl2$ = this.clientService.streamTranslation('images.' + this.key() + '.compressed-2.url');
+    const keyHeight2$ = this.clientService.streamTranslation('images.' + this.key() + '.compressed-2.height');
+    const keyWidth2$ = this.clientService.streamTranslation('images.' + this.key() + '.compressed-2.width');
+    const keyUrl3$ = this.clientService.streamTranslation('images.' + this.key() + '.compressed-3.url');
+    const keyHeight3$ = this.clientService.streamTranslation('images.' + this.key() + '.compressed-3.height');
+    const keyWidth3$ = this.clientService.streamTranslation('images.' + this.key() + '.compressed-3.width');
+    const keyUrl4$ = this.clientService.streamTranslation('images.' + this.key() + '.compressed-4.url');
+    const keyHeight4$ = this.clientService.streamTranslation('images.' + this.key() + '.compressed-4.height');
+    const keyWidth4$ = this.clientService.streamTranslation('images.' + this.key() + '.compressed-4.width');
 
     zip([
       key1$, key2$,
