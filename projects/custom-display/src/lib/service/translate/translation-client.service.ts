@@ -1,11 +1,10 @@
 import {Inject, Injectable} from '@angular/core';
 import {TranslateService} from "@ngx-translate/core";
 import {HttpClient} from "@angular/common/http";
-import {CookieService} from "ngx-cookie-service";
 import {BehaviorSubject, Observable, of} from "rxjs";
 import {NotificationService} from "../notifications/notification.service";
-import {ActivatedRoute, Router} from "@angular/router";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
+import {LocalStorageService} from "../local-storage/local-storage.service";
 
 @Injectable({
   providedIn: 'root'
@@ -19,13 +18,13 @@ export class TranslationClientService {
     private service: TranslateService,
     private notificationService: NotificationService,
     private http: HttpClient,
-    private cookieService: CookieService,
+    private localStorageService: LocalStorageService,
     @Inject('backendUrl') private backendUrl: string,
     ) {
     // Retrieve object from the cookie
-    const objFromCookie = this.cookieService.get(TranslationClientService.COOKIE_NAME);
-    if (objFromCookie) {
-      this.changes = JSON.parse(objFromCookie)
+    const objFromCookie = localStorageService.getValue(TranslationClientService.COOKIE_NAME);
+    if (objFromCookie()) {
+      this.changes = JSON.parse(objFromCookie()!)
     } else {
       this.changes = {}
     }
@@ -74,7 +73,7 @@ export class TranslationClientService {
       ).subscribe({
         next: response => {
           this.notificationService.newMessage('Vos modifications ont bien été sauvegardées.');
-          this.cookieService.delete(TranslationClientService.COOKIE_NAME)
+          this.localStorageService.setValue(TranslationClientService.COOKIE_NAME, null)
         }, error: (msg) => {
           console.error(msg)
           this.notificationService.newError('Echec lors de la sauvegarde. Merci de réessayer.')
@@ -84,7 +83,7 @@ export class TranslationClientService {
   }
 
   cancel() {
-    this.cookieService.delete(TranslationClientService.COOKIE_NAME)
+    this.localStorageService.setValue(TranslationClientService.COOKIE_NAME, null)
     this.refresh();
   }
 
@@ -100,9 +99,9 @@ export class TranslationClientService {
     date.setMinutes(date.getMinutes() + minutesExpire)
     console.log('save')
     console.log(JSON.stringify(this.changes))
-    this.cookieService.set(TranslationClientService.COOKIE_NAME,
+    this.localStorageService.setValue(TranslationClientService.COOKIE_NAME,
       JSON.stringify(this.changes),
-      {expires: date})
+      minutesExpire * 60 * 1000)
   }
 
   streamTranslation(key: string): Observable<string> {
@@ -116,7 +115,7 @@ export class TranslationClientService {
       set = set[keys[i]]
     }
     if (set[keys[keys.length - 1]]) {
-      return of(set[keys[keys.length - 1]])
+      return of(set[keys[keys.length - 1]] as string)
     }
 
     return this.service.stream(key);

@@ -29,6 +29,7 @@ export class DyPictureComponent implements OnInit, AfterViewInit {
   readonly originalAlt: InputSignal<string> = input.required<string>();
   readonly key: InputSignal<string> = input.required<string>();
   readonly imgClass: InputSignal<string> = input<string>('');
+  readonly lazy: InputSignal<boolean> = input<boolean>(false);
   readonly proportion: InputSignal<number> = input<number>(100);
 
 

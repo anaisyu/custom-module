@@ -7,6 +7,6 @@
 
   <!-- Original Image -->
   <!-- Fallback if no matches -->
-  <img #theImg [alt]="altToDisplay()" [class]="imgClass()" [attr.height]="thumbnailHeight ?? null"
+  <img #theImg [alt]="altToDisplay()" [class]="imgClass()" [attr.loading]="lazy() ? 'lazy' : 'eager'" [attr.height]="thumbnailHeight ?? null"
        [src]="imageToDisplay().thumbnailUrl" [attr.width]="thumbnailWidth ?? null">
 </picture>
