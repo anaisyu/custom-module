@@ -18,7 +18,7 @@ export class DyTextEditorComponent {
   internalEditor: any;
 
   constructor(private service: DyTextEditorService, colorsService: ChangeColorsService) {
-    /*afterNextRender(() => {
+    afterNextRender(() => {
 
       service.newEditorData.subscribe((newData) => {
         this.editorData = newData.value
@@ -87,7 +87,7 @@ export class DyTextEditorComponent {
 
         })
       })
-    })*/
+    })
   }
 
 }

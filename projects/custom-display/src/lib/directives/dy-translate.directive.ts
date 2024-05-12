@@ -1,4 +1,4 @@
-import {AfterViewInit, Directive, ElementRef, HostListener, Input, OnInit} from '@angular/core';
+import {AfterViewInit, Directive, ElementRef, HostListener, Input, OnInit, Renderer2} from '@angular/core';
 import {TranslationClientService} from "../service/translate/translation-client.service";
 import {DyTextEditorService} from "../service/dy-text-editor/dy-text-editor.service";
 
@@ -12,11 +12,19 @@ export class DyTranslateDirective implements OnInit, AfterViewInit {
   private previousValue: string = '';
 
 
-  constructor(private el: ElementRef, private clientService: TranslationClientService, private dyTextEditorService: DyTextEditorService) {
+  constructor(private el: ElementRef, private renderer: Renderer2, private clientService: TranslationClientService, private dyTextEditorService: DyTextEditorService) {
   }
 
   ngOnInit(): void {
     const originalBorder = this.el.nativeElement.style.outline;
+
+    this.renderer.listen(this.el.nativeElement, 'paste', (event) => {
+      event.preventDefault();
+      const text = (event.clipboardData).getData('text');
+      this.renderer.setProperty(this.el.nativeElement, 'innerText', this.el.nativeElement.innerText + text);
+    });
+
+
     this.clientService.editSubject.subscribe(editMode => {
       this.editMode = editMode;
       this.el.nativeElement.contentEditable = this.editMode;
