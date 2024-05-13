@@ -86,7 +86,7 @@ export class TranslationClientService {
     window.location.href = window.location.toString()
   }
 
-  saveCookie(minutesExpire: number = 60) {
+  saveCookie(minutesExpire: number = 15) {
     if (!this.changes() || Object.keys(this.changes()).length == 0) {
       return
     }
@@ -125,5 +125,3 @@ export class TranslationClientService {
     })
   }
 }
-
-// local storage https://stackoverflow.com/questions/70624671/reset-localstorage-variable-at-specific-time
