@@ -1,8 +1,10 @@
 <picture>
-  @for (compressedUrl of imageToDisplay().compressedUrls; track compressedUrl.url) {
+  @for (compressedUrl of imageToDisplay().compressedUrls; track compressedUrl.url; let last = $last) {
     <source [srcset]="compressedUrl.url" [media]="('(max-width: ' + ((Number(compressedUrl.width)+100)*(100/proportion())) + 'px)')">
+    @if(last) {
+    <source [srcset]="imageToDisplay().originalUrl" [media]="('(min-width: ' + ((Number(compressedUrl.width)+100)*(100/proportion())) + 'px)')">
+    }
   }
-  <source [srcset]="imageToDisplay().originalUrl" [media]="('(min-width: ' + (1300*(100/proportion())) + 'px)')">
 
   <img #theImg [alt]="altToDisplay()" [class]="imgClass()" [attr.loading]="lazy() ? 'lazy' : 'eager'" [attr.height]="thumbnailHeight ?? null"
        [src]="imageToDisplay().thumbnailUrl" [attr.width]="thumbnailWidth ?? null">
