@@ -19,9 +19,11 @@ export class DyTranslateDirective implements OnInit, AfterViewInit {
     const originalBorder = this.el.nativeElement.style.outline;
 
     this.renderer.listen(this.el.nativeElement, 'paste', (event) => {
-      event.preventDefault();
-      const text = (event.clipboardData).getData('text');
-      this.renderer.setProperty(this.el.nativeElement, 'innerText', this.el.nativeElement.innerText + text);
+      if(this.editMode) {
+        event.preventDefault();
+        const text = (event.clipboardData).getData('text');
+        this.renderer.setProperty(this.el.nativeElement, 'innerText', this.el.nativeElement.innerText + text);
+      }
     });
 
 
