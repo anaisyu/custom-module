@@ -1,11 +1,11 @@
 {
   "name": "dy-custom-display",
-  "version": "0.0.414",
+  "version": "0.0.417",
   "peerDependencies": {
-    "@angular/common": "^17.0.0",
-    "@angular/core": "^17.0.0",
-    "@angular/material": "^17.0.0",
-    "@angular/router": "^17.0.0",
+    "@angular/common": "^17.0.0 || ^18.0.0",
+    "@angular/core": "^17.0.0 || ^18.0.0",
+    "@angular/material": "^17.0.0 || ^18.0.0",
+    "@angular/router": "^17.0.0 || ^18.0.0",
     "@ngx-translate/core": "^15.0.0",
     "@ngx-translate/http-loader": "^8.0.0",
     "@openapitools/openapi-generator-cli": "^2.7.0",
