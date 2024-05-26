@@ -1,6 +1,6 @@
 import {
   AfterViewInit,
-  Component,
+  Component, computed,
   ElementRef,
   Inject,
   input,
@@ -34,14 +34,16 @@ import {DyTransitionDirective} from "../../../directives/dy-transition.directive
   templateUrl: './dy-swiper.component.html',
   styleUrl: './dy-swiper.component.scss'
 })
-export class DySwiperComponent implements OnInit, OnDestroy, AfterViewInit, OnChanges {
+export class DySwiperComponent implements  OnDestroy, AfterViewInit, OnChanges {
   @ViewChildren('image') imageElements!: QueryList<ElementRef<HTMLImageElement>>;
-  withGallery: boolean = false;
+  withGallery = computed(() => this.noGallery() ? false : this.pictures() ? this.pictures().length > 1 : false);
   active_id: number = -1;
   pictures: InputSignal<Array<DyImage>> = input.required();
-  @Input() id: string = 'swiper';
-  @Input() noGallery: boolean = false;
-  @Input() themeColor: string = '#646464';
+  id = input('swiper')
+  noGallery = input(false)
+  slidesPerView = input(1)
+  spaceBetween = input(0)
+  themeColor = input('#646464')
   margin_x: InputSignal<number> = input(5);
   transition: InputSignal<string> = input('none');
   private swiper?: Swiper;
@@ -50,9 +52,6 @@ export class DySwiperComponent implements OnInit, OnDestroy, AfterViewInit, OnCh
   constructor(@Inject(PLATFORM_ID) private _platformId: Object) {
   }
 
-  ngOnInit(): void {
-    this.withGallery = this.noGallery ? false : this.pictures().length > 1;
-  }
 
 
   goto(id: number): void {
@@ -109,7 +108,7 @@ export class DySwiperComponent implements OnInit, OnDestroy, AfterViewInit, OnCh
 
   ngAfterViewInit(): void {
     if (isPlatformBrowser(this._platformId)) {
-      this.swiper = new Swiper(`#${this.id}`, {
+      this.swiper = new Swiper(`#${this.id()}`, {
         // Optional parameters
         loop: true,
         keyboard: {
@@ -126,7 +125,19 @@ export class DySwiperComponent implements OnInit, OnDestroy, AfterViewInit, OnCh
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev',
         },
-
+        // Responsive breakpoints
+        breakpoints: {
+          // when window width is >= 640px
+          640: {
+            navigation: {
+              nextEl: '.swiper-button-next-dy' + this.id(),
+              prevEl: '.swiper-button-prev-dy' + this.id(),
+            },
+            spaceBetween: this.spaceBetween(),
+            slidesPerView: this.slidesPerView(), // or 4 depending on your preference
+          },
+          // you can add more breakpoints if needed
+        },
         // And if we need scrollbar
         scrollbar: {
           hide: true,
@@ -144,7 +155,7 @@ export class DySwiperComponent implements OnInit, OnDestroy, AfterViewInit, OnCh
         this.updateParentAttributes();
 
         this.lightbox = new PhotoSwipeLightbox({
-          gallery: `#${this.id}`,
+          gallery: `#${this.id()}`,
           children: 'a',
           pswpModule: PhotoSwipe,
           zoom: true

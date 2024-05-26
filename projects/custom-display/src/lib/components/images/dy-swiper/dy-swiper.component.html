@@ -1,47 +1,58 @@
-<div [class.col-md-10]="withGallery" [class.col-md-12]="!withGallery" [style.--swiper-theme-color]="themeColor">
-  <div [id]="id" class="swiper">
-    <!-- Additional required wrapper -->
-    <div class="swiper-wrapper">
-      @for (picture of pictures(); track picture.id) {
-        <div class="swiper-slide" id="{{ picture.id }}">
-          <div class="picsum-img-wrapper"
-          >
-            <div
-              [style.padding-left]="margin_x() + '%'"
-              [style.padding-right]="margin_x() + '%'"
-            >
-              <a [href]="picture.fullSizeUrl" class="d-block w-100 m-auto" style="width: fit-content" target="_blank">
-                <img
-                  [dyTransition]="$first ? transition() : 'none'"
-                  #image [src]="picture.url" alt="{{ picture.description }}">
-                <!-- [style.width]="100 - margin_x() * 2 + '%'" -->
-              </a>
-            </div>
-          </div>
-        </div>
-      }
+<div [class.col-md-10]="withGallery()" [class.col-md-12]="!withGallery()" [style.--swiper-theme-color]="themeColor()">
+  <div style="display: flex; align-items: center;">
+    <div class="dy-arrow text-center">
+      <i [class]="'swiper-button-prev-dy' + id()"><span
+        class="material-symbols-outlined">chevron_left</span></i>
     </div>
-    <div class="swiper-pagination"></div>
+    <div class="dy-main">
+      <div [id]="id()" class="swiper">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+          @for (picture of pictures(); track picture.id) {
+            <div class="swiper-slide" id="{{ picture.id }}">
+              <div class="picsum-img-wrapper"
+              >
+                <div
+                  [style.padding-left]="margin_x() + '%'"
+                  [style.padding-right]="margin_x() + '%'"
+                >
+                  <a [href]="picture.fullSizeUrl" class="img-link" target="_blank">
+                    <img
+                      [dyTransition]="$first ? transition() : 'none'"
+                      #image [src]="picture.url" alt="{{ picture.description }}">
+                    <!-- [style.width]="100 - margin_x() * 2 + '%'" -->
+                  </a>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+        <div class="swiper-pagination"></div>
 
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+      </div>
+    </div>
+    <div class="text-center dy-arrow">
+      <i [class]="'swiper-button-next-dy' + id()"><span
+        class="material-symbols-outlined">chevron_right</span></i>
+    </div>
   </div>
-</div>
-<div *ngIf="withGallery" class="row">
-  <div class="d-none d-md-block col-md-2 position-relative">
-    <div id="image-list-detail">
-      <div class="ab">
-        <ng-container *ngFor="let picture of pictures(); let i = index">
-          <img (click)="goto(i)"
-               [class.ab_active]="i == active_id"
-               [src]="picture.url"
-               [style.height]="getThumbnailHeight(pictures()) + '%'"
-               [style.width]="getThumbnailHeight(pictures()) + '%'"
-               alt="{{ picture.description }} thumbnail"
-               class="cd"
-          />
-        </ng-container>
+  <div *ngIf="withGallery()" class="row">
+    <div class="hidden md:block col-md-2 position-relative">
+      <div id="image-list-detail">
+        <div class="ab">
+          <ng-container *ngFor="let picture of pictures(); let i = index">
+            <img (click)="goto(i)"
+                 [class.ab_active]="i == active_id"
+                 [src]="picture.url"
+                 [style.height]="getThumbnailHeight(pictures()) + '%'"
+                 [style.width]="getThumbnailHeight(pictures()) + '%'"
+                 alt="{{ picture.description }} thumbnail"
+                 class="cd"
+            />
+          </ng-container>
+        </div>
       </div>
     </div>
   </div>
-</div>
