@@ -35,11 +35,16 @@ export class LocalStorageService {
     if (isPlatformBrowser(this._platformId)) {
       const item = localStorage.getItem(key);
       if (item) {
-        const {value, expiry} = JSON.parse(item);
-        if (!expiry || new Date(expiry) > new Date()) {
-          return value;
-        } else {
-          localStorage.removeItem(key); // Remove expired token
+        try {
+          const {value, expiry} = JSON.parse(item);
+          if (!expiry || new Date(expiry) > new Date()) {
+            return value;
+          } else {
+            localStorage.removeItem(key); // Remove expired token
+          }
+        } catch (e) {
+          console.error('Error parsing JSON from localStorage:', e);
+          localStorage.removeItem(key); // Remove corrupted item
         }
       }
     }
