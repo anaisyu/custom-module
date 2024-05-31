@@ -16,11 +16,14 @@ import {UploadImageResponse} from "../../../model/images/upload-image-response";
 import {zip} from "rxjs";
 import {TranslationClientService} from "../../../service/translate/translation-client.service";
 import {ImageUploadService} from "../../../service/image-upload/image-upload.service";
+import {DyImgComponent} from "../tag/dy-img/dy-img.component";
 
 @Component({
   selector: 'lib-dy-picture',
   standalone: true,
-  imports: [],
+  imports: [
+    DyImgComponent
+  ],
   templateUrl: './dy-picture.component.html',
   styleUrl: './dy-picture.component.css'
 })
@@ -32,9 +35,6 @@ export class DyPictureComponent implements OnInit, AfterViewInit {
   readonly lazy: InputSignal<boolean> = input<boolean>(false);
   readonly proportion: InputSignal<number> = input<number>(100);
 
-
-  thumbnailHeight: string | undefined;
-  thumbnailWidth: string | undefined;
   @ViewChild('theImg') imageElements!: ElementRef<HTMLImageElement>;
   private readonly storedImage: WritableSignal<UploadImageResponse | undefined> = signal(undefined)
   readonly imageToDisplay: Signal<UploadImageResponse> = computed(() => {
@@ -153,12 +153,9 @@ export class DyPictureComponent implements OnInit, AfterViewInit {
       return elem.height == '400' || elem.width == '400'
     })
     image.thumbnailUrl = smallerImage?.url ?? image.thumbnailUrl
-    this.thumbnailHeight = smallerImage?.height
-    this.thumbnailWidth = smallerImage?.width
 
     this.storedImage.set(image)
     this.storedAlt.set(alt)
   }
 
-  protected readonly Number = Number;
 }

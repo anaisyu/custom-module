@@ -1,8 +1,10 @@
 <img
   #imageElement
+  [alt]="alt()"
+  [class]="imgClass()"
+  [dyTransition]="transitionName()"
+  [sizes]="'(max-width: 768px) 100vw, '+sizeRatio()+'vw'"
   [src]="image().thumbnailUrl"
   [srcset]="srcSet()"
-  [sizes]="sizes()"
-  [alt]="alt()"
-  [dyTransition]="transitionName()"
+  [style]="imgStyle()"
 />

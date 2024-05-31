@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { DyImgComponent } from './dy-img.component';
+import {DyImgComponent} from './dy-img.component';
 
 describe('DyImgComponent', () => {
   let component: DyImgComponent;
@@ -10,8 +10,8 @@ describe('DyImgComponent', () => {
     await TestBed.configureTestingModule({
       imports: [DyImgComponent]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(DyImgComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

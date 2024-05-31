@@ -1,18 +1,16 @@
 import {
   AfterViewInit,
-  Component, computed,
-  ElementRef,
+  Component,
+  computed,
   Inject,
   input,
-  Input,
   InputSignal,
   OnChanges,
   OnDestroy,
-  OnInit,
   PLATFORM_ID,
-  QueryList, Signal, signal,
+  signal,
   SimpleChanges,
-  ViewChildren, WritableSignal
+  WritableSignal
 } from '@angular/core';
 import {isPlatformBrowser, NgForOf, NgIf} from "@angular/common";
 import PhotoSwipeLightbox from "photoswipe/lightbox";
@@ -36,27 +34,26 @@ import {DyImgComponent} from "../tag/dy-img/dy-img.component";
   templateUrl: './dy-swiper.component.html',
   styleUrl: './dy-swiper.component.scss'
 })
-export class DySwiperComponent implements  OnDestroy, AfterViewInit, OnChanges {
-  withGallery = computed(() => this.noGallery() ? false : this.pictures() ? this.pictures().length > 1 : false);
+export class DySwiperComponent implements OnDestroy, AfterViewInit, OnChanges {
   active_id: number = -1;
   pictures: InputSignal<Array<DyImage>> = input.required();
   id = input('swiper')
   noGallery = input(false)
+  withGallery = computed(() => this.noGallery() ? false : this.pictures() ? this.pictures().length > 1 : false);
   slidesPerView = input(1)
   spaceBetween = input(0)
   themeColor = input('#646464')
   margin_x: InputSignal<number> = input(5);
   transition: InputSignal<string> = input('none');
-  private swiper?: Swiper;
-  private lightbox?: PhotoSwipeLightbox;
-
   sizes = computed(() => {
     const map = new Map<string, { height: WritableSignal<number>, width: WritableSignal<number> }>();
     this.pictures().forEach(pic => {
-      map.set(pic.originalUrl, { height: signal(0), width: signal(0) });
+      map.set(pic.originalUrl, {height: signal(0), width: signal(0)});
     });
     return map
   })
+  private swiper?: Swiper;
+  private lightbox?: PhotoSwipeLightbox;
 
   constructor(@Inject(PLATFORM_ID) private _platformId: Object) {
   }

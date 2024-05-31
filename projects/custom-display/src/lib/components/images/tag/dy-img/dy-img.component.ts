@@ -1,13 +1,4 @@
-import {
-  AfterContentInit, AfterViewChecked,
-  Component,
-  computed,
-  ElementRef,
-  input, model, output,
-  QueryList, signal,
-  ViewChild,
-  ViewChildren
-} from '@angular/core';
+import {AfterViewChecked, Component, computed, ElementRef, input, model, ViewChild} from '@angular/core';
 import {DyImage} from "../../../../model/images/dy-image";
 import {CompressedUrl} from "../../../../model/images/compressed-url";
 import {DyTransitionDirective} from "../../../../directives/dy-transition.directive";
@@ -21,9 +12,11 @@ import {DyTransitionDirective} from "../../../../directives/dy-transition.direct
   templateUrl: './dy-img.component.html',
   styleUrl: './dy-img.component.css'
 })
-export class DyImgComponent implements AfterViewChecked{
+export class DyImgComponent implements AfterViewChecked {
   @ViewChild('imageElement') imageElement!: ElementRef<HTMLImageElement>;
 
+  imgClass = input<string>('')
+  imgStyle = input<string>('')
   image = input.required<DyImage>()
   alt = input.required<string>()
   transitionName = input<string>('none')
@@ -33,7 +26,7 @@ export class DyImgComponent implements AfterViewChecked{
     return this.image().compressedUrls.map((url: CompressedUrl) => `${url.url} ${url.width}w`).join(', ');
   })
   sizes = computed(() => {
-    return this.image().compressedUrls.map((url: CompressedUrl) => `(max-width: ${url.width}px) `+ ((Number(url.width)*100)/this.sizeRatio())).join(', ');
+    return this.image().compressedUrls.map((url: CompressedUrl) => `(max-width: ${((Number(url.width) * 100) / this.sizeRatio())}px) ` + url.width + "px").join(', ');
   })
 
   height = model<number>()
@@ -44,18 +37,18 @@ export class DyImgComponent implements AfterViewChecked{
   }
 
   updateParentAttributes(): void {
-      const img = this.imageElement.nativeElement;
-      const parentAnchor = img.parentElement;
-      if (parentAnchor) {
-        // parentAnchor.setAttribute('href', img.src);
-        if (img.complete) {
+    const img = this.imageElement.nativeElement;
+    const parentAnchor = img.parentElement;
+    if (parentAnchor) {
+      // parentAnchor.setAttribute('href', img.src);
+      if (img.complete) {
+        this.updateAttributes(parentAnchor!, img);
+      } else {
+        img.onload = () => {
           this.updateAttributes(parentAnchor!, img);
-        } else {
-          img.onload = () => {
-            this.updateAttributes(parentAnchor!, img);
-          };
-        }
+        };
       }
+    }
   }
 
   updateAttributes(parentAnchor: HTMLElement, img: HTMLImageElement): void {
@@ -66,8 +59,8 @@ export class DyImgComponent implements AfterViewChecked{
 
     this.height.set(img.naturalHeight)
     this.width.set(img.naturalWidth)
- //   // Update parent <a> attributes
- //   parentAnchor.setAttribute('data-pswp-width', Math.round(originalWidth / originalHeight * windowHeight).toString());
- //   parentAnchor.setAttribute('data-pswp-height', windowHeight.toString());
+    //   // Update parent <a> attributes
+    //   parentAnchor.setAttribute('data-pswp-width', Math.round(originalWidth / originalHeight * windowHeight).toString());
+    //   parentAnchor.setAttribute('data-pswp-height', windowHeight.toString());
   }
 }
