@@ -12,7 +12,7 @@ import {
   ViewChild,
   WritableSignal
 } from '@angular/core';
-import {UploadImageResponse} from "../../../model/upload-image-response";
+import {UploadImageResponse} from "../../../model/images/upload-image-response";
 import {zip} from "rxjs";
 import {TranslationClientService} from "../../../service/translate/translation-client.service";
 import {ImageUploadService} from "../../../service/image-upload/image-upload.service";

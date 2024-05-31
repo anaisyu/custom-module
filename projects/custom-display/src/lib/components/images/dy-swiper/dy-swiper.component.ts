@@ -10,9 +10,9 @@ import {
   OnDestroy,
   OnInit,
   PLATFORM_ID,
-  QueryList,
+  QueryList, Signal, signal,
   SimpleChanges,
-  ViewChildren
+  ViewChildren, WritableSignal
 } from '@angular/core';
 import {isPlatformBrowser, NgForOf, NgIf} from "@angular/common";
 import PhotoSwipeLightbox from "photoswipe/lightbox";
@@ -20,8 +20,9 @@ import PhotoSwipe from "photoswipe";
 // import Swiper bundle with all modules installed
 // @ts-ignore
 import Swiper from 'swiper/bundle';
-import {DyImage} from "../../../model/dy-image";
+import {DyImage} from "../../../model/images/dy-image";
 import {DyTransitionDirective} from "../../../directives/dy-transition.directive";
+import {DyImgComponent} from "../tag/dy-img/dy-img.component";
 
 @Component({
   selector: 'app-dy-swiper',
@@ -29,13 +30,13 @@ import {DyTransitionDirective} from "../../../directives/dy-transition.directive
   imports: [
     NgForOf,
     NgIf,
-    DyTransitionDirective
+    DyTransitionDirective,
+    DyImgComponent
   ],
   templateUrl: './dy-swiper.component.html',
   styleUrl: './dy-swiper.component.scss'
 })
 export class DySwiperComponent implements  OnDestroy, AfterViewInit, OnChanges {
-  @ViewChildren('image') imageElements!: QueryList<ElementRef<HTMLImageElement>>;
   withGallery = computed(() => this.noGallery() ? false : this.pictures() ? this.pictures().length > 1 : false);
   active_id: number = -1;
   pictures: InputSignal<Array<DyImage>> = input.required();
@@ -49,9 +50,16 @@ export class DySwiperComponent implements  OnDestroy, AfterViewInit, OnChanges {
   private swiper?: Swiper;
   private lightbox?: PhotoSwipeLightbox;
 
+  sizes = computed(() => {
+    const map = new Map<string, { height: WritableSignal<number>, width: WritableSignal<number> }>();
+    this.pictures().forEach(pic => {
+      map.set(pic.originalUrl, { height: signal(0), width: signal(0) });
+    });
+    return map
+  })
+
   constructor(@Inject(PLATFORM_ID) private _platformId: Object) {
   }
-
 
 
   goto(id: number): void {
@@ -76,34 +84,6 @@ export class DySwiperComponent implements  OnDestroy, AfterViewInit, OnChanges {
       this.ngOnDestroy()
       this.ngAfterViewInit()
     }
-  }
-
-  updateParentAttributes(): void {
-    this.imageElements.forEach(imageElement => {
-      const img = imageElement.nativeElement;
-      const parentAnchor = img.parentElement;
-      if (parentAnchor) {
-        // parentAnchor.setAttribute('href', img.src);
-        if (img.complete) {
-          this.updateAttributes(parentAnchor!, img);
-        } else {
-          img.onload = () => {
-            this.updateAttributes(parentAnchor!, img);
-          };
-        }
-      }
-    });
-  }
-
-  updateAttributes(parentAnchor: HTMLElement, img: HTMLImageElement): void {
-    const originalWidth = img.naturalWidth;
-    const originalHeight = img.naturalHeight;
-
-    const windowHeight = window.innerHeight * 0.9;
-
-    // Update parent <a> attributes
-    parentAnchor.setAttribute('data-pswp-width', Math.round(originalWidth / originalHeight * windowHeight).toString());
-    parentAnchor.setAttribute('data-pswp-height', windowHeight.toString());
   }
 
   ngAfterViewInit(): void {
@@ -152,8 +132,6 @@ export class DySwiperComponent implements  OnDestroy, AfterViewInit, OnChanges {
       });
 
       setTimeout(() => {
-        this.updateParentAttributes();
-
         this.lightbox = new PhotoSwipeLightbox({
           gallery: `#${this.id()}`,
           children: 'a',

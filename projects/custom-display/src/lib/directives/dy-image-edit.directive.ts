@@ -2,7 +2,7 @@ import {Directive, ElementRef, HostListener, Inject, Input, OnInit} from '@angul
 import {zip} from "rxjs";
 import {TranslationClientService} from "../service/translate/translation-client.service";
 import {ImageUploadService} from "../service/image-upload/image-upload.service";
-import {UploadImageResponse} from "../model/upload-image-response";
+import {UploadImageResponse} from "../model/images/upload-image-response";
 
 @Directive({
   selector: '[libDyImageEdit]',

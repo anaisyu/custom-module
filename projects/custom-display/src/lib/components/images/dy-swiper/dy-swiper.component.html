@@ -8,19 +8,17 @@
       <div [id]="id()" class="swiper">
         <!-- Additional required wrapper -->
         <div class="swiper-wrapper">
-          @for (picture of pictures(); track picture.id) {
-            <div class="swiper-slide" id="{{ picture.id }}">
+          @for (picture of pictures(); track picture.originalUrl) {
+
+            <div class="swiper-slide" id="{{ picture.originalUrl }}">
               <div class="picsum-img-wrapper"
               >
                 <div
                   [style.padding-left]="margin_x() + '%'"
                   [style.padding-right]="margin_x() + '%'"
                 >
-                  <a [href]="picture.fullSizeUrl" class="img-link" target="_blank">
-                    <img
-                      [dyTransition]="$first ? transition() : 'none'"
-                      #image [src]="picture.url" alt="{{ picture.description }}">
-                    <!-- [style.width]="100 - margin_x() * 2 + '%'" -->
+                  <a [href]="picture.originalUrl" [attr.data-pswp-width]="sizes().get(picture.originalUrl)!.width()" [attr.data-pswp-height]="sizes().get(picture.originalUrl)!.height()" class="img-link" target="_blank">
+                    <dy-img [image]="picture" alt="'...'" [transitionName]="$first ? transition() : 'none'" [(height)]="sizes().get(picture.originalUrl)!.height" [(width)]="sizes().get(picture.originalUrl)!.width"></dy-img>
                   </a>
                 </div>
               </div>
@@ -45,10 +43,10 @@
           <ng-container *ngFor="let picture of pictures(); let i = index">
             <img (click)="goto(i)"
                  [class.ab_active]="i == active_id"
-                 [src]="picture.url"
+                 [src]="picture.thumbnailUrl"
                  [style.height]="getThumbnailHeight(pictures()) + '%'"
                  [style.width]="getThumbnailHeight(pictures()) + '%'"
-                 alt="{{ picture.description }} thumbnail"
+                 alt="thumbnail"
                  class="cd"
             />
           </ng-container>
@@ -56,3 +54,4 @@
       </div>
     </div>
   </div>
+</div>

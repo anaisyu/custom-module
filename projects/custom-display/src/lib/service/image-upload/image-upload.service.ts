@@ -1,7 +1,7 @@
 import {Inject, Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {filter, map, Observable, switchMap} from "rxjs";
-import {UploadImageResponse} from "../../model/upload-image-response";
+import {UploadImageResponse} from "../../model/images/upload-image-response";
 import {MatDialog} from "@angular/material/dialog";
 import {UploadImageModalComponent} from "../../components/images/add-dyimage/upload-image-modal/upload-image-modal.component";
 

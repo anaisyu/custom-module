@@ -7,6 +7,7 @@ import {AsyncPipe, NgIf} from "@angular/common";
 import {MatButton} from "@angular/material/button";
 import {MatIcon} from "@angular/material/icon";
 import {DyTextEditorComponent} from "../../dy-text-editor/dy-text-editor.component";
+import {MatSlideToggle, MatSlideToggleChange} from "@angular/material/slide-toggle";
 
 @Component({
   selector: 'lib-translate-edit',
@@ -17,7 +18,8 @@ import {DyTextEditorComponent} from "../../dy-text-editor/dy-text-editor.compone
     MatButton,
     AsyncPipe,
     MatIcon,
-    DyTextEditorComponent
+    DyTextEditorComponent,
+    MatSlideToggle
   ],
   styleUrls: ['./translate-edit.component.css']
 })
@@ -27,14 +29,9 @@ export class TranslateEditComponent {
   constructor(public userService: UserService, public assetService: TranslationClientService, public dyTextEditorService: DyTextEditorService, private colorService: ChangeColorsService) {
   }
 
-  edit() {
+  edit($event: MatSlideToggleChange) {
     this.userService.isAdminOrRedirect();
-    this.assetService.editSubject.next(true);
-  }
-
-  display() {
-    this.assetService.editSubject.next(false);
-    this.dyTextEditorService.displayEditorSubject.next(false);
+    this.assetService.editSubject.next($event.checked);
   }
 
   cancel() {

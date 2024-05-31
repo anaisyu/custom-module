@@ -4,7 +4,7 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {ImageUploadService} from "../../../service/image-upload/image-upload.service";
-import {UploadImageResponse} from "../../../model/upload-image-response";
+import {UploadImageResponse} from "../../../model/images/upload-image-response";
 
 @Component({
   selector: 'lib-add-dyimage',
