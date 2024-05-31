@@ -27,10 +27,11 @@ export class DyImgComponent implements AfterViewChecked{
   image = input.required<DyImage>()
   alt = input.required<string>()
   transitionName = input<string>('none')
+  sizeRatio = input(100)
+
   srcSet = computed(() => {
     return this.image().compressedUrls.map((url: CompressedUrl) => `${url.url} ${url.width}w`).join(', ');
   })
-  sizeRatio = signal(100)
   sizes = computed(() => {
     return this.image().compressedUrls.map((url: CompressedUrl) => `(max-width: ${url.width}px) `+ ((Number(url.width)*100)/this.sizeRatio())).join(', ');
   })
