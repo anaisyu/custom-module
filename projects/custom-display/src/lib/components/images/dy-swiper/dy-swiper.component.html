@@ -21,7 +21,7 @@
                      [attr.data-pswp-width]="sizes().get(picture.originalUrl)!.width()*this.slidesPerView()"
                      [attr.data-pswp-height]="sizes().get(picture.originalUrl)!.height()*this.slidesPerView()"
                      class="img-link" target="_blank">
-                    <dy-img style="width: 100%; height: auto;" [sizeRatio]="100/this.slidesPerView()" [image]="picture"
+                    <dy-img [imgStyle]="'width: 100%; height: auto;'" [sizeRatio]="100/this.slidesPerView()" [image]="picture"
                             [alt]="picture.alt ?? 'swiper image'" [transitionName]="$first ? transition() : 'none'"
                             [(height)]="sizes().get(picture.originalUrl)!.height"
                             [(width)]="sizes().get(picture.originalUrl)!.width"></dy-img>

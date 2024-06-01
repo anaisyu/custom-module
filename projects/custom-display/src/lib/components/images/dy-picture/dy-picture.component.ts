@@ -35,7 +35,6 @@ export class DyPictureComponent implements OnInit, AfterViewInit {
   readonly lazy: InputSignal<boolean> = input<boolean>(false);
   readonly proportion: InputSignal<number> = input<number>(100);
 
-  @ViewChild('theImg') imageElements!: ElementRef<HTMLImageElement>;
   private readonly storedImage: WritableSignal<UploadImageResponse | undefined> = signal(undefined)
   readonly imageToDisplay: Signal<UploadImageResponse> = computed(() => {
     return this.storedImage() ?? {originalUrl: this.originalSrc(), thumbnailUrl: this.originalSrc(), compressedUrls: []}
@@ -44,30 +43,20 @@ export class DyPictureComponent implements OnInit, AfterViewInit {
   readonly altToDisplay: Signal<string> = computed(() => {
     return this.storedAlt() ?? this.originalAlt()
   })
-  private editMode: boolean = false;
+  editMode = signal(false);
 
   constructor(private clientService: TranslationClientService, private imageUploadService: ImageUploadService) {
   }
 
   ngAfterViewInit(): void {
-    const originalBorder = this.imageElements.nativeElement.style.border;
     this.clientService.editSubject.subscribe(editMode => {
-      this.editMode = editMode;
-
-      // Get the native element using ElementRef
-      const element = this.imageElements.nativeElement;
-      // Check the condition and apply the dashed border if needed
-      if (this.editMode) {
-        element.style.border = '2px dashed #a9a9a9';
-      } else {
-        element.style.border = originalBorder;
-      }
+      this.editMode.set(editMode);
     })
   }
 
   @HostListener('click')
   public onKeyup(): void {
-    if (this.editMode) {
+    if (this.editMode()) {
       this.imageUploadService.openDialog().subscribe(res => {
         this.changeImage(res.urls, res.alt)
         this.save(res.urls, res.alt)

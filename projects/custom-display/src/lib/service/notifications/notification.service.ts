@@ -1,12 +1,12 @@
 import {Injectable} from '@angular/core';
 import {Subject} from "rxjs";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Injectable({
   providedIn: 'root'
 })
 export class NotificationService {
-  constructor() {
-
+  constructor(private _snackBar: MatSnackBar) {
   }
 
   private _successMessage: Subject<string> = new Subject<string>();
@@ -21,13 +21,20 @@ export class NotificationService {
     return this._errorMessage;
   }
 
-  newMessage(message: string): void {
+  newMessage(message: string, snack: boolean = false): void {
+    if(snack) {
+      this._snackBar.open(message, 'Fermer', {duration: 5000})
+    }
     this._successMessage.next(message);
   }
 
-  newError(message: string): void {
+  newError(message: string, snack: boolean = false): void {
+    if(snack) {
+      this._snackBar.open(message, 'Fermer', {
+        duration: 60 * 1000,
+        panelClass: 'error'
+      })
+    }
     this._errorMessage.next(message);
   }
-
-
 }
