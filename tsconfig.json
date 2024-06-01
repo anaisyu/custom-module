@@ -6,6 +6,9 @@
     "paths": {
       "custom-display": [
         "dist/custom-display"
+      ],
+      "dy-edit-dev": [
+        "./dist/dy-edit-dev"
       ]
     },
     "outDir": "./dist/out-tsc",

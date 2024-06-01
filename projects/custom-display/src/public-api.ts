@@ -2,14 +2,8 @@
  * Public API Surface of custom-display
  */
 
-export * from './lib/components/custom-display/custom-display.component';
-export * from './lib/custom-display.module';
-export * from './lib/pages/test/test.component'
-export * from './lib/pages/test/test-edit.component'
-export * from './lib/openapi/index'
 export * from './lib/directives/dy-translate.directive'
 export * from './lib/directives/dy-image-edit.directive'
-export * from './lib/directives/dy-display.directive'
 export * from './lib/directives/dy-transition.directive'
 export * from './lib/lib/title/my-title-strategy'
 export * from './lib/lib/enable-credentials-interceptor'
@@ -24,17 +18,18 @@ export * from './lib/service/change-colors-service/change-colors.service'
 export * from './lib/service/calendly-service/calendly.service'
 export * from './lib/service/dy-contact/dy-contact.service'
 export * from './lib/service/local-storage/local-storage.service'
+export * from './lib/service/dy-text-editor/dy-text-editor.service'
 export * from './lib/entities/user'
-export * from './lib/components/translate/translate-edit/translate-edit.component'
+
 export * from './lib/components/notification/notification.component'
 export * from './lib/components/loading/loading.component'
-export * from './lib/components/dy-text-editor/dy-text-editor.component'
+
 export * from './lib/components/images/add-dyimage/add-dyimage.component'
 export * from './lib/components/images/image-edit/image-edit.component'
 export * from './lib/components/images/dy-swiper/dy-swiper.component'
 export * from './lib/components/images/dy-picture/dy-picture.component'
 export * from './lib/components/images/tag/dy-img/dy-img.component'
-export * from './lib/components/change-color/change-color.component'
+
 export * from './lib/components/my-card/my-card.component'
 export * from './lib/components/calendly/calendly.component'
 export * from './lib/model/images/upload-image-response'

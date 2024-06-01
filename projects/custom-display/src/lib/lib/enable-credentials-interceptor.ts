@@ -13,12 +13,16 @@ export class EnableCredentialsInterceptor implements HttpInterceptor {
       withCredentials: true
     });
 
-    if(request.method != "GET") {
+
+    const isGraphQLQuery = request.body && request.body.operationName && request.body.query &&
+      request.body.query.trim().startsWith('query');
+
+    if(request.method != "GET" && !isGraphQLQuery) {
       LoadingService.startLoading();
     }
 
     return next.handle(request).pipe(finalize(() => {
-      if(request.method != "GET") {
+      if(request.method != "GET" && !isGraphQLQuery) {
         LoadingService.stopLoading();
       }
     }));

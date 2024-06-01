@@ -1,4 +1,4 @@
-import {Component, Input, Signal} from '@angular/core';
+import {Component, input, Input, Signal} from '@angular/core';
 import {AsyncPipe} from '@angular/common';
 import {LoadingService} from "../../service/loading/loading.service";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
@@ -11,10 +11,10 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
   styleUrl: './loading.component.css'
 })
 export class LoadingComponent {
-  @Input() public material: boolean = true;
-  protected isLoading: Signal<boolean>;
+  material = input(true);
+  isLoading: Signal<boolean>;
 
-  constructor(loadingService: LoadingService) {
+  constructor() {
     this.isLoading = LoadingService.isLoading()
   }
 }

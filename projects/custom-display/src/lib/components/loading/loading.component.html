@@ -1,5 +1,5 @@
 @if (isLoading()) {
-  @if (material) {
+  @if (material()) {
     <mat-spinner class="loading-spinner"></mat-spinner>
   } @else {
     <div class="loading-spinner spinner-border" style="width: 5rem; height: 5rem; font-size: 2em;"
