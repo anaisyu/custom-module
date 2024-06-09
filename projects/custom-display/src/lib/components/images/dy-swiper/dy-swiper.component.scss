@@ -91,12 +91,12 @@ img {
 @media (min-width: 768px) {
 
   .dy-arrow {
-    width: 4%;
+    width: 4rem;
     color: var(--dy-primary)
   }
 
   .dy-main {
-    width: 92%;
+    width: calc(100% - 8rem);;
   }
 }
 

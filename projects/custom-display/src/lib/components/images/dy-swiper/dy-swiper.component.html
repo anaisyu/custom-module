@@ -1,8 +1,9 @@
 <div [class.col-md-10]="withGallery()" [class.col-md-12]="!withGallery()" [style.--swiper-theme-color]="themeColor()">
   <div style="display: flex; align-items: center;">
     <div class="dy-arrow text-center">
-      <i [class]="'swiper-button-prev-dy' + id()"><span
-        class="material-symbols-outlined">chevron_left</span></i>
+      <mat-icon [class]="'swiper-button-prev-dy' + id()" class="!w-full" [inline]="true"
+                style="font-size: 4rem; color: var(--dy-primary)">chevron_left
+      </mat-icon>
     </div>
     <div class="dy-main">
       <div [id]="id()" class="swiper">
@@ -38,8 +39,9 @@
       </div>
     </div>
     <div class="text-center dy-arrow">
-      <i [class]="'swiper-button-next-dy' + id()"><span
-        class="material-symbols-outlined">chevron_right</span></i>
+      <mat-icon [class]="'swiper-button-next-dy' + id()" class="text-primary-inverse !w-full" [inline]="true"
+                style="font-size: 4rem; color: var(--dy-primary)">chevron_right
+      </mat-icon>
     </div>
   </div>
   <div *ngIf="withGallery()" class="row">

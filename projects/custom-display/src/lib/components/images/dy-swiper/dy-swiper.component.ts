@@ -21,6 +21,7 @@ import Swiper from 'swiper/bundle';
 import {DyImage} from "../../../model/images/dy-image";
 import {DyTransitionDirective} from "../../../directives/dy-transition.directive";
 import {DyImgComponent} from "../tag/dy-img/dy-img.component";
+import {MatIcon} from "@angular/material/icon";
 
 @Component({
   selector: 'app-dy-swiper',
@@ -29,7 +30,8 @@ import {DyImgComponent} from "../tag/dy-img/dy-img.component";
     NgForOf,
     NgIf,
     DyTransitionDirective,
-    DyImgComponent
+    DyImgComponent,
+    MatIcon
   ],
   templateUrl: './dy-swiper.component.html',
   styleUrl: './dy-swiper.component.scss'
