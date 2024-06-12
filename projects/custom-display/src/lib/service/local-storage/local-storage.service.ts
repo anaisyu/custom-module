@@ -51,7 +51,7 @@ export class LocalStorageService {
     return null;
   }
 
-  setValue(key: string, value: string | null | undefined, expiresInMs: number = 1000*60*60*24*21) {
+  setValue(key: string, value: string | null | undefined, expiresInMs: number = 1000*60*60*24) {
     if (isPlatformBrowser(this._platformId)) {
       const signalValue = this.values.get(key)!
       if (value && value != signalValue()) {
