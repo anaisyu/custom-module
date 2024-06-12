@@ -18,7 +18,7 @@
                   [style.padding-left]="margin_x() + '%'"
                   [style.padding-right]="margin_x() + '%'"
                 >
-                  <a [href]="picture.originalUrl"
+                  <a style="width: 100%" [href]="picture.originalUrl"
                      [attr.data-pswp-width]="sizes().get(picture.originalUrl)!.width()*this.slidesPerView()"
                      [attr.data-pswp-height]="sizes().get(picture.originalUrl)!.height()*this.slidesPerView()"
                      class="img-link" target="_blank">
