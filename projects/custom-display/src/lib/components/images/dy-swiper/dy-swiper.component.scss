@@ -98,6 +98,15 @@ img {
   .dy-main {
     width: calc(100% - 8rem);;
   }
+  .hide-arrows {
+    .dy-arrow {
+      display: none;
+    }
+
+    .dy-main {
+      width: 100%;
+    }
+  }
 }
 
 @media (max-width: 768px) {

@@ -1,5 +1,5 @@
 <div [class.col-md-10]="withGallery()" [class.col-md-12]="!withGallery()" [style.--swiper-theme-color]="themeColor()">
-  <div style="display: flex; align-items: center;">
+  <div style="display: flex; align-items: center;" [class.hide-arrows]="pictures().length <= slidesPerView()">
     <div class="dy-arrow text-center">
       <mat-icon [class]="'swiper-button-prev-dy' + id()" class="!w-full" [inline]="true"
                 style="font-size: 4rem; color: var(--dy-primary)">chevron_left

@@ -101,6 +101,7 @@ export class DySwiperComponent implements OnDestroy, AfterViewInit, OnChanges {
 
         // Navigation arrows
         navigation: {
+          enabled: this.pictures().length > 1,
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev',
         },
@@ -108,6 +109,7 @@ export class DySwiperComponent implements OnDestroy, AfterViewInit, OnChanges {
         breakpoints: {
           // when window width is >= 640px
           640: {
+            enabled: this.pictures().length > this.slidesPerView(),
             navigation: {
               nextEl: '.swiper-button-next-dy' + this.id(),
               prevEl: '.swiper-button-prev-dy' + this.id(),
