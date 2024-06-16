@@ -1,6 +1,6 @@
 {
   "name": "dy-edit-dev",
-  "version": "0.0.481",
+  "version": "0.0.482",
   "peerDependencies": {
     "@angular/common": "^17.0.0 || ^18.0.0",
     "@angular/core": "^17.0.0 || ^18.0.0",
