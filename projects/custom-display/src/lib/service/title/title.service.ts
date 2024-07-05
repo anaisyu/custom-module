@@ -18,10 +18,10 @@ export class TitleService {
   }
 
   public appendToTitle(newTitle: string): void {
-    this.setTitle(this.title.getTitle() + ' - ' + newTitle);
+    this.setTitle(newTitle + ' - ' + this.title.getTitle());
   }
 
   public appendToBaseTitle(newTitle: string): void {
-    this.setTitle(this.siteTitleBase + ' - ' + newTitle);
+    this.setTitle(newTitle + ' - ' + this.siteTitleBase);
   }
 }
