@@ -17,8 +17,6 @@ export class SchemaOrgService {
   }
 
   setText(value: string) {
-    console.log('set')
-    console.log(value)
     this._text.next(value);
   }
 
@@ -27,7 +25,6 @@ export class SchemaOrgService {
   }
 
   private resetText(): void {
-    console.log('reset')
     this._text.next('');
   }
 }

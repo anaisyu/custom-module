@@ -2,14 +2,12 @@ import {
   AfterViewInit,
   Component,
   computed,
-  ElementRef,
   HostListener,
   input,
   InputSignal,
   OnInit,
   signal,
   Signal,
-  ViewChild,
   WritableSignal
 } from '@angular/core';
 import {UploadImageResponse} from "../../../model/images/upload-image-response";

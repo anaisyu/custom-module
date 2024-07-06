@@ -1,2 +1,2 @@
-<dy-img [class.dy-border]="editMode()" [alt]="altToDisplay()" [attr.loading]="lazy() ? 'lazy' : 'eager'" [image]="imageToDisplay()"
-        [imgClass]="imgClass()" [sizeRatio]="proportion()"></dy-img>
+<dy-img [alt]="altToDisplay()" [attr.loading]="lazy() ? 'lazy' : 'eager'" [image]="imageToDisplay()"
+        [imgClass]="imgClass()" [imgStyle]="editMode() ? 'border: 4px dashed rgb(169, 169, 169) !important;' : ''" [sizeRatio]="proportion()"></dy-img>
