@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import {BehaviorSubject, Observable} from "rxjs";
+import {BehaviorSubject, Observable, Subject} from "rxjs";
 import {NavigationStart, Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
 })
 export class SchemaOrgService {
-  private _text: BehaviorSubject<string> = new BehaviorSubject<string>('');
+  private _text: Subject<string> = new BehaviorSubject<string>('');
 
   constructor(private router: Router) {
     this.router.events.subscribe(event => {
@@ -16,19 +16,18 @@ export class SchemaOrgService {
     });
   }
 
-  get text(): string {
-    return this._text.value;
-  }
-
-  set text(value: string) {
+  setText(value: string) {
+    console.log('set')
+    console.log(value)
     this._text.next(value);
   }
 
-  get text$(): Observable<string> {
-    return this._text.asObservable();
+  get text$(): Subject<string> {
+    return this._text;
   }
 
   private resetText(): void {
+    console.log('reset')
     this._text.next('');
   }
 }

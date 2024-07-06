@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, ElementRef, Renderer2} from '@angular/core';
 import {AsyncPipe} from "@angular/common";
 import {SchemaOrgService} from "../../service/schema-org/schema-org.service";
 
@@ -12,7 +12,22 @@ import {SchemaOrgService} from "../../service/schema-org/schema-org.service";
   styleUrl: './schema-org.component.css'
 })
 export class SchemaOrgComponent {
-  constructor(public schema: SchemaOrgService) {
+  constructor(
+    renderer: Renderer2,
+    elementRef: ElementRef,
+    public schema: SchemaOrgService) {
+    schema.text$.subscribe(text => {
+      const element = elementRef.nativeElement;
+      while (element.firstChild) {
+        renderer.removeChild(element, element.firstChild);
+      }
+      if(text) {
+        let script = renderer.createElement('script');
+        script.type = `application/ld+json`;
+        script.text = text
 
+        renderer.appendChild(elementRef.nativeElement, script);
+      }
+    })
   }
 }
