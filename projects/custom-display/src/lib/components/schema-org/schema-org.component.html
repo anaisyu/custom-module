@@ -1,0 +1,5 @@
+@if(schema.text$ | async; as text) {
+  @if(text) {
+      <script type="application/ld+json">{{text}}</script>
+  }
+}

@@ -19,6 +19,7 @@ export * from './lib/service/calendly-service/calendly.service'
 export * from './lib/service/dy-contact/dy-contact.service'
 export * from './lib/service/local-storage/local-storage.service'
 export * from './lib/service/dy-text-editor/dy-text-editor.service'
+export * from './lib/service/schema-org/schema-org.service'
 export * from './lib/entities/user'
 
 export * from './lib/components/notification/notification.component'
@@ -29,6 +30,8 @@ export * from './lib/components/images/image-edit/image-edit.component'
 export * from './lib/components/images/dy-swiper/dy-swiper.component'
 export * from './lib/components/images/dy-picture/dy-picture.component'
 export * from './lib/components/images/tag/dy-img/dy-img.component'
+
+export * from './lib/components/schema-org/schema-org.component'
 
 export * from './lib/components/my-card/my-card.component'
 export * from './lib/components/calendly/calendly.component'

@@ -10,18 +10,6 @@ export class DescriptionMetaService {
     private meta: Meta) {
   }
 
-  updateSchema(text: string,
-               renderer2: Renderer2,
-               elementRef: ElementRef
-               ) : void {
-    let script = renderer2.createElement('script');
-    script.type = `application/ld+json`;
-    script.text = text;
-
-
-    renderer2.appendChild(elementRef.nativeElement, script);
-  }
-
   updateDescription(newDescription: string): void {
     this.meta.updateTag({name: 'description', content: newDescription});
   }
