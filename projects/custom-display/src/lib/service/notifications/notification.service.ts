@@ -21,17 +21,17 @@ export class NotificationService {
     return this._errorMessage;
   }
 
-  newMessage(message: string, snack: boolean = false): void {
+  newMessage(message: string, snack: boolean = true, durationSeconds: number = 5): void {
     if(snack) {
-      this._snackBar.open(message, 'Fermer', {duration: 5000})
+      this._snackBar.open(message, 'Fermer', {duration: durationSeconds * 1000})
     }
     this._successMessage.next(message);
   }
 
-  newError(message: string, snack: boolean = false): void {
+  newError(message: string, snack: boolean = true, durationSeconds: number = 30): void {
     if(snack) {
       this._snackBar.open(message, 'Fermer', {
-        duration: 60 * 1000,
+        duration: durationSeconds * 1000,
         panelClass: 'error'
       })
     }
