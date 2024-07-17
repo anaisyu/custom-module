@@ -1,0 +1,49 @@
+<div class="form">
+  @if (formData()) {
+  <form #formDirective="ngForm"
+        (ngSubmit)="onSubmit(formDirective)" [formGroup]="formData()" class="php-email-form"
+        role="form">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="form-group">
+
+        <mat-form-field [appearance]="appearance()" class="w-full">
+          <mat-label>Prénom</mat-label>
+          <input autocomplete="name" formControlName="name" matInput placeholder="Prénom">
+        </mat-form-field>
+      </div>
+      <input matInput formControlName="lastName" style="display: none">
+      @if (long()) {
+      <div class="form-group">
+        <mat-form-field class="w-full" [appearance]="appearance()">
+          <mat-label>Nom</mat-label>
+          <input matInput formControlName="nom" placeholder="Nom">
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field class="w-full" [appearance]="appearance()">
+          <mat-label>Téléphone</mat-label>
+          <input type="tel" matInput formControlName="phone" placeholder="phone">
+        </mat-form-field>
+      </div>
+      }
+      <div class="form-group mt-4 md:mt-0">
+        <mat-form-field [appearance]="appearance()" class="w-full">
+          <mat-label>Email</mat-label>
+          <input autocomplete="email" formControlName="email" id="email" matInput placeholder="Email" type="email">
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="form-group mt-4">
+      <mat-form-field [appearance]="appearance()" class="w-full">
+        <mat-label>Message</mat-label>
+        <textarea formControlName="message" matInput placeholder="Message" rows="5"></textarea>
+      </mat-form-field>
+    </div>
+    <div class="text-center">
+      <button [disabled]="formData().invalid" color="primary"
+              mat-raised-button type="submit"><span [appDyTranslate]="'contact.send'">Envoyer le message</span>
+      </button>
+    </div>
+  </form>
+  }
+</div>

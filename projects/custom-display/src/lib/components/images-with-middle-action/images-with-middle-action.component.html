@@ -1,0 +1,24 @@
+<div class="md-vh-60">
+  <div class="md:flex md-vh-60">
+    <lib-dy-picture [originalSrc]="defaultImageLeft()" class="w-full" imgClass="max-h-full w-full hidden md:block object-cover md:object-left"
+                    [key]="uniqueId() + '.action.key1'"
+                    originalAlt="Image de fond 1"></lib-dy-picture>
+    <lib-dy-picture [originalSrc]="defaultImageRight()" class="w-full" imgClass="max-h-full w-full object-cover md:object-right"
+                    [key]="uniqueId() + '.action.key2'"
+                    originalAlt="Image de fond 2"></lib-dy-picture>
+  </div>
+
+  <div class="flex items-center justify-center content-height">
+    <app-dy-panel class="w-full md:w-1/3">
+      <div class="flex flex-col justify-between items-center">
+        <h2 class="my-4 text-3xl font-bold  text-center" [appDyTranslate]="uniqueId() + '.action.title'">Fait maison dans notre atelier artisanal à Lausanne</h2>
+        <p class="text-lg  text-center" [appDyTranslate]="uniqueId() + '.action.desc'">Avec des produits principalement locaux</p>
+      </div>
+      <div class="text-center md:relative bottom-3-rem">
+        <a [routerLink]="btnLink()">
+          <button class="!text-xl !h-[3.5rem]" mat-flat-button><span [appDyTranslate]="uniqueId() + '.action.button'">Réserver maintenant</span></button>
+        </a>
+      </div>
+    </app-dy-panel>
+  </div>
+</div>

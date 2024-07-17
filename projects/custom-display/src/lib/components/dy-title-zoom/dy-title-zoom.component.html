@@ -1,0 +1,14 @@
+<div style="display: block; overflow: hidden">
+  <div #background>
+    <section [style.background]="'linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.15) 27%, rgba(0, 0, 0, 0.3) 60%),\n'+
+'  url(\''+imageUrlMd()+'\')'" class="section-header title-zoom">
+      @if(materialIconName()) {
+        <div class="text-center">
+        <mat-icon [inline]="true" style="color: var(--dy-text-primary); font-size: 4rem" >{{ materialIconName() }}</mat-icon>
+        </div>
+      }
+      <h1 [appDyTranslate]="uniqueId() + '.title'" class="text-white text-uppercase text-4xl">{{ defaultTitle() }}</h1>
+      <p [appDyTranslate]="uniqueId() + '.description'" class="text-center text-white text-uppercase md:w-2/3 m-auto">{{ defaultDescription() }}</p>
+    </section>
+  </div>
+</div>

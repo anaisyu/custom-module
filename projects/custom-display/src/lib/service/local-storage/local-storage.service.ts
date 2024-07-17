@@ -66,6 +66,10 @@ export class LocalStorageService {
   }
 
   getValue(key: string) : Signal<string | null> {
+    if(!this.values.has(key)) {
+      console.error('local storage misconfiguration')
+      return signal('')
+    }
     return this.values.get(key)!.asReadonly()
   }
 }

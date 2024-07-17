@@ -1,0 +1,62 @@
+section {
+  margin-top: 0;
+  padding-top: 20vh;
+  width: auto;
+  padding-bottom: 15vh;
+  background-position: center center !important;
+  background-size: cover;
+}
+
+section h1, section h2 {
+  color: var(--dy-text-primary);
+  font-weight: 700;
+  position: relative;
+  padding-bottom: 10px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+section h1::before, section h2::before {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 50px;
+  height: 3px;
+  background: var(--dy-text-primary);
+  bottom: 0;
+  left: 50%; /* Set left to 50% */
+  transform: translateX(-50%); /* Use transform to center horizontally */
+}
+
+
+.m-auto {
+  margin: auto;
+}
+.block {
+  display: block;
+}
+.inline {
+  display: inline;
+}
+.hidden {
+  display: none;
+}
+.w-2\/3 {
+  width: 66.666667%;
+}
+.text-center {
+  text-align: center;
+}
+.text-4xl {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+.text-white {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+@media (min-width: 768px) {
+  .md\:w-2\/3 {
+    width: 66.666667%;
+  }
+}

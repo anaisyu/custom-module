@@ -1,0 +1,14 @@
+<a [routerLink]="url()" class="relative block h-full w-full overflow-hidden text-white zoom-in-bg">
+  <div class="absolute inset-0 h-full w-full object-cover zoom-in-bg-inside">
+    <lib-dy-picture [proportion]="50" [originalSrc]="src()" originalAlt="Image" [key]="uniqueId()+'.img'" imgClass="h-full w-full object-cover"> </lib-dy-picture>
+  </div>
+  @if(!(clientService.editSubject | async)) {
+    <div class="absolute inset-0 bg-black bg-opacity-20 md:bg-opacity-10"></div> <!-- Dark overlay -->
+  }
+  <div [class.text-end]="alignEnd()" [class.text-start]="!alignEnd()" class="absolute w-full p-8">
+    <h2 class="text-3xl font-medium text-shadow-md" [appDyTranslate]="uniqueId() +'.title'">{{ title() }}</h2>
+    <p class="mt-2 text-base font-bold text-shadow-md flex items-center" [class.justify-end]="alignEnd()">
+      <span [appDyTranslate]="uniqueId() +'.see-more'">Voir plus</span>&nbsp;<mat-icon [inline]="true">arrow_forward</mat-icon>
+    </p>
+  </div>
+</a>

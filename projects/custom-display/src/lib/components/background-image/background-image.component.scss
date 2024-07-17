@@ -1,0 +1,28 @@
+
+#div1 {
+  height: 400px;
+  width: 100%;
+  background-size: cover !important;
+  background-position: center center !important;
+  filter: blur(45px);
+  transform: scale(1.2);
+}
+
+#div2 {
+  height: fit-content;
+  width: 75%;
+  position: relative;
+  left: 12.5%;
+  top: -350px;
+}
+
+@media (max-width: 724px) {
+  #div1 {
+    filter: blur(30px);
+    transform: scale(1.7) !important;
+  }
+}
+
+.hidden {
+  display: none;
+}

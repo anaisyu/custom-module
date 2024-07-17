@@ -1,0 +1,11 @@
+<div [class.p-4]="padding()" [style.background-color]="backgroundColor()" class="dy-panel rounded-xl">
+  @if (closeButton()) {
+    <button (click)="closePanel()"
+            aria-label="Fermer"
+            title="Fermer"
+            class="absolute aspect-square rounded-full top-2 right-2 bg-primary text-white p-2 focus:outline-none">
+      &times;
+    </button>
+  }
+  <ng-content></ng-content>
+</div>

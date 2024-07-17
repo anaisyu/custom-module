@@ -1,0 +1,25 @@
+<section [style.background-color]="'color-mix(in srgb, '+backgroundColor+' 20%, transparent)'"
+         class="services section-bg p-3">
+    <div class="container" data-aos="fade-up">
+        <div *ngIf="mainTitle" class="section-header">
+            <h2 [appDyTranslate]="key + '.main-title'" class="text-center" style="color: var(--dy-primary)">Titre</h2>
+        </div>
+        <div class="row mt-3">
+            <div *ngFor="let item of [].constructor(cols); let i = index"
+                 [attr.data-aos-delay]="i + '00'" class="col-md-{{(row*12)/cols}} d-flex align-items-stretch"
+                 data-aos="zoom-in">
+                <div [class.align-items-center]="title && !desc && !icon"
+                     [class.d-flex]="title && !desc && !icon"
+                     [class.round-real]="round" [class.round]="oval"
+                     [style.background-color]="'color-mix(in srgb, white ' + (100 - cardTransparency) +'%, transparent)'"
+                     class="my-icon-box">
+                    <div *ngIf="icon" class="icon"><i style="color: var(--dy-primary)">{{ i + 1 }}</i></div>
+                    <h4 *ngIf="title" [appDyTranslate]="key+'.title' + i" class="title"></h4>
+                    <p *ngIf="desc" [appDyTranslate]="key+'.desc' + i" class="description"></p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>

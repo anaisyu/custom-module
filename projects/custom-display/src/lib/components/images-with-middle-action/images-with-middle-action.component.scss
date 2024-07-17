@@ -1,0 +1,111 @@
+.relative {
+  position: relative;
+}
+
+.my-4 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.-mt-\[45vh\] {
+  margin-top: -45vh;
+}
+.block {
+  display: block;
+}
+.flex {
+  display: flex;
+}
+.hidden {
+  display: none;
+}
+.\!h-\[3\.5rem\] {
+  height: 3.5rem!important;
+}
+.h-\[30vh\] {
+  height: 30vh;
+}
+.h-\[60vh\] {
+  height: 60vh;
+}
+.max-h-full {
+  max-height: 100%;
+}
+.w-1\/3 {
+  width: 33.333333%;
+}
+.w-full {
+  width: 100%;
+}
+.flex-col {
+  flex-direction: column;
+}
+.items-center {
+  align-items: center;
+}
+.justify-center {
+  justify-content: center;
+}
+.justify-between {
+  justify-content: space-between;
+}
+.object-cover {
+  object-fit: cover;
+}
+.object-left {
+  object-position: left;
+}
+.object-right {
+  object-position: right;
+}
+.text-center {
+  text-align: center;
+}
+.\!text-xl {
+  font-size: 1.25rem!important;
+  line-height: 1.75rem!important;
+}
+.text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+.font-bold {
+  font-weight: 700;
+}
+@media (min-width: 768px) {
+  .md\:relative {
+    position: relative;
+  }
+  .bottom-3-rem {
+    bottom: -3rem;
+  }
+  .md\:block {
+    display: block;
+  }
+  .md\:flex {
+    display: flex;
+  }
+  .md\:w-1\/3 {
+    width: 33.333333%;
+  }
+  .md\:object-left {
+    object-position: left;
+  }
+  .md\:object-right {
+    object-position: right;
+  }
+}
+
+@media (min-width: 768px) {
+  .content-height {
+    height: 30vh;
+    margin-top: -45vh;
+  }
+
+  .md-vh-60 {
+    height: 60vh;
+  }
+}
