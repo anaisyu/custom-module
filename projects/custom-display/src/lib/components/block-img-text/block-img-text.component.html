@@ -7,9 +7,8 @@
     @if (replaceImage()) {
       <ng-content></ng-content>
     } @else {
-      <lib-dy-picture [proportion]="50" [attr.data-aos]="mobile ? 'fade-up' : imgLeft() ? 'fade-right' : 'fade-left'"
-                      [key]="uniqueId() + '.img'" [originalSrc]="defaultImageSrc()" [imgClass]="'w-full h-auto'"
-                      originalAlt=""></lib-dy-picture>
+      <lib-dy-picture [imgStyle]="'width: 100%; height: auto;'" [proportion]="50" [attr.data-aos]="mobile ? 'fade-up' : imgLeft() ? 'fade-right' : 'fade-left'"
+                      [key]="uniqueId() + '.img'" [originalSrc]="defaultImageSrc()" originalAlt=""></lib-dy-picture>
     }
   </div>
   <div [class.md:order-0]="!imgLeft()"
