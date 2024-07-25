@@ -33,7 +33,7 @@ export class BlockImgTextComponent {
 
   mobile: boolean = false;
   bgColor: Signal<String> = computed(() => {
-    return this.imgLeft() ? "rgb(255,226,226)" : "rgb(248 248 248)"
+    return this.imgLeft() ? "color-mix(in srgb, var(--dy-primary) 20%, transparent)" : "color-mix(in srgb, var(--dy-primary) 10%, transparent)"
   });
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {

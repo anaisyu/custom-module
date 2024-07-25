@@ -5,7 +5,7 @@
        class="w-full md:w-1/2 py-5 order-1"
   >
     @if (replaceImage()) {
-      <ng-content></ng-content>
+      <ng-container *ngTemplateOutlet="linkTemplate"></ng-container>
     } @else {
       <lib-dy-picture [imgStyle]="'width: 100%; height: auto;'" [proportion]="50" [attr.data-aos]="mobile ? 'fade-up' : imgLeft() ? 'fade-right' : 'fade-left'"
                       [key]="uniqueId() + '.img'" [originalSrc]="defaultImageSrc()" originalAlt=""></lib-dy-picture>
@@ -16,7 +16,7 @@
        class="w-full md:w-1/2 md:m-auto md:px-24 px-6 order-0"
   >
     @if (replaceText()) {
-      <ng-content></ng-content>
+      <ng-container *ngTemplateOutlet="linkTemplate"></ng-container>
     } @else {
       <div class="container">
         <h2 [appDyTranslate]="uniqueId()+'.title'" class="uppercase text-center md:text-left">{{ defaultTitle() }}</h2>
@@ -32,3 +32,6 @@
     }
   </div>
 </section>
+<ng-template #linkTemplate>
+  <ng-content></ng-content>
+</ng-template>

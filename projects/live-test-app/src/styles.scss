@@ -1,1 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+:root {
+  font-size: 16px;
+  --dy-color-1-original: #82312E;
+  --dy-color-2-original: #DBBAB8;
+  --dy-color-3-original: #0e0f0f;
+  --dy-color-4-original: #313131;
+  --dy-color-6-original: #e5e5e5;
+  --dy-color-7-original: #FFFFFF;
+
+  --dy-primary: var(--dy-color-1-original);
+  --dy-primary-hover: var(--dy-color-2-original);
+  --dy-secondary: var(--dy-color-3-original);
+  --dy-secondary-hover: var(--dy-color-4-original);
+  --dy-text: var(--dy-color-5-original);
+  --dy-text-primary: var(--dy-color-6-original);
+  --dy-text-secondary: var(--dy-color-7-original);
+}

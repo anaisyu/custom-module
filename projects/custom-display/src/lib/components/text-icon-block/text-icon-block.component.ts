@@ -16,5 +16,5 @@ export class TextIconBlockComponent {
   materialIconName = input.required<string>();
   uniqueId = input.required<string>();
   title = input.required<string>();
-  desc = input.required<string>();
+  desc = input<string>('');
 }

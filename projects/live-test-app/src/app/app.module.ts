@@ -3,10 +3,18 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {BlockImgTextComponent} from "dy-custom-display";
+import {
+  BlockImgTextComponent,
+  ContactFormComponent,
+  DyPanelComponent,
+  H2TitleComponent,
+  DyTitleZoomComponent,
+  ImageActionTextComponent, TextIconBlockComponent
+} from "dy-custom-display";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import {HttpClient, provideHttpClient} from "@angular/common/http";
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -29,6 +37,12 @@ export function HttpLoaderFactory(http: HttpClient) {
     BrowserModule,
     AppRoutingModule,
     BlockImgTextComponent,
+    ContactFormComponent,
+    DyPanelComponent,
+    DyTitleZoomComponent,
+    H2TitleComponent,
+    ImageActionTextComponent,
+    TextIconBlockComponent,
   ],
   providers: [
     provideHttpClient(),
@@ -46,7 +60,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     },
     {
       provide: 'siteTitleBase', useValue: 'environment.title',
-    }
+    },
+    provideAnimationsAsync()
   ],
   bootstrap: [AppComponent]
 })

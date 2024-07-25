@@ -1,1 +1,185 @@
-<app-block-img-text [uniqueId]="'t'"></app-block-img-text>
+<!-- Affiche un zone de titre h1 avec une image en fond. Il y a un scroll effect qui va zoomer l'image en scroll down-->
+<app-dy-title-zoom
+  uniqueId="unique-id-pour-ce-component"
+  defaultTitle="Titre de la page"
+  [imageUrlMd]="'https://picsum.photos/1000/600/?random'"
+  defaultDescription="'description facultative, rien s affiche si vide'"
+></app-dy-title-zoom>
+
+<!-- Facultatif: on peut rajouter un icone qui sera affiché au dessus du texte. Le nom doit etre le standard material angular-->
+<app-dy-title-zoom
+  uniqueId="unique-id-pour-ce-component"
+  defaultTitle="Titre de la page"
+  [imageUrlMd]="'https://picsum.photos/1000/600/?random'"
+  defaultDescription="'description facultative, rien s affiche si vide'"
+  [materialIconName]="'house'"
+></app-dy-title-zoom>
+
+<!-- Pour structurer la page avec des titres de niveau 2  -->
+<lib-h2-title defaultTitle="titre h2" uniqueId="uniqueId" defaultDescription="intro sous le titre"></lib-h2-title>
+
+<!-- Affiche un titre, avec un paragraphe et à droite une image sur toute la largeur disponible-->
+<!-- Affiche un bouton pour une action -->
+<!-- Ne pas utiliser dans une grille ou un container, c'est fait pour utiliser sur toute la largeur de la page -->
+<!-- lorsque imgLeft = true, l'image est à gauche et le texte à droite. imgLeft = false fera l'inverse -->
+<app-block-img-text
+  [imgLeft]="false"
+  [uniqueId]="'unique-id-pour-ce-component'"
+  [btnText]="'texte-qui-sera-sur-le-bouton'"
+  [clickBtn]="'/router-angular-link'"
+  defaultTitle="titre h2 qui sera affiché en gras"
+  defaultDesc="Zone de paragraphe qui sera affichée sous le titre"
+  defaultImageSrc="https://picsum.photos/1000/600/?random"
+
+></app-block-img-text>
+
+<!-- Affiche un titre, avec un paragraphe et à gauche une image sur toute la largeur disponible-->
+<!-- Affiche un bouton pour une action -->
+<app-block-img-text
+  [imgLeft]="true"
+  [uniqueId]="'unique-id-pour-ce-component'"
+  [btnText]="'texte-qui-sera-sur-le-bouton'"
+  [clickBtn]="'/router-angular-link'"
+  defaultTitle="titre h2 qui sera affiché en gras"
+  defaultDesc="Zone de paragraphe qui sera affichée sous le titre"
+  defaultImageSrc="https://picsum.photos/1000/600/?random"
+></app-block-img-text>
+
+<!-- Affiche un titre, avec un paragraphe et à gauche une image sur toute la largeur disponible-->
+<!-- Aucun bouton ne sera affiché ici -->
+<app-block-img-text
+  [imgLeft]="true"
+  [uniqueId]="'unique-id-pour-ce-component'"
+  defaultTitle="titre h2 qui sera affiché en gras"
+  defaultDesc="Zone de paragraphe qui sera affichée sous le titre"
+  defaultImageSrc="https://picsum.photos/1000/600/?random"
+></app-block-img-text>
+
+<!-- Il est également possible de remplacer le texte par du contenu html-->
+<app-block-img-text
+  [imgLeft]="true"
+  [uniqueId]="'unique-id-pour-ce-component'"
+  [replaceText]="true"
+  defaultImageSrc="https://picsum.photos/1000/600/?random"
+>
+  <h2>Contenu html qui sera affiché</h2>
+  <p>on peut meme rajouter d'autres component avec par exemple le contact</p>
+  <app-contact-form></app-contact-form>
+</app-block-img-text>
+
+<!-- Il est également possible de remplacer le l'image par du contenu html-->
+<app-block-img-text
+  [imgLeft]="true"
+  [uniqueId]="'unique-id-pour-ce-component'"
+  [replaceImage]="true"
+  defaultTitle="titre h2 qui sera affiché en gras"
+  defaultDesc="Zone de paragraphe qui sera affichée sous le titre"
+>
+  <h2>Contenu html qui sera affiché</h2>
+  <p>on peut meme rajouter d'autres component avec par exemple le contact</p>
+  <app-contact-form></app-contact-form>
+  <p>et meme rajouter un autre component similaire, par contre là le rendu est moche car le contenu de cette section devient trop long. En effet, dans la colonne de gauche il n'y a qu'un petit texte</p>
+  <app-block-img-text
+    [imgLeft]="false"
+    [uniqueId]="'unique-id-pour-ce-component'"
+    [btnText]="'texte-qui-sera-sur-le-bouton'"
+    [clickBtn]="'/router-angular-link'"
+    defaultTitle="titre h2 qui sera affiché en gras"
+    defaultDesc="Zone de paragraphe qui sera affichée sous le titre"
+    defaultImageSrc="https://picsum.photos/1000/600/?random"
+  ></app-block-img-text>
+</app-block-img-text>
+
+<!-- We can also display content wrapped inside a panel with wounded shape. By default there are some padding -->
+<app-dy-panel><h1>some content</h1></app-dy-panel>
+
+<!-- We can disable the padding of the panel-->
+<app-dy-panel [padding]="false"><app-contact-form></app-contact-form></app-dy-panel>
+
+<!-- Afficher une image, avec du texte et un bouton d'action. Il y a un effet de zoom au survol de la souris. C'est un panneau d'image pour montrer visuellement un contenu et inviter à en voir davantage -->
+<!-- Idéal pour utiliser ce composant dans une grille -->
+<!-- alignEnd : afficher le bouton d'action à droite si true, à gauche si false -->
+<app-image-action-text
+  uniqueId="unique-id-for-component"
+  [src]="'https://picsum.photos/1000/600/?random'"
+  title="Texte affiché sur l'image"
+  [url]="['angular router link to the target']"
+  [alignEnd]="false"
+></app-image-action-text>
+
+<!-- In peut aussi aligner sur la droite le bouton action, comme variante-->
+<app-image-action-text
+  uniqueId="unique-id-for-component"
+  [src]="'https://picsum.photos/1000/600/?random'"
+  title="Texte affiché sur l'image"
+  [url]="['angular router link to the target']"
+  [alignEnd]="true"
+></app-image-action-text>
+
+<!-- Example pour remplacer l'image static avec une image lien action -->
+<app-block-img-text
+  [imgLeft]="true"
+  [uniqueId]="'unique-id-pour-ce-component'"
+  [replaceImage]="true"
+  defaultTitle="titre h2 qui sera affiché en gras"
+  defaultDesc="Zone de paragraphe qui sera affichée sous le titre"
+>
+  <div style="height: 555px;">
+    <app-image-action-text
+      uniqueId="unique-id-for-component"
+      [src]="'https://picsum.photos/1000/600/?random'"
+      title="Text displayed on the image"
+      [url]="['angular router link to the target']"
+      [alignEnd]="true"
+    ></app-image-action-text>
+  </div>
+</app-block-img-text>
+
+<!-- affiche des icones material avec un titre et du texte paragraphe facultatif -->
+<app-text-icon-block
+  uniqueId="id unique"
+  [materialIconName]="'house'"
+  desc="description facultative"
+  title="titre h3 affiché sur l icone"></app-text-icon-block>
+
+<!--Exemple d'une image et à droite des icones pour illustrer-->
+<app-block-img-text
+  [imgLeft]="true"
+  [uniqueId]="'unique-id-pour-ce-component'"
+  [replaceText]="true"
+  defaultImageSrc="https://picsum.photos/1000/600/?random"
+>
+  <h2 class="text-center text-4xl uppercase">Nos services</h2>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
+    <app-text-icon-block
+      uniqueId="service-icon-1"
+      [materialIconName]="'face'"
+      title="Traitements Anti-Âge"
+      desc="Des soins d’une grande efficacité pour combattre les signes de l’âge."
+    ></app-text-icon-block>
+    <app-text-icon-block
+      uniqueId="service-icon-2"
+      [materialIconName]="'spa'"
+      title="Traitements Anti-Acné"
+      desc="Des solutions efficaces pour une peau sans imperfections."
+    ></app-text-icon-block>
+    <app-text-icon-block
+      uniqueId="service-icon-3"
+      [materialIconName]="'local_hospital'"
+      title="Microneedling"
+      desc="Technique avancée pour stimuler la production de collagène."
+    ></app-text-icon-block>
+    <app-text-icon-block
+      uniqueId="service-icon-4"
+      [materialIconName]="'local_florist'"
+      title="Lifting Colombien"
+      desc="Redonnez fermeté et forme à votre corps sans chirurgie."
+    ></app-text-icon-block>
+  </div>
+</app-block-img-text>
+
+
+<!-- affiche un formulaire de contact qui va demander le prénom, le mail et du texte -->
+<app-contact-form></app-contact-form>
+<!-- affiche un formulaire de contact qui va demander le prénom, le nom, le téléphone, le mail et du texte -->
+<app-contact-form [long]="true"></app-contact-form>

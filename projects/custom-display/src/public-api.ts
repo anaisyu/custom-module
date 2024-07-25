@@ -24,6 +24,7 @@ export * from './lib/entities/user'
 
 export * from './lib/components/notification/notification.component'
 export * from './lib/components/loading/loading.component'
+export * from './lib/components/h2-title/h2-title.component'
 
 export * from './lib/components/images/add-dyimage/add-dyimage.component'
 export * from './lib/components/images/image-edit/image-edit.component'
