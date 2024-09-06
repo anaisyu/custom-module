@@ -132,4 +132,16 @@ img {
   .swiper-button-next, .swiper-button-prev {
     display: none;
   }
+
+  ::ng-deep .dy-swiper-img {
+    width: auto !important; height: auto;
+    display: block;
+    margin: auto;
+    max-width: 80vw;
+    max-height: 75vh;
+  }
+}
+
+::ng-deep .dy-swiper-img {
+  width: 100%; height: auto;
 }
