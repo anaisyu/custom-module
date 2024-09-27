@@ -18,8 +18,9 @@ export class SchemaOrgComponent {
     public schema: SchemaOrgService) {
     schema.text$.subscribe(text => {
       const element = elementRef.nativeElement;
-      while (element.firstChild) {
-        renderer.removeChild(element, element.firstChild);
+      const children = element.children
+      for (let child of children) {
+        renderer.removeChild(element, child);
       }
       if(text) {
         let script = renderer.createElement('script');
