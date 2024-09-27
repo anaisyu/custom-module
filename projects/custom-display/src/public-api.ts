@@ -20,6 +20,8 @@ export * from './lib/service/dy-contact/dy-contact.service'
 export * from './lib/service/local-storage/local-storage.service'
 export * from './lib/service/dy-text-editor/dy-text-editor.service'
 export * from './lib/service/schema-org/schema-org.service'
+export * from './lib/service/mobile-service/mobile.service'
+
 export * from './lib/entities/user'
 
 export * from './lib/components/notification/notification.component'
