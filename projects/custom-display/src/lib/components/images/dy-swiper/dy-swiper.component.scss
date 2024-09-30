@@ -134,7 +134,8 @@ img {
   }
 
   ::ng-deep .dy-swiper-img {
-    width: auto !important; height: auto;
+    width: 100% !important;
+    object-fit: contain;
     display: block;
     margin: auto;
     max-width: 80vw;
