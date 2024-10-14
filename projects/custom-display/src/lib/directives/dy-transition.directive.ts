@@ -92,7 +92,7 @@ export class DyTransitionDirective implements AfterViewInit, OnInit, OnDestroy {
     if(isPlatformBrowser(this._platformId)) {
       this.intervalId = setInterval(() => {
         this.checkVisibility();
-      }, 500); // 500 milliseconds interval
+      }, 750); // 500 milliseconds interval
     }
   }
 }
