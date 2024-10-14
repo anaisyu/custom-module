@@ -33,7 +33,7 @@ export class DyTransitionDirective implements AfterViewInit, OnInit, OnDestroy {
 
   ngOnInit(): void {
     if(this.dyTransition() != 'none') {
-      this.elementRef.nativeElement.style['view-transition-name'] = this.dyTransition();
+      this.elementRef.nativeElement.style['view-transition-name'] = `dy-${this.dyTransition()}`;
     }
     // Listen to router events
     this.subscription.add(
@@ -82,7 +82,7 @@ export class DyTransitionDirective implements AfterViewInit, OnInit, OnDestroy {
 
   @HostListener('window:scroll', ['$event'])
   @HostListener('window:click', ['$event'])
-  @HostListener('window:resize')
+  @HostListener('window:resize', ['$event'])
   onScroll(): void {
     this.checkVisibility();
   }
@@ -92,7 +92,7 @@ export class DyTransitionDirective implements AfterViewInit, OnInit, OnDestroy {
     if(isPlatformBrowser(this._platformId)) {
       this.intervalId = setInterval(() => {
         this.checkVisibility();
-      }, 750); // 500 milliseconds interval
+      }, 500); // 500 milliseconds interval
     }
   }
 }
