@@ -66,7 +66,7 @@ export class DyTransitionDirective implements AfterViewInit, OnInit, OnDestroy {
     if(isPlatformBrowser(this._platformId)) {
       if (this.dyTransition() != 'none') {
         if (this.isElementInViewport(this.elementRef.nativeElement)) {
-          this.elementRef.nativeElement.style['view-transition-name'] = this.dyTransition();
+          this.elementRef.nativeElement.style['view-transition-name'] = `dy-${this.dyTransition()}`;
         } else {
           setTimeout(() => {
             this.elementRef.nativeElement.style['view-transition-name'] = 'none';
@@ -75,13 +75,14 @@ export class DyTransitionDirective implements AfterViewInit, OnInit, OnDestroy {
       }
     } else {
       if(this.dyTransition() != 'none') {
-        this.elementRef.nativeElement.style['view-transition-name'] = this.dyTransition();
+        this.elementRef.nativeElement.style['view-transition-name'] = `dy-${this.dyTransition()}`;
       }
     }
   }
 
   @HostListener('window:scroll', ['$event'])
   @HostListener('window:click', ['$event'])
+  @HostListener('window:resize')
   onScroll(): void {
     this.checkVisibility();
   }
@@ -91,7 +92,7 @@ export class DyTransitionDirective implements AfterViewInit, OnInit, OnDestroy {
     if(isPlatformBrowser(this._platformId)) {
       this.intervalId = setInterval(() => {
         this.checkVisibility();
-      }, 500); // 500 milliseconds interval
+      }, 750); // 500 milliseconds interval
     }
   }
 }
