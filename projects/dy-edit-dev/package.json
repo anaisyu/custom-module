@@ -1,13 +1,13 @@
 {
   "name": "dy-edit-dev",
-  "version": "0.0.568",
+  "version": "0.0.571",
   "peerDependencies": {
     "@angular/common": "^17.0.0 || ^18.0.0",
     "@angular/core": "^17.0.0 || ^18.0.0",
     "@angular/material": "^17.0.0 || ^18.0.0",
     "@angular/router": "^17.0.0 || ^18.0.0",
     "ngx-colors": "^3.6.0",
-    "dy-custom-display": "^0.0.567",
+    "dy-custom-display": "^0.0.570",
     "@ckeditor/ckeditor5-build-decoupled-document": "^40.2.0"
   },
   "dependencies": {
